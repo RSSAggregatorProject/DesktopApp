@@ -2,52 +2,53 @@ package com.rssaggregator.desktop;
 
 import java.io.IOException;
 
+import com.rssaggregator.desktop.utils.Globals;
+import com.rssaggregator.desktop.utils.PreferencesUtils;
 import com.rssaggregator.desktop.view.ConnectionController;
 
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
-import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.BorderPane;
 
 public class ConnectionScene {
 
 	private MainApp mainApp;
-	private AnchorPane splashScreenRootView;
+	private BorderPane rootView;
 
 	public ConnectionScene(MainApp mainApp) {
 		this.mainApp = mainApp;
 	}
 
-	public void startConnectionScene() {
+	public void launchConnectionView() {
 		try {
 			FXMLLoader loader = new FXMLLoader();
-			loader.setLocation(MainApp.class.getResource("view/Layout_Connection.fxml"));
-			this.splashScreenRootView = (AnchorPane) loader.load();
+			loader.setLocation(MainApp.class.getResource(Globals.CONNECTION_VIEW));
+			this.rootView = (BorderPane) loader.load();
 
-			Scene scene = new Scene(this.splashScreenRootView);
+			Scene scene = new Scene(this.rootView);
 			this.mainApp.getPrimaryStage().setScene(scene);
 
 			ConnectionController controller = loader.getController();
 			controller.setConnectionScene(this);
 
 			this.mainApp.getPrimaryStage().show();
+
+			resetUserPreferences();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 	}
 
-	public void changeScene() {
-		try {
-			FXMLLoader loader = new FXMLLoader();
-			loader.setLocation(MainApp.class.getResource("view/Layout_MainView.fxml"));
-			this.splashScreenRootView = (AnchorPane) loader.load();
+	public void launchMainView() {
+		MainViewScene scene = new MainViewScene(this.mainApp);
+		scene.launchMainView();
+	}
 
-			Scene scene = new Scene(this.splashScreenRootView);
-			this.mainApp.getPrimaryStage().setScene(scene);
-
-			this.mainApp.getPrimaryStage().show();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+	private void resetUserPreferences() {
+		PreferencesUtils.setUserEmail("");
+		PreferencesUtils.setUserPassword("");
+		PreferencesUtils.setApiToken("");
+		PreferencesUtils.setIsConnected(false);
 	}
 
 }

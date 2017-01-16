@@ -19,5 +19,13 @@ public class Globals {
 	 * Layout views
 	 */
 	public static final String SPLASH_SCREEN_VIEW = "view/Layout_SplashScreen.fxml";
+	public static final String CONNECTION_VIEW = "view/Layout_Connection.fxml";
+	public static final String MAIN_VIEW_ROOT = "view/Layout_MainViewRoot.fxml";
+	public static final String MAIN_VIEW = "view/Layout_MainView.fxml";
 
+	/**
+	 * Time
+	 */
+	private static final int SECONDS = 1000;
+	public static final int SPLASH_SCREEN_TIME = 3 * SECONDS;
 }

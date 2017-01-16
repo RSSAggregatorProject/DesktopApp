@@ -4,7 +4,6 @@ import java.io.IOException;
 
 import com.rssaggregator.desktop.utils.Globals;
 import com.rssaggregator.desktop.utils.PreferencesUtils;
-import com.rssaggregator.desktop.view.ConnectionController;
 
 import javafx.concurrent.Task;
 import javafx.concurrent.WorkerStateEvent;
@@ -30,28 +29,24 @@ public class SplashScreenScene {
 			this.rootView = (AnchorPane) loader.load();
 
 			Scene scene = new Scene(this.rootView);
+
 			this.mainApp.getPrimaryStage().setScene(scene);
 			this.mainApp.getPrimaryStage().setTitle(Globals.APP_NAME);
 			this.mainApp.getPrimaryStage().getIcons().add(new Image("file:resources/images/icon_rss.png"));
 			this.mainApp.getPrimaryStage().show();
 
-			if (PreferencesUtils.getUserEmail() == null || PreferencesUtils.getUserEmail().length() == 0) {
-				System.out.println("VIDE");
-			} else {
-				System.out.println(PreferencesUtils.getUserEmail());
-			}
-			switchScene();
+			waitAndRedirect();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 	}
 
-	private void switchScene() {
+	private void waitAndRedirect() {
 		Task<Void> sleeper = new Task<Void>() {
 			@Override
 			protected Void call() throws Exception {
 				try {
-					Thread.sleep(2000);
+					Thread.sleep(Globals.SPLASH_SCREEN_TIME);
 				} catch (InterruptedException e) {
 				}
 				return null;
@@ -60,14 +55,24 @@ public class SplashScreenScene {
 		sleeper.setOnSucceeded(new EventHandler<WorkerStateEvent>() {
 			@Override
 			public void handle(WorkerStateEvent event) {
-				changeScene();
+				String apiToken = PreferencesUtils.getApiToken();
+				if (apiToken == null || apiToken.length() == 0) {
+					launchConnectionScene();
+				} else {
+					launchMainScene();
+				}
 			}
 		});
 		new Thread(sleeper).start();
 	}
 
-	public void changeScene() {
+	private void launchConnectionScene() {
 		ConnectionScene scene = new ConnectionScene(this.mainApp);
-		scene.startConnectionScene();
+		scene.launchConnectionView();
+	}
+
+	private void launchMainScene() {
+		MainViewScene scene = new MainViewScene(this.mainApp);
+		scene.launchMainView();
 	}
 }

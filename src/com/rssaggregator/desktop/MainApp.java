@@ -7,8 +7,11 @@ public class MainApp extends Application {
 
 	private Stage primaryStage;
 
+	private static MainApp instance;
+
 	@Override
 	public void start(Stage primaryStage) {
+		MainApp.instance = this;
 		this.primaryStage = primaryStage;
 
 		SplashScreenScene scene = new SplashScreenScene(this);
@@ -17,6 +20,10 @@ public class MainApp extends Application {
 
 	public Stage getPrimaryStage() {
 		return this.primaryStage;
+	}
+
+	public static MainApp getMainApp() {
+		return instance;
 	}
 
 	public static void main(String[] args) {
