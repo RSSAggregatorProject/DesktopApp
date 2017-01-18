@@ -20,6 +20,7 @@ public class Globals {
 	 */
 	public static final String SPLASH_SCREEN_VIEW = "view/Layout_SplashScreen.fxml";
 	public static final String CONNECTION_VIEW = "view/Layout_Connection.fxml";
+	public static final String SIGNUP_VIEW = "view/Layout_SignUp.fxml";
 	public static final String MAIN_VIEW_ROOT = "view/Layout_MainViewRoot.fxml";
 	public static final String MAIN_VIEW = "view/Layout_MainView.fxml";
 

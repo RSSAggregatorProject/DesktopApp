@@ -1,0 +1,11 @@
+@font-face {
+	src: url("../../../../../../resources/fonts/Roboto-Regular.ttf");
+}
+
+@font-face {
+	src: url("../../../../../../resources/fonts/Roboto-Black.ttf");
+}
+
+#title-Roboto {
+	-fx-font-family: "Roboto Black";
+}

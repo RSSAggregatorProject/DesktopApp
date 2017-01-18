@@ -35,6 +35,9 @@ public class MainViewScene {
 			Scene scene = new Scene(this.rootView);
 
 			this.mainApp.getPrimaryStage().setScene(scene);
+			this.mainApp.getPrimaryStage().setResizable(true);
+			this.mainApp.getPrimaryStage().setMinWidth(1200d);
+			this.mainApp.getPrimaryStage().setMinHeight(800d);
 			this.mainApp.getPrimaryStage().show();
 
 			/**

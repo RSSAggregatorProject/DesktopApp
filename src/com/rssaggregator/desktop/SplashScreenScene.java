@@ -32,6 +32,7 @@ public class SplashScreenScene {
 
 			this.mainApp.getPrimaryStage().setScene(scene);
 			this.mainApp.getPrimaryStage().setTitle(Globals.APP_NAME);
+			this.mainApp.getPrimaryStage().setResizable(false);
 			this.mainApp.getPrimaryStage().getIcons().add(new Image("file:resources/images/icon_rss.png"));
 			this.mainApp.getPrimaryStage().show();
 

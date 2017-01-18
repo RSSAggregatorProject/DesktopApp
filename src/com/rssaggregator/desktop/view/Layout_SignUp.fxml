@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.rssaggregator.desktop.view.ConnectionController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.rssaggregator.desktop.view.SignUpController">
    <top>
       <BorderPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <center>
@@ -28,13 +28,13 @@
          </center>
          <top>
             <MenuBar BorderPane.alignment="CENTER">
-              <menus>
-                <Menu mnemonicParsing="false" text="File">
-                  <items>
-                    <MenuItem mnemonicParsing="false" onAction="#handleExit" text="Exit" />
-                  </items>
-                </Menu>
-              </menus>
+               <menus>
+                  <Menu mnemonicParsing="false" text="File">
+                     <items>
+                        <MenuItem mnemonicParsing="false" onAction="#handleExit" text="Exit" />
+                     </items>
+                  </Menu>
+               </menus>
             </MenuBar>
          </top>
          <BorderPane.margin>
@@ -43,24 +43,28 @@
       </BorderPane>
    </top>
    <center>
-      <AnchorPane minWidth="-Infinity" prefHeight="200.0" BorderPane.alignment="CENTER">
+      <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
-            <TextField fx:id="userEmailTf" layoutX="225.0" layoutY="40.0" prefWidth="350.0" />
+            <TextField fx:id="userEmailTf" layoutX="225.0" layoutY="39.0" prefWidth="350.0" />
             <PasswordField fx:id="userPasswordPf" layoutX="225.0" layoutY="103.0" prefWidth="350.0" />
             <Label layoutX="222.0" layoutY="14.0" text="User Email" />
             <Label layoutX="225.0" layoutY="78.0" text="Password" />
+            <Label layoutX="225.0" layoutY="146.0" text="Retype Password" />
+            <PasswordField fx:id="userRetypePasswordPf" layoutX="225.0" layoutY="170.0" prefWidth="350.0" />
          </children>
          <BorderPane.margin>
-            <Insets bottom="10.0" top="10.0" />
+            <Insets top="10.0" />
          </BorderPane.margin>
       </AnchorPane>
    </center>
    <bottom>
-      <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+      <AnchorPane prefHeight="150.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
-            <Button layoutX="300.0" mnemonicParsing="false" onAction="#handleLogIn" prefHeight="40.0" prefWidth="200.0" text="Log In" />
-            <Button layoutX="300.0" layoutY="60.0" mnemonicParsing="false" onAction="#handleSignUp" prefHeight="40.0" prefWidth="200.0" text="Sign Up" />
+            <Button layoutX="300.0" layoutY="35.0" mnemonicParsing="false" onAction="#handleSignUp" prefHeight="40.0" prefWidth="200.0" text="Sign Up" />
          </children>
+         <BorderPane.margin>
+            <Insets />
+         </BorderPane.margin>
       </AnchorPane>
    </bottom>
 </BorderPane>
