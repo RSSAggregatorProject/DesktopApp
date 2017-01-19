@@ -1,36 +1,39 @@
 package com.rssaggregator.desktop.view;
 
+import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXPasswordField;
+import com.jfoenix.controls.JFXTextField;
 import com.rssaggregator.desktop.ConnectionScene;
 import com.rssaggregator.desktop.MainApp;
+import com.rssaggregator.desktop.utils.UiUtils;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.geometry.Rectangle2D;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
-import javafx.stage.Screen;
 import javafx.stage.Stage;
-import javafx.stage.StageStyle;
 
 public class ConnectionController {
+
+	private static final String ERROR_TITLE = "Invalid inputs";
 
 	private ConnectionScene scene;
 	private Stage stage;
 
 	@FXML
-	private TextField userEmailTf;
+	private JFXTextField userEmailTf;
 	@FXML
-	private PasswordField userPasswordPf;
+	private JFXPasswordField userPasswordPf;
+	@FXML
+	private JFXButton loginBt;
+	@FXML
+	private JFXButton signupBt;
 
 	@FXML
 	private void initialize() {
-		userEmailTf.setPromptText("User Email");
-		userPasswordPf.setPromptText("Password");
 	}
 
 	public void setConnectionScene(ConnectionScene scene) {
@@ -43,17 +46,17 @@ public class ConnectionController {
 		String userPassword = userPasswordPf.getText();
 
 		if (userEmail.length() == 0) {
-			startErrorDialog(MainApp.getMainApp().getPrimaryStage(), "Email empty");
+			UiUtils.showErrorDialog(MainApp.getStage(), ERROR_TITLE, "The Email field is empty!");
 			return;
 		}
 		if (userPassword.length() == 0) {
-			startErrorDialog(MainApp.getMainApp().getPrimaryStage(), "Password empty");
+			UiUtils.showErrorDialog(MainApp.getStage(), ERROR_TITLE, "The Password field is empty!");
 			return;
 		}
 
 		this.scene.logIn(userEmail, userPassword);
 	}
-	
+
 	public void updateFields(String userEmail, String userPassword) {
 		userEmailTf.setText(userEmail);
 		userPasswordPf.setText(userPassword);

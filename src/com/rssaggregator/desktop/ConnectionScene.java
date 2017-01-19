@@ -15,6 +15,7 @@ import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
+import javafx.stage.Stage;
 import okhttp3.OkHttpClient;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -24,15 +25,21 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class ConnectionScene implements Callback<Credentials> {
 
-	private MainApp mainApp;
 	private BorderPane rootView;
 	private ConnectionController controller;
 
 	private static String userEmail;
 	private static String userPassword;
 
-	public ConnectionScene(MainApp mainApp) {
-		this.mainApp = mainApp;
+	private Stage primaryStage;
+
+	/**
+	 * Constructor.
+	 * 
+	 * @param mainApp
+	 */
+	public ConnectionScene() {
+		this.primaryStage = MainApp.getStage();
 	}
 
 	public void launchConnectionView() {
@@ -42,18 +49,18 @@ public class ConnectionScene implements Callback<Credentials> {
 			this.rootView = (BorderPane) loader.load();
 
 			Scene scene = new Scene(this.rootView);
-			this.mainApp.getPrimaryStage().setScene(scene);
-			this.mainApp.getPrimaryStage().setMinWidth(800);
-			this.mainApp.getPrimaryStage().setMinHeight(600);
-			this.mainApp.getPrimaryStage().setWidth(800);
-			this.mainApp.getPrimaryStage().setHeight(600);
+			this.primaryStage.setScene(scene);
+			this.primaryStage.setMinWidth(800);
+			this.primaryStage.setMinHeight(600);
+			this.primaryStage.setWidth(800);
+			this.primaryStage.setHeight(600);
 
-			this.mainApp.getPrimaryStage().setResizable(false);
+			this.primaryStage.setResizable(false);
 
 			controller = loader.getController();
 			controller.setConnectionScene(this);
 
-			this.mainApp.getPrimaryStage().show();
+			this.primaryStage.show();
 
 			resetUserPreferences();
 		} catch (IOException e) {
@@ -64,7 +71,7 @@ public class ConnectionScene implements Callback<Credentials> {
 	public void logIn(String userEmail, String userPassword) {
 		this.userEmail = userEmail;
 		this.userPassword = userPassword;
-
+/*
 		OkHttpClient.Builder builder = new OkHttpClient.Builder();
 		OkHttpClient client = builder.build();
 
@@ -77,16 +84,21 @@ public class ConnectionScene implements Callback<Credentials> {
 		wrapper.setPassword(userPassword);
 		restService.logIn(wrapper).enqueue(this);
 
-		controller.showLoading();
+		controller.showLoading();*/
+		PreferencesUtils.setUserEmail(userEmail);
+		PreferencesUtils.setUserPassword(userPassword);
+		PreferencesUtils.setApiToken("Token");
+		PreferencesUtils.setIsConnected(true);
+		launchMainView();
 	}
 
 	public void launchMainView() {
-		MainViewScene scene = new MainViewScene(this.mainApp);
+		MainViewScene scene = new MainViewScene(MainApp.getMainApp());
 		scene.launchMainView();
 	}
 
 	public void launchSignUpView() {
-		SignUpScene scene = new SignUpScene(this.mainApp, controller);
+		SignUpScene scene = new SignUpScene(MainApp.getMainApp(), controller);
 		scene.launchSignUpView();
 	}
 

@@ -25,3 +25,12 @@
 .titled-pane .title:pressed {
     -fx-background-color: #DDDDDD;
 }
+
+.button-raised{
+    -fx-padding: 0.7em 0.57em;
+    -fx-font-size: 14px;
+    -fx-button-type: RAISED;
+    -fx-background-color: rgb(77,102,204);
+    -fx-pref-width: 200;
+    -fx-text-fill: WHITE;
+}

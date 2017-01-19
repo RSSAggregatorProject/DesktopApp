@@ -25,6 +25,11 @@ public class Globals {
 	public static final String MAIN_VIEW = "view/Layout_MainView.fxml";
 
 	/**
+	 * Image links
+	 */
+	public static final String RSS_LOGO_LINK = "file:resources/images/icon_rss.png";
+
+	/**
 	 * Time
 	 */
 	private static final int SECONDS = 1000;

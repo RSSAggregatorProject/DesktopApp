@@ -1,0 +1,29 @@
+@font-face {
+	src: url("../../../../../../resources/fonts/Roboto-Regular.ttf");
+}
+
+@font-face {
+	src: url("../../../../../../resources/fonts/Roboto-Black.ttf");
+}
+
+.button-raised {
+	-fx-padding: 0.7em 0.57em;
+	-fx-font-size: 16px;
+	-fx-font-weight: BOLD;
+	-fx-button-type: RAISED;
+	-fx-background-color: #FF9800;
+	-fx-text-fill: #512DA8;
+	-fx-font-family: "Roboto Black";
+}
+
+.jfx-text-field, .jfx-password-field {
+	-fx-background-color: #673AB7;
+	-fx-font-weight: BOLD;
+	-fx-font-family: "Roboto Black";
+	-fx-font-size: 16px;
+	-fx-prompt-text-fill: #FF9800;
+	-fx-text-fill: #FF9800;
+	-fx-alignment: top-left;
+	-fx-focus-color: #FF9800;
+	-fx-unfocus-color: #FF9800;
+}

@@ -9,5 +9,6 @@
 	<classpathentry kind="lib" path="C:/Users/Irina/Documents/JavaFx/Libs/converter-simplexml-2.1.0.jar"/>
 	<classpathentry kind="lib" path="C:/Users/Irina/Documents/JavaFx/Libs/okio-1.11.0.jar"/>
 	<classpathentry kind="lib" path="C:/Users/Irina/Documents/JavaFx/Libs/gson-2.8.0.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Irina/Documents/JavaFx/Libs/jfoenix.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
