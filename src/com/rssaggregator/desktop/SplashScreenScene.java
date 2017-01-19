@@ -101,7 +101,7 @@ public class SplashScreenScene {
 	 * Launches the Main View.
 	 */
 	private void launchMainView() {
-		MainViewScene scene = new MainViewScene(this.mainApp);
+		MainViewScene scene = new MainViewScene();
 		scene.launchMainView();
 	}
 }

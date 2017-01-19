@@ -1,43 +1,49 @@
 package com.rssaggregator.desktop.view;
 
-import com.rssaggregator.desktop.MainApp;
+import com.jfoenix.controls.JFXPasswordField;
+import com.jfoenix.controls.JFXTextField;
 import com.rssaggregator.desktop.SignUpScene;
+import com.rssaggregator.desktop.utils.UiUtils;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Alert.AlertType;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
+/**
+ * Controller View for the Sign Up View.
+ * 
+ * @author Irina
+ *
+ */
 public class SignUpController {
 
-	private Stage stage;
+	private Stage signUpStage;
 	private SignUpScene scene;
 
 	@FXML
-	private TextField userEmailTf;
+	private JFXTextField userEmailTf;
 	@FXML
-	private PasswordField userPasswordPf;
+	private JFXPasswordField userPasswordPf;
 	@FXML
-	private PasswordField userRetypePasswordPf;
+	private JFXPasswordField userRetypePasswordPf;
 
 	@FXML
 	private void initialize() {
-		userEmailTf.setPromptText("User Email");
-		userPasswordPf.setPromptText("Password");
-		userRetypePasswordPf.setPromptText("Password");
 	}
 
 	public void setStage(Stage stage) {
-		this.stage = stage;
+		this.signUpStage = stage;
 	}
 
 	public void setScene(SignUpScene scene) {
 		this.scene = scene;
 	}
 
+	/**
+	 * Handles the Sign Up Action. Signs Up the user.
+	 * 
+	 * @param event
+	 */
 	@FXML
 	private void handleSignUp(ActionEvent event) {
 		String userEmail = userEmailTf.getText();
@@ -45,37 +51,43 @@ public class SignUpController {
 		String userRetypePassword = userRetypePasswordPf.getText();
 
 		if (userEmail.length() == 0) {
-			startErrorDialog(this.stage, "Email empty");
+			UiUtils.showErrorDialog(this.signUpStage, "Invalid Inputs", "The Email field is empty!");
 			return;
 		}
 		if (userPassword.length() == 0) {
-			startErrorDialog(this.stage, "Password empty");
+			UiUtils.showErrorDialog(this.signUpStage, "Invalid Inputs", "The Password field is empty!");
 			return;
 		}
 
 		if (userRetypePassword.length() == 0) {
-			startErrorDialog(this.stage, "Retype password empty");
+			UiUtils.showErrorDialog(this.signUpStage, "Invalid Inputs", "The Retype Password field is empty!");
 			return;
 		}
 
 		if (!userPassword.equals(userRetypePassword)) {
-			startErrorDialog(this.stage, "Not the same password");
+			UiUtils.showErrorDialog(this.signUpStage, "Invalid Inputs",
+					"The Password and the Retype Password fields are not the same.");
 			return;
 		}
 
 		this.scene.closeStage(userEmail, userPassword);
 	}
 
-	private void startErrorDialog(Stage stage, String errorMessage) {
-		Alert alert = new Alert(AlertType.ERROR);
-		alert.initOwner(stage);
-		alert.setTitle("Invalid Fields");
-		alert.setHeaderText("Please correct invalid fields");
-		alert.setContentText(errorMessage);
-
-		alert.showAndWait();
+	/**
+	 * Cancels the registration.
+	 */
+	@FXML
+	private void handleCancelSignUp() {
+		if (this.signUpStage.isShowing()) {
+			this.signUpStage.close();
+		}
 	}
 
+	/**
+	 * Closes the application.
+	 * 
+	 * @param event
+	 */
 	@FXML
 	private void handleExit(ActionEvent event) {
 		System.exit(0);

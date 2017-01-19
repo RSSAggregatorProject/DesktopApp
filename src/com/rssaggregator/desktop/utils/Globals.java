@@ -23,6 +23,8 @@ public class Globals {
 	public static final String SIGNUP_VIEW = "view/Layout_SignUp.fxml";
 	public static final String MAIN_VIEW_ROOT = "view/Layout_MainViewRoot.fxml";
 	public static final String MAIN_VIEW = "view/Layout_MainView.fxml";
+	public static final String DIALOG_LOADING_VIEW = "view/Dialog_Loading.fxml";
+	public static final String ROW_CHANNEL_VIEW = "view/Row_Channel.fxml";
 
 	/**
 	 * Image links

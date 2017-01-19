@@ -1,9 +1,13 @@
 package com.rssaggregator.desktop.view;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import com.rssaggregator.desktop.MainApp;
 import com.rssaggregator.desktop.model.TmpArticle;
+import com.rssaggregator.desktop.model.TmpCategory;
+import com.rssaggregator.desktop.model.TmpChannel;
+import com.rssaggregator.desktop.utils.Globals;
 import com.rssaggregator.desktop.utils.PreferencesUtils;
 
 import javafx.application.Platform;
@@ -30,7 +34,27 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
+/**
+ * Controller View of the Main View.
+ * 
+ * @author Irina
+ *
+ */
 public class MainViewController {
+
+	private ObservableList<TmpCategory> categories;
+	private VBox channelsBox;
+
+	@FXML
+	private Accordion categoriesAc;
+	@FXML
+	private TitledPane starredItemsTp;
+	@FXML
+	private Label unreadStarredItemsLb;
+	@FXML
+	private TitledPane allItemsTp;
+	@FXML
+	private Label unreadAllItemsLb;
 
 	@FXML
 	Label pseudoLb;
@@ -40,15 +64,8 @@ public class MainViewController {
 	RadioButton simpleList;
 	@FXML
 	RadioButton expandableList;
-	@FXML
-	Accordion categories;
-	@FXML
-	TitledPane starredItems;
-	@FXML
-	TitledPane allItems;
 
 	private ObservableList<TmpArticle> articlesObservableList;
-	private VBox box;
 
 	public MainViewController() {
 		articlesObservableList = FXCollections.observableArrayList();
@@ -61,10 +78,12 @@ public class MainViewController {
 		articlesObservableList.add(article2);
 	}
 
+	public void setCategories(ObservableList<TmpCategory> categories) {
+		this.categories = categories;
+	}
+
 	@FXML
 	private void initialize() {
-		initCategories();
-
 		final ToggleGroup group = new ToggleGroup();
 		this.simpleList.setToggleGroup(group);
 		this.simpleList.setUserData(0);
@@ -95,44 +114,58 @@ public class MainViewController {
 		});
 	}
 
+	public void initCategoriesView() {
+		initTitledPanes();
+		for (TmpCategory category : this.categories) {
+			initCategories(category);
+		}
+	}
+
+	private void initTitledPanes() {
+		this.starredItemsTp.setExpanded(false);
+		this.starredItemsTp.setCollapsible(false);
+		this.unreadStarredItemsLb.setText("0");
+		this.allItemsTp.setExpanded(false);
+		this.allItemsTp.setCollapsible(false);
+		this.unreadAllItemsLb.setText("23");
+	}
+
+	private void initCategories(TmpCategory category) {
+		this.channelsBox = new VBox(16);
+		this.channelsBox.setPadding(Insets.EMPTY);
+
+		for (TmpChannel channel : category.getChannels()) {
+			addChannel(channel);
+		}
+		TitledPane newTitledPane = new TitledPane(category.getName(), channelsBox);
+		Platform.runLater(() -> {
+			newTitledPane.lookup(".arrow").setVisible(false);
+			Pane title = (Pane) newTitledPane.lookup(".title");
+			title.setPrefHeight(allItemsTp.getHeight());
+			title.setPadding(new Insets(0, 0, 10, -6));
+		});
+		this.categoriesAc.getPanes().add(newTitledPane);
+	}
+
+	private void addChannel(TmpChannel channel) {
+		try {
+			FXMLLoader loader = new FXMLLoader();
+			loader.setLocation(MainApp.class.getResource(Globals.ROW_CHANNEL_VIEW));
+			loader.setController(new RowChannelController(channel.getName(), channel.getUnreadArticles()));
+			AnchorPane smallPane = (AnchorPane) loader.load();
+
+			channelsBox.getChildren().add(smallPane);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+
 	private void test() {
 		this.articlesLv.setCellFactory(articlesLv -> new ArticleListViewCell(articlesLv.getWidth()));
 	}
 
 	private void test2() {
 		this.articlesLv.setCellFactory(articlesLv -> new ArticleExtendedListViewCell(articlesLv.getWidth()));
-	}
-
-	private void initCategories() {
-		starredItems.setExpanded(false);
-		starredItems.setCollapsible(false);
-		allItems.setExpanded(false);
-		allItems.setCollapsible(false);
-		box = new VBox(8);
-		box.setPadding(Insets.EMPTY);
-		addChannels("Turbo", 10);
-		addChannels("Caradisiac", 20);
-		TitledPane category = new TitledPane("Automobile", box);
-		Platform.runLater(() -> {
-			category.lookup(".arrow").setVisible(false);
-			Pane title = (Pane) category.lookup(".title");
-			title.setPrefHeight(allItems.getHeight());
-			title.setPadding(new Insets(0, 0, 10, -6));
-		});
-		categories.getPanes().add(category);
-	}
-
-	private void addChannels(String channelName, int unreadArticles) {
-		try {
-			FXMLLoader loader = new FXMLLoader();
-			loader.setLocation(MainApp.class.getResource("view/Row_Channel.fxml"));
-			loader.setController(new RowChannelController(channelName, unreadArticles));
-			AnchorPane smallPane = (AnchorPane) loader.load();
-
-			box.getChildren().add(smallPane);
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
 	}
 
 	@FXML

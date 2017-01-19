@@ -49,4 +49,15 @@ public class PreferencesUtils {
 		Preferences preferences = Preferences.userNodeForPackage(MainApp.class);
 		preferences.putBoolean(Globals.PREF_IS_CONNECTED, isConnected);
 	}
+
+	/**
+	 * Resets the Preferences of the user each time the user goes to the
+	 * connection view.
+	 */
+	public static void resetUserPreferences() {
+		PreferencesUtils.setUserEmail("");
+		PreferencesUtils.setUserPassword("");
+		PreferencesUtils.setApiToken("");
+		PreferencesUtils.setIsConnected(false);
+	}
 }

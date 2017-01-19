@@ -9,6 +9,7 @@ import com.rssaggregator.desktop.model.CredentialsWrapper;
 import com.rssaggregator.desktop.network.RestService;
 import com.rssaggregator.desktop.utils.Globals;
 import com.rssaggregator.desktop.utils.PreferencesUtils;
+import com.rssaggregator.desktop.utils.UiUtils;
 import com.rssaggregator.desktop.view.ConnectionController;
 
 import javafx.application.Platform;
@@ -23,15 +24,20 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
+/**
+ * Controller for the Connection Scene.
+ * 
+ * @author Irina
+ *
+ */
 public class ConnectionScene implements Callback<Credentials> {
-
-	private BorderPane rootView;
-	private ConnectionController controller;
 
 	private static String userEmail;
 	private static String userPassword;
 
 	private Stage primaryStage;
+	private BorderPane rootView;
+	private ConnectionController controller;
 
 	/**
 	 * Constructor.
@@ -42,6 +48,9 @@ public class ConnectionScene implements Callback<Credentials> {
 		this.primaryStage = MainApp.getStage();
 	}
 
+	/**
+	 * Launches the Connection View by loading the FXML.
+	 */
 	public void launchConnectionView() {
 		try {
 			FXMLLoader loader = new FXMLLoader();
@@ -50,41 +59,49 @@ public class ConnectionScene implements Callback<Credentials> {
 
 			Scene scene = new Scene(this.rootView);
 			this.primaryStage.setScene(scene);
-			this.primaryStage.setMinWidth(800);
-			this.primaryStage.setMinHeight(600);
-			this.primaryStage.setWidth(800);
-			this.primaryStage.setHeight(600);
-
-			this.primaryStage.setResizable(false);
+			setStageSize();
 
 			controller = loader.getController();
 			controller.setConnectionScene(this);
 
 			this.primaryStage.show();
 
-			resetUserPreferences();
+			PreferencesUtils.resetUserPreferences();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 	}
 
+	/**
+	 * Sets the size of the stage for the connection view.
+	 */
+	private void setStageSize() {
+		this.primaryStage.setMinWidth(800d);
+		this.primaryStage.setMinHeight(640d);
+		this.primaryStage.setWidth(800d);
+		this.primaryStage.setHeight(640d);
+		this.primaryStage.setResizable(false);
+	}
+
 	public void logIn(String userEmail, String userPassword) {
 		this.userEmail = userEmail;
 		this.userPassword = userPassword;
-/*
-		OkHttpClient.Builder builder = new OkHttpClient.Builder();
-		OkHttpClient client = builder.build();
-
-		Retrofit retrofit = new Retrofit.Builder().baseUrl("http://api.comeon.io")
-				.addConverterFactory(GsonConverterFactory.create()).client(client).build();
-
-		RestService restService = retrofit.create(RestService.class);
-		CredentialsWrapper wrapper = new CredentialsWrapper();
-		wrapper.setLogin(userEmail);
-		wrapper.setPassword(userPassword);
-		restService.logIn(wrapper).enqueue(this);
-
-		controller.showLoading();*/
+		/*
+		 * OkHttpClient.Builder builder = new OkHttpClient.Builder();
+		 * OkHttpClient client = builder.build();
+		 * 
+		 * Retrofit retrofit = new
+		 * Retrofit.Builder().baseUrl("http://api.comeon.io")
+		 * .addConverterFactory(GsonConverterFactory.create()).client(client).
+		 * build();
+		 * 
+		 * RestService restService = retrofit.create(RestService.class);
+		 * CredentialsWrapper wrapper = new CredentialsWrapper();
+		 * wrapper.setLogin(userEmail); wrapper.setPassword(userPassword);
+		 * restService.logIn(wrapper).enqueue(this);
+		 * 
+		 * controller.showLoading();
+		 */
 		PreferencesUtils.setUserEmail(userEmail);
 		PreferencesUtils.setUserPassword(userPassword);
 		PreferencesUtils.setApiToken("Token");
@@ -93,20 +110,16 @@ public class ConnectionScene implements Callback<Credentials> {
 	}
 
 	public void launchMainView() {
-		MainViewScene scene = new MainViewScene(MainApp.getMainApp());
+		MainViewScene scene = new MainViewScene();
 		scene.launchMainView();
 	}
 
+	/**
+	 * Launches the Sign Up View.
+	 */
 	public void launchSignUpView() {
-		SignUpScene scene = new SignUpScene(MainApp.getMainApp(), controller);
+		SignUpScene scene = new SignUpScene(controller);
 		scene.launchSignUpView();
-	}
-
-	private void resetUserPreferences() {
-		PreferencesUtils.setUserEmail("");
-		PreferencesUtils.setUserPassword("");
-		PreferencesUtils.setApiToken("");
-		PreferencesUtils.setIsConnected(false);
 	}
 
 	@Override
@@ -116,7 +129,7 @@ public class ConnectionScene implements Callback<Credentials> {
 			@Override
 			public void run() {
 				controller.stopLoading();
-				controller.errorLogin("Error");
+				UiUtils.showErrorDialog(MainApp.getStage(), "Error", "Error");
 				System.out.println("ERROR");
 			}
 		});
@@ -147,7 +160,7 @@ public class ConnectionScene implements Callback<Credentials> {
 					@Override
 					public void run() {
 						controller.stopLoading();
-						controller.errorLogin(error.getError());
+						UiUtils.showErrorDialog(MainApp.getStage(), "Error", error.getError());
 					}
 				});
 				System.out.println(error.getError());
@@ -158,7 +171,7 @@ public class ConnectionScene implements Callback<Credentials> {
 					@Override
 					public void run() {
 						controller.stopLoading();
-						controller.errorLogin("Error");
+						UiUtils.showErrorDialog(MainApp.getStage(), "Error", "Error");
 					}
 				});
 			}

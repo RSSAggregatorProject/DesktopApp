@@ -36,6 +36,11 @@ public class MainApp extends Application {
 		return this.primaryStage;
 	}
 
+	/**
+	 * Gets the stage from everywhere in the app.
+	 * 
+	 * @return
+	 */
 	public static Stage getStage() {
 		return MainApp.instance.getPrimaryStage();
 	}

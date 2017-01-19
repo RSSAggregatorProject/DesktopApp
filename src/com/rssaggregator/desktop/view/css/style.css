@@ -11,26 +11,37 @@
 }
 
 .titled-pane * {
-    -fx-background-color: transparent;
+    -fx-background-color: #FF9800;
 }
+
 .titled-pane:pressed {
     -fx-text-fill: red;
 }
 .titled-pane .title{
-    -fx-background-color: #666666;
+    -fx-background-color: #FF9800;
 }
 .titled-pane .title:hover {
-    -fx-background-color: #AAAAAA;
+    -fx-background-color: #FF9800;
 }
 .titled-pane .title:pressed {
-    -fx-background-color: #DDDDDD;
+    -fx-background-color: #FF9800;
 }
 
-.button-raised{
-    -fx-padding: 0.7em 0.57em;
-    -fx-font-size: 14px;
-    -fx-button-type: RAISED;
-    -fx-background-color: rgb(77,102,204);
-    -fx-pref-width: 200;
-    -fx-text-fill: WHITE;
+.split-pane *.split-pane-divider {
+    -fx-padding: 0 1 0 1;
+    -fx-background-color: #512DA8;   
+}
+
+.scroll-pane > .viewport {
+   -fx-background-color: transparent;
+}
+
+.scroll-pane {
+   -fx-background-color: transparent;
+}
+
+.titledpane-title {
+	-fx-text-fill: white;
+	-fx-font-size: 18px;
+	-fx-font-family: "Roboto Black"
 }

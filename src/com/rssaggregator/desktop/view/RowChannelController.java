@@ -10,7 +10,7 @@ public class RowChannelController {
 	private Label nameLb;
 	@FXML
 	private Label unreadArticlesLb;
-	
+
 	@FXML
 	private AnchorPane pane;
 
@@ -18,7 +18,6 @@ public class RowChannelController {
 	private int unreadArticles;
 
 	public RowChannelController(String name, int unreadArticles) {
-		// TODO Auto-generated constructor stub
 		this.name = name;
 		this.unreadArticles = unreadArticles;
 	}

@@ -27,3 +27,25 @@
 	-fx-focus-color: #FF9800;
 	-fx-unfocus-color: #FF9800;
 }
+
+.loading-message {
+	-fx-font-family: "Roboto";
+}
+
+.button-add{
+	-fx-background-radius: 60px;
+	-fx-padding: 0.7em 0.57em;
+	-fx-font-size: 35px;
+	-fx-font-weight: BOLD;
+	-fx-button-type: RAISED;
+	-fx-background-color: #FF9800;
+	-fx-text-fill: #512DA8;
+	-fx-font-family: "Roboto Black";
+}
+
+.title-app-name {
+	-fx-font-family: "Roboto Black";
+	-fx-font-weight: BOLD;
+	-fx-text-fill: #FF9800;
+	-fx-font-size: 25px;
+}
