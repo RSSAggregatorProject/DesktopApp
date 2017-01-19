@@ -43,6 +43,11 @@ public class ConnectionScene implements Callback<Credentials> {
 
 			Scene scene = new Scene(this.rootView);
 			this.mainApp.getPrimaryStage().setScene(scene);
+			this.mainApp.getPrimaryStage().setMinWidth(800);
+			this.mainApp.getPrimaryStage().setMinHeight(600);
+			this.mainApp.getPrimaryStage().setWidth(800);
+			this.mainApp.getPrimaryStage().setHeight(600);
+
 			this.mainApp.getPrimaryStage().setResizable(false);
 
 			controller = loader.getController();
