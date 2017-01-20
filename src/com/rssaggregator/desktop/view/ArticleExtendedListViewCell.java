@@ -51,9 +51,6 @@ public class ArticleExtendedListViewCell extends ListCell<TmpArticle> {
 
 			rootView.setPrefWidth(parentWidth);
 
-			System.out.println(String.valueOf(this.parentWidth));
-			System.out.println("article name" + article.getTitle());
-
 			title.setText(article.getTitle());
 			description.setText(article.getDescription());
 			pubDate.setText("Il y a 30 mins.");

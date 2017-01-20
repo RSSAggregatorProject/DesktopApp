@@ -24,8 +24,15 @@
     -fx-background-color: #FF9800;
 }
 .titled-pane .title:pressed {
-    -fx-background-color: #FF9800;
+    -fx-background-color: #000000;
 }
+
+
+.titled-pane:focused > .title
+{
+	-fx-background-color: white;	
+}
+
 
 .split-pane *.split-pane-divider {
     -fx-padding: 0 1 0 1;
@@ -44,4 +51,12 @@
 	-fx-text-fill: white;
 	-fx-font-size: 18px;
 	-fx-font-family: "Roboto Black"
+}
+
+
+.titledpane-title-channel {
+	-fx-background-color:  #757575;
+	-fx-text-fill: white;
+	-fx-font-size: 15px;
+	-fx-font-family: "Roboto"
 }

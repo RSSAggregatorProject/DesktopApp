@@ -49,3 +49,39 @@
 	-fx-text-fill: #FF9800;
 	-fx-font-size: 25px;
 }
+
+.rss-link-textfield {
+	-fx-background-color: #673AB7;
+	-fx-font-weight: BOLD;
+	-fx-font-family: "Roboto Black";
+	-fx-font-size: 16px;
+	-fx-prompt-text-fill: #FF9800;
+	-fx-text-fill: #FF9800;
+	-fx-alignment: top-left;
+	-fx-focus-color: #FF9800;
+	-fx-unfocus-color: #FF9800;
+}
+
+.category-spinner {
+	-fx-background-color: #673AB7;
+	-fx-text-fill: #FF9800;
+	-fx-font-family: "Roboto Black";
+	-fx-prompt-text-fill: #FF9800;
+}
+
+.combo-box .cell{
+    -fx-text-fill: #FF9800;
+    -fx-font: 16px "Roboto Black";
+    -fx-rippler-fill: #5264AE;
+    -fx-border-color:#FF9800;
+    -fx-border-width: 0 0 1 0;
+ 
+}
+
+.combo-box .combo-box-button-container{
+ 	-fx-border-color:#FF9800;
+ 	-fx-border-width: 0 0 1 0;
+}
+.combo-box .combo-box-selected-value-container{
+	-fx-border-color:#FF9800;
+} 

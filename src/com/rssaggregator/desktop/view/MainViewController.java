@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 import com.rssaggregator.desktop.MainApp;
+import com.rssaggregator.desktop.MainViewScene;
 import com.rssaggregator.desktop.model.TmpArticle;
 import com.rssaggregator.desktop.model.TmpCategory;
 import com.rssaggregator.desktop.model.TmpChannel;
@@ -48,6 +49,8 @@ public class MainViewController {
 	@FXML
 	private Accordion categoriesAc;
 	@FXML
+	private Accordion defaultCategoriesAc;
+	@FXML
 	private TitledPane starredItemsTp;
 	@FXML
 	private Label unreadStarredItemsLb;
@@ -55,6 +58,9 @@ public class MainViewController {
 	private TitledPane allItemsTp;
 	@FXML
 	private Label unreadAllItemsLb;
+
+	private FXMLLoader loader;
+	private MainViewScene scene;
 
 	@FXML
 	Label pseudoLb;
@@ -68,6 +74,7 @@ public class MainViewController {
 	private ObservableList<TmpArticle> articlesObservableList;
 
 	public MainViewController() {
+		this.loader = new FXMLLoader();
 		articlesObservableList = FXCollections.observableArrayList();
 
 		TmpArticle article = new TmpArticle();
@@ -80,6 +87,10 @@ public class MainViewController {
 
 	public void setCategories(ObservableList<TmpCategory> categories) {
 		this.categories = categories;
+	}
+
+	public void setMainViewScene(MainViewScene scene) {
+		this.scene = scene;
 	}
 
 	@FXML
@@ -114,6 +125,9 @@ public class MainViewController {
 		});
 	}
 
+	/**
+	 * Initializes the categories view (TitledPanes).
+	 */
 	public void initCategoriesView() {
 		initTitledPanes();
 		for (TmpCategory category : this.categories) {
@@ -121,6 +135,9 @@ public class MainViewController {
 		}
 	}
 
+	/**
+	 * Initializes the All Items and Starred Items categories.
+	 */
 	private void initTitledPanes() {
 		this.starredItemsTp.setExpanded(false);
 		this.starredItemsTp.setCollapsible(false);
@@ -130,31 +147,51 @@ public class MainViewController {
 		this.unreadAllItemsLb.setText("23");
 	}
 
+	/**
+	 * Initializes one category view by adding channels in the titled pane.
+	 * 
+	 * @param category
+	 *            Category to initialize
+	 */
 	private void initCategories(TmpCategory category) {
-		this.channelsBox = new VBox(16);
+		this.channelsBox = new VBox(0);
 		this.channelsBox.setPadding(Insets.EMPTY);
 
-		for (TmpChannel channel : category.getChannels()) {
-			addChannel(channel);
+		if (category.getChannels() != null) {
+			for (TmpChannel channel : category.getChannels()) {
+				addChannel(channel);
+			}
 		}
-		TitledPane newTitledPane = new TitledPane(category.getName(), channelsBox);
-		Platform.runLater(() -> {
-			newTitledPane.lookup(".arrow").setVisible(false);
-			Pane title = (Pane) newTitledPane.lookup(".title");
-			title.setPrefHeight(allItemsTp.getHeight());
-			title.setPadding(new Insets(0, 0, 10, -6));
-		});
-		this.categoriesAc.getPanes().add(newTitledPane);
+
+		try {
+			this.loader = new FXMLLoader();
+			this.loader.setLocation(MainApp.class.getResource(Globals.ROW_CATEGORY_VIEW));
+			this.loader.setController(new RowCategoryController(category));
+			TitledPane categoryTp = (TitledPane) this.loader.load();
+
+			categoryTp.setContent(this.channelsBox);
+			Platform.runLater(() -> {
+				categoryTp.lookup(".arrow").setVisible(false);
+			});
+			this.categoriesAc.getPanes().add(categoryTp);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 
+	/**
+	 * Add the channel view to the VBox category.
+	 * 
+	 * @param channel
+	 */
 	private void addChannel(TmpChannel channel) {
 		try {
-			FXMLLoader loader = new FXMLLoader();
-			loader.setLocation(MainApp.class.getResource(Globals.ROW_CHANNEL_VIEW));
-			loader.setController(new RowChannelController(channel.getName(), channel.getUnreadArticles()));
-			AnchorPane smallPane = (AnchorPane) loader.load();
+			this.loader = new FXMLLoader();
+			this.loader.setLocation(MainApp.class.getResource(Globals.ROW_CHANNEL_VIEW));
+			this.loader.setController(new RowChannelController(channel));
+			AnchorPane channelPane = (AnchorPane) this.loader.load();
 
-			channelsBox.getChildren().add(smallPane);
+			this.channelsBox.getChildren().add(channelPane);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -201,23 +238,27 @@ public class MainViewController {
 
 	@FXML
 	private void handleAddFeed() {
-		System.out.println("Add feed");
-		try {
-			FXMLLoader loader = new FXMLLoader();
-			loader.setLocation(MainApp.class.getResource("view/Dialog_AddFeed.fxml"));
-			AnchorPane rootView = (AnchorPane) loader.load();
+		this.scene.launchAddFeedView();
+	}
 
-			Scene scene = new Scene(rootView);
-			Stage stage = new Stage();
-			stage.setScene(scene);
-			stage.setResizable(false);
+	public void updateNewCategory(TmpCategory category) {
+		initCategories(category);
+	}
 
-			AddFeedController controller = loader.getController();
-			controller.setStage(stage);
-
-			stage.show();
-		} catch (IOException e) {
-			e.printStackTrace();
+	public void updateNewChannel(TmpCategory category, TmpChannel channel) {
+		for (int i = 0; i < this.categories.size(); i++) {
+			if (this.categories.get(i).getName().equals(category.getName())) {
+				ArrayList<TmpChannel> newChannels = this.categories.get(i).getChannels();
+				if (newChannels == null) {
+					newChannels = new ArrayList<>();
+				}
+				newChannels.add(channel);
+				this.categories.get(i).setChannels(newChannels);
+				System.out.println("SIZE: " + this.categories.size());
+				this.categoriesAc.getPanes().clear();
+				initCategoriesView();
+				return;
+			}
 		}
 	}
 }

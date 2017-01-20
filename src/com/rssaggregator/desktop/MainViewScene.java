@@ -77,6 +77,7 @@ public class MainViewScene {
 
 			this.mainViewController = loader.getController();
 			this.mainViewController.setCategories(this.categories);
+			this.mainViewController.setMainViewScene(this);
 			this.mainViewController.initCategoriesView();
 
 			this.rootView.setCenter(pane);
@@ -84,6 +85,11 @@ public class MainViewScene {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+	}
+
+	public void launchAddFeedView() {
+		AddFeedScene addFeedScene = new AddFeedScene(this.categories, this.mainViewController);
+		addFeedScene.launchAddFeedView();
 	}
 
 	private void createCategoryArray() {
