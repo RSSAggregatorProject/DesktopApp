@@ -5,7 +5,7 @@ import java.io.IOException;
 import com.google.gson.Gson;
 import com.rssaggregator.desktop.model.APIError;
 import com.rssaggregator.desktop.model.ComeOn_Credentials;
-import com.rssaggregator.desktop.model.CredentialsWrapper;
+import com.rssaggregator.desktop.model.ComeOn_CredentialsWrapper;
 import com.rssaggregator.desktop.network.RestService;
 import com.rssaggregator.desktop.utils.Globals;
 import com.rssaggregator.desktop.utils.PreferencesUtils;
