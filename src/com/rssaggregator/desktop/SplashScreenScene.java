@@ -13,15 +13,29 @@ import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 
+/**
+ * Controller for the Splash Screen Scene.
+ * 
+ * @author Irina
+ *
+ */
 public class SplashScreenScene {
 
 	private MainApp mainApp;
 	private AnchorPane rootView;
 
+	/**
+	 * Constructor.
+	 * 
+	 * @param mainApp
+	 */
 	public SplashScreenScene(MainApp mainApp) {
 		this.mainApp = mainApp;
 	}
 
+	/**
+	 * Starts Splash Screen scene by loading FXML.
+	 */
 	public void launchSplashScreen() {
 		try {
 			FXMLLoader loader = new FXMLLoader();
@@ -33,7 +47,7 @@ public class SplashScreenScene {
 			this.mainApp.getPrimaryStage().setScene(scene);
 			this.mainApp.getPrimaryStage().setTitle(Globals.APP_NAME);
 			this.mainApp.getPrimaryStage().setResizable(false);
-			this.mainApp.getPrimaryStage().getIcons().add(new Image("file:resources/images/icon_rss.png"));
+			this.mainApp.getPrimaryStage().getIcons().add(new Image(Globals.RSS_LOGO_LINK));
 			this.mainApp.getPrimaryStage().show();
 
 			waitAndRedirect();
@@ -42,7 +56,15 @@ public class SplashScreenScene {
 		}
 	}
 
+	/**
+	 * Waits during splash screen and redirect to the good scene. If the user is
+	 * already connected, the MainView is started. If not, the Connection View
+	 * is started.
+	 */
 	private void waitAndRedirect() {
+		/**
+		 * Starts a task to wait some seconds.
+		 */
 		Task<Void> sleeper = new Task<Void>() {
 			@Override
 			protected Void call() throws Exception {
@@ -58,22 +80,28 @@ public class SplashScreenScene {
 			public void handle(WorkerStateEvent event) {
 				String apiToken = PreferencesUtils.getApiToken();
 				if (apiToken == null || apiToken.length() == 0) {
-					launchConnectionScene();
+					launchConnectionView();
 				} else {
-					launchMainScene();
+					launchMainView();
 				}
 			}
 		});
 		new Thread(sleeper).start();
 	}
 
-	private void launchConnectionScene() {
-		ConnectionScene scene = new ConnectionScene(this.mainApp);
+	/**
+	 * Launches the Connection View.
+	 */
+	private void launchConnectionView() {
+		ConnectionScene scene = new ConnectionScene();
 		scene.launchConnectionView();
 	}
 
-	private void launchMainScene() {
-		MainViewScene scene = new MainViewScene(this.mainApp);
+	/**
+	 * Launches the Main View.
+	 */
+	private void launchMainView() {
+		MainViewScene scene = new MainViewScene();
 		scene.launchMainView();
 	}
 }

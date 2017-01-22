@@ -1,0 +1,140 @@
+@font-face {
+	src: url("../../../../../../resources/fonts/Roboto-Regular.ttf");
+}
+
+@font-face {
+	src: url("../../../../../../resources/fonts/Roboto-Black.ttf");
+}
+
+.button-raised {
+	-fx-padding: 0.7em 0.57em;
+	-fx-font-size: 16px;
+	-fx-font-weight: BOLD;
+	-fx-button-type: RAISED;
+	-fx-background-color: #FF9800;
+	-fx-text-fill: #512DA8;
+	-fx-font-family: "Roboto Black";
+}
+
+.jfx-text-field, .jfx-password-field {
+	-fx-background-color: #673AB7;
+	-fx-font-weight: BOLD;
+	-fx-font-family: "Roboto Black";
+	-fx-font-size: 16px;
+	-fx-prompt-text-fill: #FF9800;
+	-fx-text-fill: #FF9800;
+	-fx-alignment: top-left;
+	-fx-focus-color: #FF9800;
+	-fx-unfocus-color: #FF9800;
+}
+
+.loading-message {
+	-fx-font-family: "Roboto";
+}
+
+.button-add{
+	-fx-background-radius: 60px;
+	-fx-padding: 0.7em 0.57em;
+	-fx-font-size: 35px;
+	-fx-font-weight: BOLD;
+	-fx-button-type: RAISED;
+	-fx-background-color: #FF9800;
+	-fx-text-fill: #512DA8;
+	-fx-font-family: "Roboto Black";
+}
+
+.title-app-name {
+	-fx-font-family: "Roboto Black";
+	-fx-font-weight: BOLD;
+	-fx-text-fill: #FF9800;
+	-fx-font-size: 25px;
+}
+
+.rss-link-textfield {
+	-fx-background-color: #673AB7;
+	-fx-font-weight: BOLD;
+	-fx-font-family: "Roboto Black";
+	-fx-font-size: 16px;
+	-fx-prompt-text-fill: #FF9800;
+	-fx-text-fill: #FF9800;
+	-fx-alignment: top-left;
+	-fx-focus-color: #FF9800;
+	-fx-unfocus-color: #FF9800;
+}
+
+.category-spinner {
+	-fx-background-color: #673AB7;
+	-fx-text-fill: #FF9800;
+	-fx-font-family: "Roboto Black";
+	-fx-prompt-text-fill: #FF9800;
+}
+
+.combo-box .cell{
+    -fx-text-fill: #FF9800;
+    -fx-font: 16px "Roboto Black";
+    -fx-rippler-fill: #5264AE;
+    -fx-border-color:#FF9800;
+    -fx-border-width: 0 0 1 0;
+ 
+}
+
+.combo-box .combo-box-button-container{
+ 	-fx-border-color:#FF9800;
+ 	-fx-border-width: 0 0 1 0;
+}
+.combo-box .combo-box-selected-value-container{
+	-fx-border-color:#FF9800;
+}
+
+.button-rounded {
+	-fx-font-size: 14px;
+	-fx-font-weight: BOLD;
+	-fx-button-type: RAISED;
+	-fx-background-color: #512DA8;
+	-fx-text-fill: #FF9800;
+	-fx-font-family: "Roboto Black";
+}
+
+.category-title {
+	-fx-font-weight: BOLD;
+	-fx-text-fill: #512DA8;
+	-fx-font: 22px "Roboto Black";
+}
+
+.empty-message {
+	-fx-font: 18px "Roboto Black";
+	-fx-background-color: white;
+	-fx-text-fill: #673AB7;
+}
+
+ .jfx-toggle-button {
+ 	-fx-toggle-color: #673AB7;
+ 	-fx-font: 16px "Roboto Black";
+ 	-fx-text-fill: #673AB7;
+ }
+ 
+ .row-article-title {
+	-fx-font: 18px "Roboto Black"
+}
+
+ .row-article-extended-title {
+	-fx-font: 22px "Roboto Black"
+}
+
+.article-details-title {
+	-fx-font: 25px "Roboto Black";
+	-fx-text-fill: #512DA8;
+}
+
+.article-details-channel {
+	-fx-font: 18px "Roboto Black";
+}
+
+.article-details-visit-article {
+	-fx-font-size: 20px;
+	-fx-font-weight: BOLD;
+	-fx-button-type: RAISED;
+	-fx-background-color: #512DA8;
+	-fx-text-fill: #FF9800;
+	-fx-font-family: "Roboto Black";
+}

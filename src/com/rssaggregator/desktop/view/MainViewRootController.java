@@ -13,7 +13,7 @@ public class MainViewRootController {
 
 	@FXML
 	private void handleLogOut() {
-		ConnectionScene scene = new ConnectionScene(MainApp.getMainApp());
+		ConnectionScene scene = new ConnectionScene();
 		scene.launchConnectionView();
 	}
 

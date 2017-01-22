@@ -1,59 +1,117 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXToggleButton?>
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Accordion?>
-<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
-<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.control.TitledPane?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 
 <AnchorPane prefHeight="800.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.rssaggregator.desktop.view.MainViewController">
    <children>
-      <SplitPane dividerPositions="0.2337228714524207" layoutX="500.0" layoutY="320.0" prefHeight="800.0" prefWidth="1200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" SplitPane.resizableWithParent="false">
+      <SplitPane dividerPositions="0.2337228714524207" layoutX="500.0" layoutY="320.0" prefHeight="800.0" prefWidth="1200.0" stylesheets="@css/style.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" SplitPane.resizableWithParent="false">
         <items>
-          <AnchorPane maxWidth="277.0" minHeight="0.0" minWidth="277.0" prefHeight="798.0" prefWidth="277.0">
+          <AnchorPane maxWidth="277.0" minHeight="0.0" minWidth="277.0" prefHeight="798.0" prefWidth="277.0" style="-fx-background-color: #673AB7;">
                <children>
-                  <Accordion fx:id="categories" layoutX="38.0" layoutY="212.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="200.0">
-                    <panes>
-                      <TitledPane fx:id="allItems" animated="false" onMouseClicked="#handleAllItemPaneClicked">
-                        <content>
-                          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
-                        </content>
-                           <graphic>
-                              <AnchorPane maxWidth="1.7976931348623157E308" prefHeight="30.0" prefWidth="300.0">
-                                 <children>
-                                    <Label layoutY="6.0" text="All Items" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0" />
-                                    <Label layoutX="224.0" layoutY="6.0" text="50" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="8.0" AnchorPane.topAnchor="0.0" />
-                                 </children>
-                              </AnchorPane>
-                           </graphic>
-                      </TitledPane>
-                      <TitledPane fx:id="starredItems" animated="false" onMouseClicked="#handleStarredItemsPaneClicked">
-                        <content>
-                          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
-                        </content>
-                           <graphic>
-                              <AnchorPane maxWidth="1.7976931348623157E308" prefHeight="30.0" prefWidth="300.0">
-                                 <children>
-                                    <Label layoutY="6.0" maxWidth="1.7976931348623157E308" text="Starred Items" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0" />
-                                    <Label layoutX="224.0" layoutY="6.0" text="50" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="8.0" AnchorPane.topAnchor="0.0" />
-                                 </children>
-                              </AnchorPane>
-                           </graphic>
-                      </TitledPane>
-                    </panes>
-                  </Accordion>
-                  <Accordion layoutX="97.0" layoutY="151.0" />
-                  <Button layoutX="87.0" layoutY="593.0" mnemonicParsing="false" onAction="#handleAddFeed" prefHeight="91.0" prefWidth="103.0" text="ADD" />
+                  <ImageView fitHeight="76.0" fitWidth="82.0" layoutX="101.0" layoutY="22.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="101.0" AnchorPane.rightAnchor="100.0" AnchorPane.topAnchor="22.0">
+                     <image>
+                        <Image url="@../../../../../resources/images/icon_rss.png" />
+                     </image>
+                  </ImageView>
+                  <JFXButton layoutX="93.0" layoutY="651.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" onAction="#handleAddFeed" prefHeight="85.0" prefWidth="85.0" styleClass="button-add" stylesheets="@css/material.css" text=" " AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="95.0" AnchorPane.rightAnchor="95.0">
+                     <graphic>
+                        <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../../../resources/images/ic_add_primary.png" />
+                           </image>
+                        </ImageView>
+                     </graphic></JFXButton>
+                  <Label alignment="CENTER" contentDisplay="CENTER" layoutX="28.0" layoutY="121.0" styleClass="title-app-name" stylesheets="@css/material.css" text="RSS AGGREGATOR" AnchorPane.leftAnchor="25.0" AnchorPane.rightAnchor="25.0" AnchorPane.topAnchor="120.0" />
+                  <ScrollPane hbarPolicy="NEVER" layoutX="28.0" layoutY="215.0" maxWidth="1.7976931348623157E308" prefHeight="415.0" prefWidth="277.0" stylesheets="@css/style.css" AnchorPane.bottomAnchor="200.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="200.0">
+                     <content>
+                        <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefWidth="200.0">
+                           <children>
+                              <Accordion fx:id="defaultCategoriesAc" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefWidth="278.0" style="-fx-background-color: #673AB7;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                <panes>
+                                  <TitledPane fx:id="starredItemsTp" animated="false" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#handleStarredItemsPaneClicked" prefWidth="278.0">
+                                       <graphic>
+                                          <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="35.0" prefWidth="345.0">
+                                             <children>
+                                                <ImageView fitHeight="20.0" fitWidth="20.0" layoutX="2.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="-2.0" AnchorPane.topAnchor="7.0">
+                                                   <image>
+                                                      <Image url="@../../../../../resources/images/ic_star_primary.png" />
+                                                   </image>
+                                                </ImageView>
+                                                <Label layoutY="6.0" styleClass="titledpane-title" text="Starred Items" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="30.0" AnchorPane.topAnchor="0.0" />
+                                                <Label fx:id="unreadStarredItemsLb" layoutX="224.0" layoutY="6.0" styleClass="titledpane-title" text="23" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="16.0" AnchorPane.topAnchor="0.0" />
+                                             </children>
+                                          </AnchorPane>
+                                       </graphic>
+                                       <padding>
+                                          <Insets bottom="3.0" />
+                                       </padding>
+                                  </TitledPane>
+                                  <TitledPane fx:id="allItemsTp" animated="false" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#handleAllItemPaneClicked" prefWidth="278.0" style="-fx-background-color: #673AB7;">
+                                       <graphic>
+                                          <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="35.0" prefWidth="345.0">
+                                             <children>
+                                                <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="-2.0" AnchorPane.topAnchor="7.0">
+                                                   <image>
+                                                      <Image url="@../../../../../resources/images/ic_infinite_primary.png" />
+                                                   </image>
+                                                </ImageView>
+                                                <Label layoutY="6.0" maxWidth="1.7976931348623157E308" styleClass="titledpane-title" text="All Items" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="30.0" AnchorPane.topAnchor="0.0" />
+                                                <Label fx:id="unreadAllItemsLb" layoutX="224.0" layoutY="6.0" styleClass="titledpane-title" text="9" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="16.0" AnchorPane.topAnchor="0.0" />
+                                             </children>
+                                          </AnchorPane>
+                                       </graphic>
+                                       <padding>
+                                          <Insets bottom="3.0" />
+                                       </padding>
+                                  </TitledPane>
+                                </panes>
+                              </Accordion>
+                              <Accordion fx:id="categoriesAc" layoutX="10.0" layoutY="10.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefWidth="278.0" style="-fx-background-color: #673AB7;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="93.0" />
+                           </children>
+                        </AnchorPane>
+                     </content>
+                  </ScrollPane>
                </children></AnchorPane>
-          <AnchorPane maxWidth="1.7976931348623157E308" minHeight="0.0" prefHeight="160.0">
+          <AnchorPane maxWidth="1.7976931348623157E308" minHeight="0.0" prefHeight="160.0" style="-fx-background-color: white;" stylesheets="@css/material.css">
                <children>
-                  <Label fx:id="pseudoLb" layoutY="14.0" prefHeight="39.0" prefWidth="402.0" text="ALL" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="513.0" AnchorPane.topAnchor="14.0" />
-                  <ListView fx:id="articlesLv" layoutY="327.0" minWidth="-Infinity" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="100.0" />
-                  <RadioButton fx:id="expandableList" layoutX="496.0" layoutY="45.0" mnemonicParsing="false" text="Expandable List" />
-                  <RadioButton fx:id="simpleList" layoutX="617.0" layoutY="45.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="121.0" text="SimpleList" />
+                  <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="110.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <children>
+                        <Label fx:id="categoryChannelTitleLb" prefWidth="300.0" styleClass="category-title" text="Category/Channel Name" AnchorPane.bottomAnchor="41.0" AnchorPane.leftAnchor="16.0" AnchorPane.topAnchor="41.0" />
+                        <JFXButton contentDisplay="CENTER" ellipsisString="" onAction="#handleRefresh" styleClass="button-rounded" text=" " AnchorPane.bottomAnchor="34.0" AnchorPane.rightAnchor="16.0" AnchorPane.topAnchor="34.0">
+                           <graphic>
+                              <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../../../../resources/images/ic_refresh.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </JFXButton>
+                        <JFXButton contentDisplay="CENTER" ellipsisString="" layoutX="861.0" layoutY="44.0" styleClass="button-rounded" text=" " AnchorPane.bottomAnchor="34.0" AnchorPane.leftAnchor="335.0" AnchorPane.topAnchor="34.0">
+                           <graphic>
+                              <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../../../../resources/images/ic_cancel.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </JFXButton>
+                        <JFXButton alignment="CENTER" contentDisplay="CENTER" layoutX="757.0" layoutY="27.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="60.0" prefWidth="80.0" styleClass="button-rounded" text="Mark All As Read" textAlignment="CENTER" wrapText="true" AnchorPane.bottomAnchor="25.0" AnchorPane.rightAnchor="100.0" AnchorPane.topAnchor="25.0" />
+                        <JFXToggleButton fx:id="expandableListTb" layoutX="556.0" layoutY="27.0" text="Expandable List" AnchorPane.bottomAnchor="25.0" AnchorPane.rightAnchor="220.0" AnchorPane.topAnchor="25.0" />
+                     </children>
+                  </AnchorPane>
+                  <ListView fx:id="articlesLv" layoutY="327.0" minWidth="-Infinity" AnchorPane.bottomAnchor="8.0" AnchorPane.leftAnchor="8.0" AnchorPane.rightAnchor="8.0" AnchorPane.topAnchor="110.0" />
+                  <Label fx:id="noSelectedMessageLb" alignment="CENTER" styleClass="empty-message" text="Please select a category or channel" textAlignment="CENTER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                </children></AnchorPane>
         </items>
       </SplitPane>

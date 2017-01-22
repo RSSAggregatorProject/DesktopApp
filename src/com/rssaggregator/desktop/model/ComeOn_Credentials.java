@@ -1,6 +1,6 @@
 package com.rssaggregator.desktop.model;
 
-public class Credentials {
+public class ComeOn_Credentials {
 
 	private String email;
 	private String pseudo;

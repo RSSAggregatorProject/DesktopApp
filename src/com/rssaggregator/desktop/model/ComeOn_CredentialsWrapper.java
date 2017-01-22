@@ -1,6 +1,6 @@
 package com.rssaggregator.desktop.model;
 
-public class CredentialsWrapper {
+public class ComeOn_CredentialsWrapper {
 
 	private String login;
 	private String password;
