@@ -4,7 +4,7 @@ import java.io.IOException;
 
 import com.google.gson.Gson;
 import com.rssaggregator.desktop.model.APIError;
-import com.rssaggregator.desktop.model.Credentials;
+import com.rssaggregator.desktop.model.ComeOn_Credentials;
 import com.rssaggregator.desktop.model.CredentialsWrapper;
 import com.rssaggregator.desktop.network.RestService;
 import com.rssaggregator.desktop.utils.Globals;
@@ -30,7 +30,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
  * @author Irina
  *
  */
-public class ConnectionScene implements Callback<Credentials> {
+public class ConnectionScene implements Callback<ComeOn_Credentials> {
 
 	private static String userEmail;
 	private static String userPassword;
@@ -86,22 +86,36 @@ public class ConnectionScene implements Callback<Credentials> {
 	public void logIn(String userEmail, String userPassword) {
 		this.userEmail = userEmail;
 		this.userPassword = userPassword;
-		/*
-		 * OkHttpClient.Builder builder = new OkHttpClient.Builder();
-		 * OkHttpClient client = builder.build();
-		 * 
-		 * Retrofit retrofit = new
-		 * Retrofit.Builder().baseUrl("http://api.comeon.io")
-		 * .addConverterFactory(GsonConverterFactory.create()).client(client).
-		 * build();
-		 * 
-		 * RestService restService = retrofit.create(RestService.class);
-		 * CredentialsWrapper wrapper = new CredentialsWrapper();
-		 * wrapper.setLogin(userEmail); wrapper.setPassword(userPassword);
-		 * restService.logIn(wrapper).enqueue(this);
-		 * 
-		 * controller.showLoading();
-		 */
+
+		// OkHttpClient.Builder builder = new OkHttpClient.Builder();
+		// OkHttpClient client = builder.build();
+		//
+		// Retrofit retrofit = new
+		// Retrofit.Builder().baseUrl("http://api.comeon.io")
+		// .addConverterFactory(GsonConverterFactory.create()).client(client).
+		// build();
+		//
+		// RestService restService = retrofit.create(RestService.class);
+		// CredentialsWrapper wrapper = new CredentialsWrapper();
+		// wrapper.setLogin(userEmail); wrapper.setPassword(userPassword);
+		//
+		// restService.logIn(wrapper).enqueue(new Callback<Credentials>() {
+		//
+		// @Override
+		// public void onFailure(Call<Credentials> arg0, Throwable arg1) {
+		// // TODO Auto-generated method stub
+		//
+		// }
+		//
+		// @Override
+		// public void onResponse(Call<Credentials> arg0, Response<Credentials>
+		// arg1) {
+		// // TODO Auto-generated method stub
+		//
+		// }
+		// });
+		controller.showLoading();
+
 		PreferencesUtils.setUserEmail(userEmail);
 		PreferencesUtils.setUserPassword(userPassword);
 		PreferencesUtils.setApiToken("Token");
@@ -123,7 +137,7 @@ public class ConnectionScene implements Callback<Credentials> {
 	}
 
 	@Override
-	public void onFailure(Call<Credentials> call, Throwable arg1) {
+	public void onFailure(Call<ComeOn_Credentials> call, Throwable arg1) {
 		// TODO Auto-generated method stub
 		Platform.runLater(new Runnable() {
 			@Override
@@ -136,14 +150,14 @@ public class ConnectionScene implements Callback<Credentials> {
 	}
 
 	@Override
-	public void onResponse(Call<Credentials> call, Response<Credentials> response) {
+	public void onResponse(Call<ComeOn_Credentials> call, Response<ComeOn_Credentials> response) {
 		// TODO Auto-generated method stub
 		if (response.isSuccessful()) {
 			Platform.runLater(new Runnable() {
 				@Override
 				public void run() {
 					controller.stopLoading();
-					Credentials credentials = response.body();
+					ComeOn_Credentials credentials = response.body();
 					System.out.println(credentials.getApi_key());
 					PreferencesUtils.setUserEmail(userEmail);
 					PreferencesUtils.setUserPassword(userPassword);

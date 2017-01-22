@@ -1,6 +1,6 @@
 package com.rssaggregator.desktop.network;
 
-import com.rssaggregator.desktop.model.Credentials;
+import com.rssaggregator.desktop.model.ComeOn_Credentials;
 import com.rssaggregator.desktop.model.CredentialsWrapper;
 
 import retrofit2.Call;
@@ -12,5 +12,5 @@ public interface RestService {
 	final String BASE_URL = "http://api.comeon.io";
 
 	@POST("/1.0/auth/")
-	Call<Credentials> logIn(@Body CredentialsWrapper wrapper);
+	Call<ComeOn_Credentials> logIn(@Body CredentialsWrapper wrapper);
 }

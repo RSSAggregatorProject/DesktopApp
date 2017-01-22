@@ -3,37 +3,32 @@ package com.rssaggregator.desktop.view;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import com.jfoenix.controls.JFXToggleButton;
 import com.rssaggregator.desktop.MainApp;
 import com.rssaggregator.desktop.MainViewScene;
 import com.rssaggregator.desktop.model.TmpArticle;
 import com.rssaggregator.desktop.model.TmpCategory;
 import com.rssaggregator.desktop.model.TmpChannel;
 import com.rssaggregator.desktop.utils.Globals;
-import com.rssaggregator.desktop.utils.PreferencesUtils;
+import com.rssaggregator.desktop.utils.UiUtils;
 
 import javafx.application.Platform;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
-import javafx.scene.Scene;
 import javafx.scene.control.Accordion;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
-import javafx.scene.control.RadioButton;
 import javafx.scene.control.TitledPane;
-import javafx.scene.control.Toggle;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
-import javafx.stage.Stage;
 
 /**
  * Controller View of the Main View.
@@ -59,17 +54,18 @@ public class MainViewController {
 	@FXML
 	private Label unreadAllItemsLb;
 
+	@FXML
+	private Label noSelectedMessageLb;
+	@FXML
+	private Label categoryChannelTitleLb;
+	@FXML
+	private JFXToggleButton expandableListTb;
+
 	private FXMLLoader loader;
 	private MainViewScene scene;
 
 	@FXML
-	Label pseudoLb;
-	@FXML
 	ListView<TmpArticle> articlesLv;
-	@FXML
-	RadioButton simpleList;
-	@FXML
-	RadioButton expandableList;
 
 	private ObservableList<TmpArticle> articlesObservableList;
 
@@ -95,32 +91,36 @@ public class MainViewController {
 
 	@FXML
 	private void initialize() {
-		final ToggleGroup group = new ToggleGroup();
-		this.simpleList.setToggleGroup(group);
-		this.simpleList.setUserData(0);
-		this.expandableList.setToggleGroup(group);
-		this.expandableList.setUserData(1);
-		this.simpleList.setSelected(true);
-		group.selectedToggleProperty().addListener(new ChangeListener<Toggle>() {
-			public void changed(ObservableValue<? extends Toggle> ov, Toggle old_toggle, Toggle new_toggle) {
-				if (group.getSelectedToggle() != null) {
-					if ((int) new_toggle.getUserData() == 0) {
-						test();
-					} else {
-						test2();
-					}
-				}
-			}
-		});
+		this.noSelectedMessageLb.setVisible(true);
 
-		pseudoLb.setText(PreferencesUtils.getUserEmail());
+		// Initialize expandable list view Toggle Button
+		initExpandableToggleButton();
+
 		this.articlesLv.setItems(articlesObservableList);
-		this.articlesLv.setCellFactory(articlesLv -> new ArticleListViewCell(articlesLv.getWidth()));
+		this.articlesLv.setCellFactory(articlesLv -> new ArticleListViewCell(articlesLv.getWidth(), "Channel"));
 		articlesLv.setOnMouseClicked(new EventHandler<Event>() {
 			@Override
 			public void handle(Event event) {
 				// TODO Auto-generated method stub
-				System.out.println("Clicked on " + articlesLv.getSelectionModel().getSelectedItem().getTitle());
+				TmpArticle selectedArticle = articlesLv.getSelectionModel().getSelectedItem();
+
+				if (selectedArticle != null) {
+					scene.launchArticleDetailsView(selectedArticle);
+				}
+			}
+		});
+	}
+
+	private void initExpandableToggleButton() {
+		this.expandableListTb.setOnAction(new EventHandler<ActionEvent>() {
+			@Override
+			public void handle(ActionEvent e) {
+				if (expandableListTb.isSelected()) {
+					articlesLv.setCellFactory(
+							articlesLv -> new ArticleExtendedListViewCell(articlesLv.getWidth(), "Channel"));
+				} else {
+					articlesLv.setCellFactory(articlesLv -> new ArticleListViewCell(articlesLv.getWidth(), "Channel"));
+				}
 			}
 		});
 	}
@@ -197,17 +197,15 @@ public class MainViewController {
 		}
 	}
 
-	private void test() {
-		this.articlesLv.setCellFactory(articlesLv -> new ArticleListViewCell(articlesLv.getWidth()));
-	}
-
-	private void test2() {
-		this.articlesLv.setCellFactory(articlesLv -> new ArticleExtendedListViewCell(articlesLv.getWidth()));
-	}
-
 	@FXML
 	private void handleStarredItemsPaneClicked(MouseEvent event) {
 		System.out.println("Starred Items");
+		// Remove no selected message.
+		this.noSelectedMessageLb.setVisible(false);
+
+		// Initialize view.
+		this.categoryChannelTitleLb.setText("Starred Items");
+
 		this.articlesObservableList.clear();
 
 		TmpArticle article = new TmpArticle();
@@ -223,6 +221,12 @@ public class MainViewController {
 	@FXML
 	private void handleAllItemPaneClicked(MouseEvent event) {
 		System.out.println("All Items");
+
+		// Remove no selected message.
+		this.noSelectedMessageLb.setVisible(false);
+
+		// Initialize view.
+		this.categoryChannelTitleLb.setText("All Items");
 
 		this.articlesObservableList.clear();
 
@@ -260,5 +264,12 @@ public class MainViewController {
 				return;
 			}
 		}
+	}
+
+	@FXML
+	private void handleRefresh() {
+		TmpArticle article = new TmpArticle();
+		article.setTitle("New Article");
+		this.articlesObservableList.add(article);
 	}
 }

@@ -84,4 +84,57 @@
 }
 .combo-box .combo-box-selected-value-container{
 	-fx-border-color:#FF9800;
-} 
+}
+
+.button-rounded {
+	-fx-font-size: 14px;
+	-fx-font-weight: BOLD;
+	-fx-button-type: RAISED;
+	-fx-background-color: #512DA8;
+	-fx-text-fill: #FF9800;
+	-fx-font-family: "Roboto Black";
+}
+
+.category-title {
+	-fx-font-weight: BOLD;
+	-fx-text-fill: #512DA8;
+	-fx-font: 22px "Roboto Black";
+}
+
+.empty-message {
+	-fx-font: 18px "Roboto Black";
+	-fx-background-color: white;
+	-fx-text-fill: #673AB7;
+}
+
+ .jfx-toggle-button {
+ 	-fx-toggle-color: #673AB7;
+ 	-fx-font: 16px "Roboto Black";
+ 	-fx-text-fill: #673AB7;
+ }
+ 
+ .row-article-title {
+	-fx-font: 18px "Roboto Black"
+}
+
+ .row-article-extended-title {
+	-fx-font: 22px "Roboto Black"
+}
+
+.article-details-title {
+	-fx-font: 25px "Roboto Black";
+	-fx-text-fill: #512DA8;
+}
+
+.article-details-channel {
+	-fx-font: 18px "Roboto Black";
+}
+
+.article-details-visit-article {
+	-fx-font-size: 20px;
+	-fx-font-weight: BOLD;
+	-fx-button-type: RAISED;
+	-fx-background-color: #512DA8;
+	-fx-text-fill: #FF9800;
+	-fx-font-family: "Roboto Black";
+}

@@ -3,6 +3,7 @@ package com.rssaggregator.desktop;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import com.rssaggregator.desktop.model.TmpArticle;
 import com.rssaggregator.desktop.model.TmpCategory;
 import com.rssaggregator.desktop.model.TmpChannel;
 import com.rssaggregator.desktop.utils.Globals;
@@ -90,6 +91,11 @@ public class MainViewScene {
 	public void launchAddFeedView() {
 		AddFeedScene addFeedScene = new AddFeedScene(this.categories, this.mainViewController);
 		addFeedScene.launchAddFeedView();
+	}
+
+	public void launchArticleDetailsView(TmpArticle article) {
+		ArticleDetailsScene articleDetailsScene = new ArticleDetailsScene(article);
+		articleDetailsScene.launchArticleDetailsView();
 	}
 
 	private void createCategoryArray() {

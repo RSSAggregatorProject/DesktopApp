@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXToggleButton?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Accordion?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
-<?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.control.TitledPane?>
@@ -83,12 +83,35 @@
                      </content>
                   </ScrollPane>
                </children></AnchorPane>
-          <AnchorPane maxWidth="1.7976931348623157E308" minHeight="0.0" prefHeight="160.0">
+          <AnchorPane maxWidth="1.7976931348623157E308" minHeight="0.0" prefHeight="160.0" style="-fx-background-color: white;" stylesheets="@css/material.css">
                <children>
-                  <Label fx:id="pseudoLb" layoutY="14.0" prefHeight="39.0" prefWidth="402.0" text="ALL" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="513.0" AnchorPane.topAnchor="14.0" />
-                  <ListView fx:id="articlesLv" layoutY="327.0" minWidth="-Infinity" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="100.0" />
-                  <RadioButton fx:id="expandableList" layoutX="496.0" layoutY="45.0" mnemonicParsing="false" text="Expandable List" />
-                  <RadioButton fx:id="simpleList" layoutX="617.0" layoutY="45.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="121.0" text="SimpleList" />
+                  <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="110.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <children>
+                        <Label fx:id="categoryChannelTitleLb" prefWidth="300.0" styleClass="category-title" text="Category/Channel Name" AnchorPane.bottomAnchor="41.0" AnchorPane.leftAnchor="16.0" AnchorPane.topAnchor="41.0" />
+                        <JFXButton contentDisplay="CENTER" ellipsisString="" onAction="#handleRefresh" styleClass="button-rounded" text=" " AnchorPane.bottomAnchor="34.0" AnchorPane.rightAnchor="16.0" AnchorPane.topAnchor="34.0">
+                           <graphic>
+                              <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../../../../resources/images/ic_refresh.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </JFXButton>
+                        <JFXButton contentDisplay="CENTER" ellipsisString="" layoutX="861.0" layoutY="44.0" styleClass="button-rounded" text=" " AnchorPane.bottomAnchor="34.0" AnchorPane.leftAnchor="335.0" AnchorPane.topAnchor="34.0">
+                           <graphic>
+                              <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../../../../resources/images/ic_cancel.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </JFXButton>
+                        <JFXButton alignment="CENTER" contentDisplay="CENTER" layoutX="757.0" layoutY="27.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="60.0" prefWidth="80.0" styleClass="button-rounded" text="Mark All As Read" textAlignment="CENTER" wrapText="true" AnchorPane.bottomAnchor="25.0" AnchorPane.rightAnchor="100.0" AnchorPane.topAnchor="25.0" />
+                        <JFXToggleButton fx:id="expandableListTb" layoutX="556.0" layoutY="27.0" text="Expandable List" AnchorPane.bottomAnchor="25.0" AnchorPane.rightAnchor="220.0" AnchorPane.topAnchor="25.0" />
+                     </children>
+                  </AnchorPane>
+                  <ListView fx:id="articlesLv" layoutY="327.0" minWidth="-Infinity" AnchorPane.bottomAnchor="8.0" AnchorPane.leftAnchor="8.0" AnchorPane.rightAnchor="8.0" AnchorPane.topAnchor="110.0" />
+                  <Label fx:id="noSelectedMessageLb" alignment="CENTER" styleClass="empty-message" text="Please select a category or channel" textAlignment="CENTER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                </children></AnchorPane>
         </items>
       </SplitPane>
