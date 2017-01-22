@@ -92,7 +92,7 @@ public class ConnectionController {
 	 * Stops the loading dialog.
 	 */
 	public void stopLoading() {
-		if (this.loadingStage.isShowing()) {
+		if (this.loadingStage != null && this.loadingStage.isShowing()) {
 			this.loadingStage.close();
 		}
 	}

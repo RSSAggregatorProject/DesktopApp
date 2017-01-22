@@ -8,6 +8,11 @@ public class Globals {
 	public static final String APP_NAME = "RSS Aggregator";
 
 	/**
+	 * API server address.
+	 */
+	public static final String API_SERVER_URL = "http://api.comeon.io";
+
+	/**
 	 * Windows Names.
 	 */
 	public static final String ADD_FEED_TITLE_NAME = "Add a feed";
@@ -20,6 +25,7 @@ public class Globals {
 	public static final String PREF_USER_EMAIL = "pref_user_email";
 	public static final String PREF_USER_PASSWORD = "pref_user_password";
 	public static final String PREF_API_TOKEN = "pref_api_token";
+	public static final String PREF_USER_ID = "pref_user_id";
 	public static final String PREF_IS_CONNECTED = "pref_is_connected";
 
 	/**
@@ -37,6 +43,12 @@ public class Globals {
 	public static final String ROW_CATEGORY_VIEW = "view/Row_Category.fxml";
 	public static final String ROW_ARTICLE_VIEW = "Row_Article.fxml";
 	public static final String ROW_ARTICLE_EXTENDED_VIEW = "Row_Article_Extended.fxml";
+
+	/**
+	 * Category titles
+	 */
+	public static final String STARRED_ITEMS_TITLED_PANE = "Starred Items";
+	public static final String ALL_ITEMS_TITLED_PANE = "All Items";
 
 	/**
 	 * Image links

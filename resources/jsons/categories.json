@@ -1,0 +1,30 @@
+{"status" : "Succes",
+"data": [ {
+	"id_cat" : 1,
+	"name" : "Automobile",
+	"unread" : 18,
+	"feeds" : [{
+		"id_feed" : 1,
+		"name" : "Turbo.fr",
+		"favicon_uri" : "http://www.turbo.fr/favicon.ico",
+		"unread" : 12
+		},
+		{
+		"id_feed" : 2,
+		"name" : "Caradisiac",
+		"favicon_uri" : "null",
+		"unread" : 6
+		}]
+	},
+	{
+	"id_cat" : 2,
+	"name" : "Sports",
+	"unread" : 20,
+	"feeds" : [{
+		"id_feed" : 3,
+		"name" : "Eurosport.fr",
+		"favicon_uri" : "null",
+		"unread" : 20
+		}]
+	}]
+}

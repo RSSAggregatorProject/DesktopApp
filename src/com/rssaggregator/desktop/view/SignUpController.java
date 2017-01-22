@@ -2,6 +2,7 @@ package com.rssaggregator.desktop.view;
 
 import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
+import com.rssaggregator.desktop.MainApp;
 import com.rssaggregator.desktop.SignUpScene;
 import com.rssaggregator.desktop.utils.UiUtils;
 
@@ -18,7 +19,8 @@ import javafx.stage.Stage;
 public class SignUpController {
 
 	private Stage signUpStage;
-	private SignUpScene scene;
+	private Stage loadingStage;
+	private SignUpScene signUpScene;
 
 	@FXML
 	private JFXTextField userEmailTf;
@@ -31,12 +33,22 @@ public class SignUpController {
 	private void initialize() {
 	}
 
+	/**
+	 * Sets the stage.
+	 * 
+	 * @param stage
+	 */
 	public void setStage(Stage stage) {
 		this.signUpStage = stage;
 	}
 
-	public void setScene(SignUpScene scene) {
-		this.scene = scene;
+	/**
+	 * Sets the scene
+	 * 
+	 * @param scene
+	 */
+	public void setSignUpScene(SignUpScene scene) {
+		this.signUpScene = scene;
 	}
 
 	/**
@@ -46,9 +58,9 @@ public class SignUpController {
 	 */
 	@FXML
 	private void handleSignUp(ActionEvent event) {
-		String userEmail = userEmailTf.getText();
-		String userPassword = userPasswordPf.getText();
-		String userRetypePassword = userRetypePasswordPf.getText();
+		String userEmail = this.userEmailTf.getText();
+		String userPassword = this.userPasswordPf.getText();
+		String userRetypePassword = this.userRetypePasswordPf.getText();
 
 		if (userEmail.length() == 0) {
 			UiUtils.showErrorDialog(this.signUpStage, "Invalid Inputs", "The Email field is empty!");
@@ -69,8 +81,27 @@ public class SignUpController {
 					"The Password and the Retype Password fields are not the same.");
 			return;
 		}
+		this.signUpScene.signUp(userEmail, userPassword);
+	}
 
-		this.scene.closeStage(userEmail, userPassword);
+	/**
+	 * Shows a loading dialog.
+	 */
+	public void showLoading() {
+		this.loadingStage = null;
+		this.loadingStage = UiUtils.createLoadingDialog(MainApp.getStage());
+		if (this.loadingStage != null) {
+			this.loadingStage.show();
+		}
+	}
+
+	/**
+	 * Stops the loading dialog.
+	 */
+	public void stopLoading() {
+		if (this.loadingStage != null && this.loadingStage.isShowing()) {
+			this.loadingStage.close();
+		}
 	}
 
 	/**
@@ -78,7 +109,7 @@ public class SignUpController {
 	 */
 	@FXML
 	private void handleCancelSignUp() {
-		if (this.signUpStage.isShowing()) {
+		if (this.signUpStage != null && this.signUpStage.isShowing()) {
 			this.signUpStage.close();
 		}
 	}

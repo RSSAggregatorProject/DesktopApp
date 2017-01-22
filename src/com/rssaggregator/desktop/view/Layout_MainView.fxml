@@ -39,7 +39,7 @@
                            <children>
                               <Accordion fx:id="defaultCategoriesAc" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefWidth="278.0" style="-fx-background-color: #673AB7;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                 <panes>
-                                  <TitledPane fx:id="starredItemsTp" animated="false" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#handleStarredItemsPaneClicked" prefWidth="278.0">
+                                  <TitledPane fx:id="starredItemsTp" animated="false" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#handleClickStarredItems" prefWidth="278.0">
                                        <graphic>
                                           <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="35.0" prefWidth="345.0">
                                              <children>

@@ -5,7 +5,8 @@ import java.io.IOException;
 import com.google.gson.Gson;
 import com.rssaggregator.desktop.model.APIError;
 import com.rssaggregator.desktop.model.ComeOn_Credentials;
-import com.rssaggregator.desktop.model.ComeOn_CredentialsWrapper;
+import com.rssaggregator.desktop.model.Credentials;
+import com.rssaggregator.desktop.model.User;
 import com.rssaggregator.desktop.network.RestService;
 import com.rssaggregator.desktop.utils.Globals;
 import com.rssaggregator.desktop.utils.PreferencesUtils;
@@ -30,17 +31,17 @@ import retrofit2.converter.gson.GsonConverterFactory;
  * @author Irina
  *
  */
-public class ConnectionScene implements Callback<ComeOn_Credentials> {
+public class ConnectionScene {
 
-	private static String userEmail;
-	private static String userPassword;
-
+	// View attributs
 	private Stage primaryStage;
 	private BorderPane rootView;
+
+	// Others
 	private ConnectionController controller;
 
 	/**
-	 * Constructor.
+	 * Default constructor.
 	 * 
 	 * @param mainApp
 	 */
@@ -83,46 +84,105 @@ public class ConnectionScene implements Callback<ComeOn_Credentials> {
 		this.primaryStage.setResizable(false);
 	}
 
+	/**
+	 * Logs the user to the application by requesting the API token.
+	 * 
+	 * @param userEmail
+	 *            email of the user.
+	 * @param userPassword
+	 *            password of the user.
+	 */
 	public void logIn(String userEmail, String userPassword) {
-		this.userEmail = userEmail;
-		this.userPassword = userPassword;
+		Credentials credentials = new Credentials(userEmail, userPassword);
 
-		// OkHttpClient.Builder builder = new OkHttpClient.Builder();
-		// OkHttpClient client = builder.build();
-		//
-		// Retrofit retrofit = new
-		// Retrofit.Builder().baseUrl("http://api.comeon.io")
-		// .addConverterFactory(GsonConverterFactory.create()).client(client).
-		// build();
-		//
-		// RestService restService = retrofit.create(RestService.class);
-		// CredentialsWrapper wrapper = new CredentialsWrapper();
-		// wrapper.setLogin(userEmail); wrapper.setPassword(userPassword);
-		//
-		// restService.logIn(wrapper).enqueue(new Callback<Credentials>() {
-		//
-		// @Override
-		// public void onFailure(Call<Credentials> arg0, Throwable arg1) {
-		// // TODO Auto-generated method stub
-		//
-		// }
-		//
-		// @Override
-		// public void onResponse(Call<Credentials> arg0, Response<Credentials>
-		// arg1) {
-		// // TODO Auto-generated method stub
-		//
-		// }
-		// });
-		controller.showLoading();
+		// Starts Loading view.
+		this.controller.showLoading();
 
-		PreferencesUtils.setUserEmail(userEmail);
-		PreferencesUtils.setUserPassword(userPassword);
-		PreferencesUtils.setApiToken("Token");
-		PreferencesUtils.setIsConnected(true);
-		launchMainView();
+		OkHttpClient client = MainApp.getOkHttpClient();
+		if (client == null) {
+			OkHttpClient.Builder builder = new OkHttpClient.Builder();
+			client = builder.build();
+		}
+
+		Retrofit retrofit = MainApp.getRetrofit();
+		if (retrofit == null) {
+			retrofit = new Retrofit.Builder().baseUrl(Globals.API_SERVER_URL)
+					.addConverterFactory(GsonConverterFactory.create()).client(client).build();
+		}
+
+		RestService restService = retrofit.create(RestService.class);
+		restService.logIn(credentials).enqueue(new Callback<User>() {
+
+			@Override
+			public void onFailure(Call<User> call, Throwable e) {
+				// TODO Auto-generated method stub
+				Platform.runLater(new Runnable() {
+					@Override
+					public void run() {
+						controller.stopLoading();
+						UiUtils.showErrorDialog(MainApp.getStage(), "Error", "Error");
+						System.out.println("Error OnFailure");
+					}
+				});
+			}
+
+			@Override
+			public void onResponse(Call<User> call, Response<User> response) {
+				// TODO Auto-generated method stub
+				if (response.isSuccessful()) {
+					System.out.println("Success API");
+					Platform.runLater(new Runnable() {
+						@Override
+						public void run() {
+							controller.stopLoading();
+							User user = response.body();
+							PreferencesUtils.setUserConnected(userEmail, userPassword, user.getApiToken(),
+									user.getUserId(), true);
+							launchMainView();
+						}
+					});
+				} else {
+					try {
+						System.out.println("Error API");
+						String json = response.errorBody().string();
+						APIError error = new Gson().fromJson(json, APIError.class);
+						Platform.runLater(new Runnable() {
+							@Override
+							public void run() {
+								controller.stopLoading();
+								/**
+								 * TEMPORARY
+								 */
+								// TODO Delete this line
+								PreferencesUtils.setUserConnected(userEmail, userPassword, "Token", 0, true);
+								launchMainView();
+								/**
+								 * TEMPORARY
+								 */
+								// TODO Uncomment
+								// UiUtils.showErrorDialog(MainApp.getStage(),
+								// "Error", error.getError());
+							}
+						});
+						System.out.println(error.getError());
+					} catch (IOException e) {
+						e.printStackTrace();
+						Platform.runLater(new Runnable() {
+							@Override
+							public void run() {
+								controller.stopLoading();
+								UiUtils.showErrorDialog(MainApp.getStage(), "Error", "Error");
+							}
+						});
+					}
+				}
+			}
+		});
 	}
 
+	/**
+	 * Launches the Main View.
+	 */
 	public void launchMainView() {
 		MainViewScene scene = new MainViewScene();
 		scene.launchMainView();
@@ -135,61 +195,4 @@ public class ConnectionScene implements Callback<ComeOn_Credentials> {
 		SignUpScene scene = new SignUpScene(controller);
 		scene.launchSignUpView();
 	}
-
-	@Override
-	public void onFailure(Call<ComeOn_Credentials> call, Throwable arg1) {
-		// TODO Auto-generated method stub
-		Platform.runLater(new Runnable() {
-			@Override
-			public void run() {
-				controller.stopLoading();
-				UiUtils.showErrorDialog(MainApp.getStage(), "Error", "Error");
-				System.out.println("ERROR");
-			}
-		});
-	}
-
-	@Override
-	public void onResponse(Call<ComeOn_Credentials> call, Response<ComeOn_Credentials> response) {
-		// TODO Auto-generated method stub
-		if (response.isSuccessful()) {
-			Platform.runLater(new Runnable() {
-				@Override
-				public void run() {
-					controller.stopLoading();
-					ComeOn_Credentials credentials = response.body();
-					System.out.println(credentials.getApi_key());
-					PreferencesUtils.setUserEmail(userEmail);
-					PreferencesUtils.setUserPassword(userPassword);
-					PreferencesUtils.setApiToken(credentials.getApi_key());
-					PreferencesUtils.setIsConnected(true);
-					launchMainView();
-				}
-			});
-		} else {
-			try {
-				String json = response.errorBody().string();
-				APIError error = new Gson().fromJson(json, APIError.class);
-				Platform.runLater(new Runnable() {
-					@Override
-					public void run() {
-						controller.stopLoading();
-						UiUtils.showErrorDialog(MainApp.getStage(), "Error", error.getError());
-					}
-				});
-				System.out.println(error.getError());
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-				Platform.runLater(new Runnable() {
-					@Override
-					public void run() {
-						controller.stopLoading();
-						UiUtils.showErrorDialog(MainApp.getStage(), "Error", "Error");
-					}
-				});
-			}
-		}
-	}
-
 }

@@ -24,13 +24,13 @@
     -fx-background-color: #FF9800;
 }
 .titled-pane .title:pressed {
-    -fx-background-color: #000000;
+    -fx-background-color: #673AB7;
 }
 
 
 .titled-pane:focused > .title
 {
-	-fx-background-color: white;	
+	-fx-background-color: #673AB7;	
 }
 
 
