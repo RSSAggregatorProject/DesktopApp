@@ -109,9 +109,7 @@ public class SignUpController {
 	 */
 	@FXML
 	private void handleCancelSignUp() {
-		if (this.signUpStage != null && this.signUpStage.isShowing()) {
-			this.signUpStage.close();
-		}
+		this.signUpScene.closeStage();
 	}
 
 	/**

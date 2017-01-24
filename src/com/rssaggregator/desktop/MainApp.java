@@ -6,12 +6,16 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.TimeZone;
 
+import com.google.common.eventbus.EventBus;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonDeserializationContext;
 import com.google.gson.JsonDeserializer;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonParseException;
+import com.rssaggregator.desktop.network.RestService;
+import com.rssaggregator.desktop.network.RssApi;
+import com.rssaggregator.desktop.network.RssApiImpl;
 import com.rssaggregator.desktop.utils.Globals;
 
 import javafx.application.Application;
@@ -33,6 +37,8 @@ public class MainApp extends Application {
 	private static MainApp instance;
 	private static OkHttpClient okHttpClient;
 	private static Retrofit retrofit;
+	private static EventBus eventBus;
+	private static RssApi rssApi;
 
 	/**
 	 * Starts the primary stage. Launches the Splash Screen Scene.
@@ -50,6 +56,13 @@ public class MainApp extends Application {
 				.create();
 		MainApp.retrofit = new Retrofit.Builder().baseUrl(Globals.API_SERVER_URL)
 				.addConverterFactory(GsonConverterFactory.create(gson)).client(MainApp.okHttpClient).build();
+		RestService restService = retrofit.create(RestService.class);
+
+		// Set EventBus
+		MainApp.eventBus = new EventBus();
+
+		// Set RssApi
+		MainApp.rssApi = new RssApiImpl(restService, MainApp.eventBus);
 
 		this.primaryStage = primaryStage;
 
@@ -60,12 +73,13 @@ public class MainApp extends Application {
 	public class DateDeserializer implements JsonDeserializer<Date> {
 
 		@Override
-		public Date deserialize(JsonElement element, Type arg1, JsonDeserializationContext arg2) throws JsonParseException {
+		public Date deserialize(JsonElement element, Type arg1, JsonDeserializationContext arg2)
+				throws JsonParseException {
 			String date = element.getAsString();
-			
+
 			SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-DD hh:mm:ss");
 			formatter.setTimeZone(TimeZone.getTimeZone("UTC"));
-			
+
 			try {
 				return formatter.parse(date);
 			} catch (ParseException e) {
@@ -117,6 +131,14 @@ public class MainApp extends Application {
 	 */
 	public static Retrofit getRetrofit() {
 		return retrofit;
+	}
+
+	public static EventBus getEventBus() {
+		return eventBus;
+	}
+
+	public static RssApi getRssApi() {
+		return rssApi;
 	}
 
 	/**

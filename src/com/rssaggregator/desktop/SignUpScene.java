@@ -2,28 +2,23 @@ package com.rssaggregator.desktop;
 
 import java.io.IOException;
 
-import com.google.gson.Gson;
-import com.rssaggregator.desktop.model.APIError;
-import com.rssaggregator.desktop.model.Credentials;
-import com.rssaggregator.desktop.model.SignUpWrapper;
-import com.rssaggregator.desktop.network.RestService;
+import com.google.common.eventbus.EventBus;
+import com.google.common.eventbus.Subscribe;
+import com.rssaggregator.desktop.network.RssApi;
+import com.rssaggregator.desktop.network.event.SignUpEvent;
 import com.rssaggregator.desktop.utils.Globals;
 import com.rssaggregator.desktop.utils.UiUtils;
 import com.rssaggregator.desktop.view.ConnectionController;
 import com.rssaggregator.desktop.view.SignUpController;
 
 import javafx.application.Platform;
+import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
-import okhttp3.OkHttpClient;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
+import javafx.stage.WindowEvent;
 
 /**
  * Controller of the Sign Up Scene.
@@ -42,6 +37,17 @@ public class SignUpScene {
 	private ConnectionController connectionController;
 	private SignUpController signUpController;
 
+	// Network
+	private EventBus eventBus;
+	private RssApi rssApi;
+
+	// Scene
+	private SignUpScene instance;
+
+	// User variables.
+	private static String userEmail;
+	private static String userPassword;
+
 	/**
 	 * Constructor.
 	 * 
@@ -50,6 +56,20 @@ public class SignUpScene {
 	public SignUpScene(ConnectionController connectionController) {
 		this.primaryStage = MainApp.getStage();
 		this.connectionController = connectionController;
+
+		this.instance = this;
+
+		this.rssApi = MainApp.getRssApi();
+		this.eventBus = MainApp.getEventBus();
+
+		// Check if the EventBus attribute is initialized.
+		if (this.eventBus == null) {
+			System.out.println("Event Bus Null");
+			this.eventBus = new EventBus();
+			this.rssApi.setEventBus(this.eventBus);
+		}
+
+		this.eventBus.register(this.instance);
 	}
 
 	/**
@@ -70,6 +90,14 @@ public class SignUpScene {
 			this.signUpStage.getIcons().add(new Image(Globals.RSS_LOGO_LINK));
 			this.signUpStage.setScene(scene);
 
+			this.signUpStage.setOnCloseRequest(new EventHandler<WindowEvent>() {
+
+				@Override
+				public void handle(WindowEvent event) {
+					eventBus.unregister(instance);
+				}
+			});
+
 			this.signUpController = loader.getController();
 			this.signUpController.setStage(this.signUpStage);
 			this.signUpController.setSignUpScene(this);
@@ -89,91 +117,13 @@ public class SignUpScene {
 	 *            password of the user.
 	 */
 	public void signUp(String userEmail, String userPassword) {
-		Credentials credentials = new Credentials(userEmail, userPassword);
-
-		// Starts Loading view.
+		// Starts Loading View
 		this.signUpController.showLoading();
 
-		OkHttpClient client = MainApp.getOkHttpClient();
-		if (client == null) {
-			OkHttpClient.Builder builder = new OkHttpClient.Builder();
-			client = builder.build();
-		}
+		SignUpScene.userEmail = userEmail;
+		SignUpScene.userPassword = userPassword;
 
-		Retrofit retrofit = MainApp.getRetrofit();
-		if (retrofit == null) {
-			System.out.println("Creates new Retrofit");
-			retrofit = new Retrofit.Builder().baseUrl(Globals.API_SERVER_URL)
-					.addConverterFactory(GsonConverterFactory.create()).client(client).build();
-		}
-
-		RestService restService = retrofit.create(RestService.class);
-		restService.signUp(credentials).enqueue(new Callback<SignUpWrapper>() {
-
-			@Override
-			public void onFailure(Call<SignUpWrapper> call, Throwable e) {
-				// TODO Auto-generated method stub
-				Platform.runLater(new Runnable() {
-					@Override
-					public void run() {
-						signUpController.stopLoading();
-						UiUtils.showErrorDialog(MainApp.getStage(), "Error", "Error");
-						System.out.println("Error OnFailure");
-					}
-				});
-			}
-
-			@Override
-			public void onResponse(Call<SignUpWrapper> call, Response<SignUpWrapper> response) {
-				// TODO Auto-generated method stub
-				if (response.isSuccessful()) {
-					System.out.println("Success API");
-					Platform.runLater(new Runnable() {
-						@Override
-						public void run() {
-							signUpController.stopLoading();
-							SignUpWrapper wrapper = response.body();
-							closeStage(userEmail, userPassword);
-						}
-					});
-				} else {
-					try {
-						System.out.println("Error API");
-						String json = response.errorBody().string();
-						APIError error = new Gson().fromJson(json, APIError.class);
-						Platform.runLater(new Runnable() {
-							@Override
-							public void run() {
-								signUpController.stopLoading();
-
-								/**
-								 * TEMPORARY
-								 */
-								// TODO: Delete this line
-								closeStage(userEmail, userPassword);
-								/**
-								 * TEMPORARY
-								 */
-								// TODO Uncomment this line.
-								// UiUtils.showErrorDialog(MainApp.getStage(),
-								// "Error", error.getError());
-							}
-						});
-						System.out.println(error.getError());
-					} catch (IOException e) {
-						e.printStackTrace();
-						Platform.runLater(new Runnable() {
-							@Override
-							public void run() {
-								signUpController.stopLoading();
-								UiUtils.showErrorDialog(MainApp.getStage(), "Error", "Error");
-							}
-						});
-					}
-				}
-			}
-		});
-
+		this.rssApi.signUp(userEmail, userPassword);
 	}
 
 	/**
@@ -187,5 +137,56 @@ public class SignUpScene {
 			this.signUpStage.close();
 		}
 		this.connectionController.updateFields(userEmail, userPassword);
+	}
+
+	public void closeStage() {
+		this.eventBus.unregister(this.instance);
+		if (this.signUpStage != null && this.signUpStage.isShowing()) {
+			this.signUpStage.close();
+		}
+	}
+
+	//
+	//
+	// Event methods.
+	//
+	//
+	/**
+	 * Event after the api returns the result of the signUp request.
+	 * 
+	 * @param event
+	 */
+	@Subscribe
+	public void handleSignUp(SignUpEvent event) {
+		Platform.runLater(new Runnable() {
+			@Override
+			public void run() {
+				signUpController.stopLoading();
+			}
+		});
+
+		if (event.isSuccess()) {
+			Platform.runLater(new Runnable() {
+				@Override
+				public void run() {
+					System.out.println("Close the door");
+					eventBus.unregister(instance);
+					closeStage(userEmail, userPassword);
+				}
+			});
+		} else {
+			String errorMessage;
+			if (event.getThrowable().getMessage() != null) {
+				errorMessage = event.getThrowable().getMessage();
+			} else {
+				errorMessage = "Error";
+			}
+			Platform.runLater(new Runnable() {
+				@Override
+				public void run() {
+					UiUtils.showErrorDialog(signUpStage, "Error", errorMessage);
+				}
+			});
+		}
 	}
 }

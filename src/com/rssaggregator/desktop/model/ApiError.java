@@ -1,6 +1,6 @@
 package com.rssaggregator.desktop.model;
 
-public class APIError {
+public class ApiError {
 
 	private String error;
 	private int error_code;

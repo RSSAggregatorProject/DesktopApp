@@ -1,10 +1,12 @@
 package com.rssaggregator.desktop.view;
 
+import com.google.common.eventbus.EventBus;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
 import com.rssaggregator.desktop.ConnectionScene;
 import com.rssaggregator.desktop.MainApp;
+import com.rssaggregator.desktop.model.TestEvent;
 import com.rssaggregator.desktop.utils.UiUtils;
 
 import javafx.event.ActionEvent;

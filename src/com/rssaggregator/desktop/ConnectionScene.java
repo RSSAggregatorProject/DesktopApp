@@ -2,12 +2,10 @@ package com.rssaggregator.desktop;
 
 import java.io.IOException;
 
-import com.google.gson.Gson;
-import com.rssaggregator.desktop.model.APIError;
-import com.rssaggregator.desktop.model.ComeOn_Credentials;
-import com.rssaggregator.desktop.model.Credentials;
-import com.rssaggregator.desktop.model.User;
-import com.rssaggregator.desktop.network.RestService;
+import com.google.common.eventbus.EventBus;
+import com.google.common.eventbus.Subscribe;
+import com.rssaggregator.desktop.network.RssApi;
+import com.rssaggregator.desktop.network.event.LogInEvent;
 import com.rssaggregator.desktop.utils.Globals;
 import com.rssaggregator.desktop.utils.PreferencesUtils;
 import com.rssaggregator.desktop.utils.UiUtils;
@@ -18,12 +16,6 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
-import okhttp3.OkHttpClient;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
 
 /**
  * Controller for the Connection Scene.
@@ -40,6 +32,13 @@ public class ConnectionScene {
 	// Others
 	private ConnectionController controller;
 
+	// Network
+	private EventBus eventBus;
+	private RssApi rssApi;
+
+	// Scene
+	private ConnectionScene instance;
+
 	/**
 	 * Default constructor.
 	 * 
@@ -47,6 +46,19 @@ public class ConnectionScene {
 	 */
 	public ConnectionScene() {
 		this.primaryStage = MainApp.getStage();
+		this.instance = this;
+
+		this.rssApi = MainApp.getRssApi();
+		this.eventBus = MainApp.getEventBus();
+
+		// Check if the EventBus attribute is initialized.
+		if (this.eventBus == null) {
+			System.out.println("Event Bus Null");
+			this.eventBus = new EventBus();
+			this.rssApi.setEventBus(this.eventBus);
+		}
+
+		this.eventBus.register(this.instance);
 	}
 
 	/**
@@ -93,91 +105,10 @@ public class ConnectionScene {
 	 *            password of the user.
 	 */
 	public void logIn(String userEmail, String userPassword) {
-		Credentials credentials = new Credentials(userEmail, userPassword);
-
 		// Starts Loading view.
 		this.controller.showLoading();
 
-		OkHttpClient client = MainApp.getOkHttpClient();
-		if (client == null) {
-			OkHttpClient.Builder builder = new OkHttpClient.Builder();
-			client = builder.build();
-		}
-
-		Retrofit retrofit = MainApp.getRetrofit();
-		if (retrofit == null) {
-			retrofit = new Retrofit.Builder().baseUrl(Globals.API_SERVER_URL)
-					.addConverterFactory(GsonConverterFactory.create()).client(client).build();
-		}
-
-		RestService restService = retrofit.create(RestService.class);
-		restService.logIn(credentials).enqueue(new Callback<User>() {
-
-			@Override
-			public void onFailure(Call<User> call, Throwable e) {
-				// TODO Auto-generated method stub
-				Platform.runLater(new Runnable() {
-					@Override
-					public void run() {
-						controller.stopLoading();
-						UiUtils.showErrorDialog(MainApp.getStage(), "Error", "Error");
-						System.out.println("Error OnFailure");
-					}
-				});
-			}
-
-			@Override
-			public void onResponse(Call<User> call, Response<User> response) {
-				// TODO Auto-generated method stub
-				if (response.isSuccessful()) {
-					System.out.println("Success API");
-					Platform.runLater(new Runnable() {
-						@Override
-						public void run() {
-							controller.stopLoading();
-							User user = response.body();
-							PreferencesUtils.setUserConnected(userEmail, userPassword, user.getApiToken(),
-									user.getUserId(), true);
-							launchMainView();
-						}
-					});
-				} else {
-					try {
-						System.out.println("Error API");
-						String json = response.errorBody().string();
-						APIError error = new Gson().fromJson(json, APIError.class);
-						Platform.runLater(new Runnable() {
-							@Override
-							public void run() {
-								controller.stopLoading();
-								/**
-								 * TEMPORARY
-								 */
-								// TODO Delete this line
-								PreferencesUtils.setUserConnected(userEmail, userPassword, "Token", 0, true);
-								launchMainView();
-								/**
-								 * TEMPORARY
-								 */
-								// TODO Uncomment
-								// UiUtils.showErrorDialog(MainApp.getStage(),
-								// "Error", error.getError());
-							}
-						});
-						System.out.println(error.getError());
-					} catch (IOException e) {
-						e.printStackTrace();
-						Platform.runLater(new Runnable() {
-							@Override
-							public void run() {
-								controller.stopLoading();
-								UiUtils.showErrorDialog(MainApp.getStage(), "Error", "Error");
-							}
-						});
-					}
-				}
-			}
-		});
+		this.rssApi.logIn(userEmail, userPassword);
 	}
 
 	/**
@@ -194,5 +125,49 @@ public class ConnectionScene {
 	public void launchSignUpView() {
 		SignUpScene scene = new SignUpScene(controller);
 		scene.launchSignUpView();
+	}
+
+	//
+	//
+	// Event methods.
+	//
+	//
+	/**
+	 * Event after the api returns the result of the login request.
+	 * 
+	 * @param event
+	 */
+	@Subscribe
+	public void handleLogIn(LogInEvent event) {
+		Platform.runLater(new Runnable() {
+			@Override
+			public void run() {
+				controller.stopLoading();
+			}
+		});
+
+		if (event.isSuccess()) {
+			System.out.println("Succes");
+			Platform.runLater(new Runnable() {
+				@Override
+				public void run() {
+					eventBus.unregister(instance);
+					launchMainView();
+				}
+			});
+		} else {
+			String errorMessage;
+			if (event.getThrowable().getMessage() != null) {
+				errorMessage = event.getThrowable().getMessage();
+			} else {
+				errorMessage = "Error";
+			}
+			Platform.runLater(new Runnable() {
+				@Override
+				public void run() {
+					UiUtils.showErrorDialog(MainApp.getStage(), "Error", errorMessage);
+				}
+			});
+		}
 	}
 }

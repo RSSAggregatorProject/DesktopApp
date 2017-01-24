@@ -4,7 +4,6 @@ import com.rssaggregator.desktop.model.CategoriesWrapper;
 import com.rssaggregator.desktop.model.Credentials;
 import com.rssaggregator.desktop.model.ItemsWrapper;
 import com.rssaggregator.desktop.model.SignUpWrapper;
-import com.rssaggregator.desktop.model.StarItemsWrapper;
 import com.rssaggregator.desktop.model.User;
 
 import retrofit2.Call;

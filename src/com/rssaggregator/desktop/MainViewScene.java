@@ -9,13 +9,15 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.TimeZone;
 
+import com.google.common.eventbus.EventBus;
+import com.google.common.eventbus.Subscribe;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonDeserializationContext;
 import com.google.gson.JsonDeserializer;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonParseException;
-import com.rssaggregator.desktop.model.APIError;
+import com.rssaggregator.desktop.model.ApiError;
 import com.rssaggregator.desktop.model.CategoriesWrapper;
 import com.rssaggregator.desktop.model.Category;
 import com.rssaggregator.desktop.model.ItemsWrapper;
@@ -24,6 +26,9 @@ import com.rssaggregator.desktop.model.TmpArticle;
 import com.rssaggregator.desktop.model.TmpCategory;
 import com.rssaggregator.desktop.model.TmpChannel;
 import com.rssaggregator.desktop.network.RestService;
+import com.rssaggregator.desktop.network.RssApi;
+import com.rssaggregator.desktop.network.event.FetchCategoriesEvent;
+import com.rssaggregator.desktop.network.event.LogOutEvent;
 import com.rssaggregator.desktop.utils.Globals;
 import com.rssaggregator.desktop.utils.PreferencesUtils;
 import com.rssaggregator.desktop.utils.UiUtils;
@@ -59,6 +64,13 @@ public class MainViewScene {
 	// Controllers.
 	private MainViewController mainViewController;
 
+	// Network
+	private EventBus eventBus;
+	private RssApi rssApi;
+
+	// Scene
+	private MainViewScene instance;
+
 	// Network attributes.
 	private OkHttpClient client;
 	private Retrofit retrofit;
@@ -74,9 +86,19 @@ public class MainViewScene {
 		this.apiToken = PreferencesUtils.getApiToken();
 		this.categories = FXCollections.observableArrayList();
 
-		this.client = MainApp.getOkHttpClient();
-		this.retrofit = MainApp.getRetrofit();
-		this.restService = this.retrofit.create(RestService.class);
+		this.instance = this;
+
+		this.rssApi = MainApp.getRssApi();
+		this.eventBus = MainApp.getEventBus();
+
+		// Check if the EventBus attribute is initialized.
+		if (this.eventBus == null) {
+			System.out.println("Event Bus Null");
+			this.eventBus = new EventBus();
+			this.rssApi.setEventBus(this.eventBus);
+		}
+
+		this.eventBus.register(this.instance);
 	}
 
 	/**
@@ -173,93 +195,10 @@ public class MainViewScene {
 	 * Loads the categories of the user.
 	 */
 	private void loadCategories() {
-		// Starts Loading view.
+		// Starts Loading View
 		this.mainViewController.showLoading();
 
-		this.client = MainApp.getOkHttpClient();
-		if (this.client == null) {
-			OkHttpClient.Builder builder = new OkHttpClient.Builder();
-			this.client = builder.build();
-		}
-		this.retrofit = MainApp.getRetrofit();
-		if (this.retrofit == null) {
-			this.retrofit = new Retrofit.Builder().baseUrl(Globals.API_SERVER_URL)
-					.addConverterFactory(GsonConverterFactory.create()).client(this.client).build();
-		}
-		this.restService = this.retrofit.create(RestService.class);
-		restService.fetchCategories(this.apiToken).enqueue(new Callback<CategoriesWrapper>() {
-			@Override
-			public void onFailure(Call<CategoriesWrapper> call, Throwable e) {
-				Platform.runLater(new Runnable() {
-					@Override
-					public void run() {
-						mainViewController.stopLoading();
-						UiUtils.showErrorDialog(MainApp.getStage(), "Error", "Error");
-					}
-				});
-			}
-
-			@Override
-			public void onResponse(Call<CategoriesWrapper> call, Response<CategoriesWrapper> response) {
-				if (response.isSuccessful()) {
-					Platform.runLater(new Runnable() {
-						@Override
-						public void run() {
-							mainViewController.stopLoading();
-							CategoriesWrapper wrapper = response.body();
-							// TODO Handle fetching categories
-						}
-					});
-				} else {
-					try {
-						String json = response.errorBody().string();
-						APIError error = new Gson().fromJson(json, APIError.class);
-						Platform.runLater(new Runnable() {
-							@Override
-							public void run() {
-								mainViewController.stopLoading();
-								/**
-								 * TEMPORARY
-								 */
-								// TODO Delete this line
-								try {
-									Gson gson = new Gson();
-									CategoriesWrapper wrapper = gson.fromJson(
-											new FileReader(
-													"C:\\Users\\Irina\\Documents\\DesktopApp\\resources\\jsons\\categories.json"),
-											CategoriesWrapper.class);
-									if (wrapper.getCategories() != null) {
-										categories.clear();
-										categories.addAll(wrapper.getCategories());
-									} else {
-										categories = null;
-									}
-									mainViewController.setCategories(categories);
-								} catch (Exception e) {
-									e.printStackTrace();
-								}
-								/**
-								 * TEMPORARY
-								 */
-								// TODO Uncomment
-								// UiUtils.showErrorDialog(MainApp.getStage(),
-								// "Error", error.getError());
-							}
-						});
-						System.out.println(error.getError());
-					} catch (IOException e) {
-						e.printStackTrace();
-						Platform.runLater(new Runnable() {
-							@Override
-							public void run() {
-								mainViewController.stopLoading();
-								UiUtils.showErrorDialog(MainApp.getStage(), "Error", "Error");
-							}
-						});
-					}
-				}
-			}
-		});
+		this.rssApi.fetchCategories(this.apiToken);
 	}
 
 	public void loadChannels(boolean wantsStarred) {
@@ -297,7 +236,7 @@ public class MainViewScene {
 				} else {
 					try {
 						String json = response.errorBody().string();
-						APIError error = new Gson().fromJson(json, APIError.class);
+						ApiError error = new Gson().fromJson(json, ApiError.class);
 						Platform.runLater(new Runnable() {
 							@Override
 							public void run() {
@@ -401,5 +340,67 @@ public class MainViewScene {
 		category3.setChannels(newsChannels);
 
 		this.tmpCategories.addAll(category1, category2, category3);
+	}
+
+	//
+	//
+	// Event methods.
+	//
+	//
+	/**
+	 * Event after the api returns the result of the fetchCategories request.
+	 * 
+	 * @param event
+	 */
+	@Subscribe
+	public void handleFetchCategories(FetchCategoriesEvent event) {
+		Platform.runLater(new Runnable() {
+			@Override
+			public void run() {
+				mainViewController.stopLoading();
+			}
+		});
+
+		if (event.isSuccess()) {
+			Platform.runLater(new Runnable() {
+				@Override
+				public void run() {
+					CategoriesWrapper wrapper = event.getData();
+					if (wrapper.getCategories() != null) {
+						categories.clear();
+						categories.addAll(wrapper.getCategories());
+					} else {
+						categories = null;
+					}
+					mainViewController.setCategories(categories);
+				}
+			});
+		} else {
+			String errorMessage;
+			if (event.getThrowable().getMessage() != null) {
+				errorMessage = event.getThrowable().getMessage();
+			} else {
+				errorMessage = "Error";
+			}
+			Platform.runLater(new Runnable() {
+				@Override
+				public void run() {
+					UiUtils.showErrorDialog(MainApp.getStage(), "Error", errorMessage);
+				}
+			});
+		}
+	}
+
+	/**
+	 * Event after log out.
+	 * 
+	 * @param event
+	 */
+	@Subscribe
+	public void handleLogOut(LogOutEvent event) {
+		if (this.eventBus != null) {
+			System.err.println("Log OUT");
+			this.eventBus.unregister(this.instance);
+		}
 	}
 }
