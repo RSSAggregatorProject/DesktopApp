@@ -21,8 +21,11 @@ public class RowChannelController {
 	@FXML
 	private ImageView iconIg;
 
-	public RowChannelController(Channel channel) {
+	private MainViewController mainViewController;
+
+	public RowChannelController(Channel channel, MainViewController mainViewController) {
 		this.channel = channel;
+		this.mainViewController = mainViewController;
 	}
 
 	@FXML
@@ -46,6 +49,6 @@ public class RowChannelController {
 
 	@FXML
 	private void handleRowClicked() {
-		System.out.println("Handle Row Clicked");
+		this.mainViewController.handleChannelItemsPaneClicked(this.channel);
 	}
 }

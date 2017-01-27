@@ -24,8 +24,6 @@ public class Channel {
 	@Expose
 	private List<Item> items;
 
-	private String channelName;
-
 	public Integer getChannelId() {
 		return channelId;
 	}
@@ -64,13 +62,5 @@ public class Channel {
 
 	public void setItems(List<Item> items) {
 		this.items = items;
-	}
-
-	public String getChannelName() {
-		return channelName;
-	}
-
-	public void setChannelName(String channelName) {
-		this.channelName = channelName;
 	}
 }

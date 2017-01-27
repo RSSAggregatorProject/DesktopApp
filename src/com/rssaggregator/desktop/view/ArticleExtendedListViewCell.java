@@ -4,6 +4,7 @@ import java.io.IOException;
 
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXToggleButton;
+import com.rssaggregator.desktop.model.Item;
 import com.rssaggregator.desktop.model.TmpArticle;
 import com.rssaggregator.desktop.utils.Globals;
 
@@ -15,9 +16,8 @@ import javafx.scene.control.ListCell;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 
-public class ArticleExtendedListViewCell extends ListCell<TmpArticle> {
+public class ArticleExtendedListViewCell extends ListCell<Item> {
 
-	private TmpArticle article;
 	private String channelName;
 	private boolean isRead;
 
@@ -40,6 +40,8 @@ public class ArticleExtendedListViewCell extends ListCell<TmpArticle> {
 
 	private FXMLLoader loader;
 	private double parentWidth;
+	
+	private Item item;
 
 	public ArticleExtendedListViewCell(double parentWidth, String channelName) {
 		this.parentWidth = parentWidth;
@@ -48,11 +50,11 @@ public class ArticleExtendedListViewCell extends ListCell<TmpArticle> {
 	}
 
 	@Override
-	protected void updateItem(TmpArticle article, boolean empty) {
-		super.updateItem(article, empty);
-		this.article = article;
+	protected void updateItem(Item item, boolean empty) {
+		super.updateItem(item, empty);
+		this.item = item;
 
-		if (empty || article == null) {
+		if (empty || item == null) {
 			setText(null);
 			setGraphic(null);
 		} else {
@@ -67,7 +69,7 @@ public class ArticleExtendedListViewCell extends ListCell<TmpArticle> {
 				}
 			}
 			this.rootView.setPrefWidth(this.parentWidth);
-			this.titleLb.setText(this.article.getTitle());
+			this.titleLb.setText(this.item.getTitle());
 			this.pubDateLb.setText("Il y a 30 mins.");
 			this.descriptionLb.setText("Description de la night");
 

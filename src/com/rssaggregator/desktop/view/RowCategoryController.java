@@ -21,8 +21,12 @@ public class RowCategoryController {
 	@FXML
 	private Label unreadArticlesLb;
 
-	public RowCategoryController(Category category) {
+	// Controller
+	private MainViewController mainViewController;
+
+	public RowCategoryController(Category category, MainViewController mainViewController) {
 		this.category = category;
+		this.mainViewController = mainViewController;
 	}
 
 	@FXML
@@ -42,7 +46,7 @@ public class RowCategoryController {
 	 * Handles a click when the user selects a category.
 	 */
 	@FXML
-	private void handleOnClickCategory() {
-		System.out.println("Handle On Click Categories");
+	private void handleCategoryClicked() {
+		this.mainViewController.handleCategoryItemsPaneClicked(category);
 	}
 }

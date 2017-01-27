@@ -17,8 +17,11 @@ import com.rssaggregator.desktop.model.FeedAddedWrapper;
 import com.rssaggregator.desktop.model.ItemsWrapper;
 import com.rssaggregator.desktop.network.event.CategoryAddedEvent;
 import com.rssaggregator.desktop.network.event.FeedAddedEvent;
+import com.rssaggregator.desktop.network.event.FeedDeletedEvent;
 import com.rssaggregator.desktop.network.event.FetchAllItemsEvent;
 import com.rssaggregator.desktop.network.event.FetchCategoriesEvent;
+import com.rssaggregator.desktop.network.event.FetchItemsByChannelEvent;
+import com.rssaggregator.desktop.network.event.FetchStarredItemsEvent;
 import com.rssaggregator.desktop.network.event.LogInEvent;
 import com.rssaggregator.desktop.network.event.SignUpEvent;
 import com.rssaggregator.desktop.utils.DateDeserializer;
@@ -391,6 +394,137 @@ public class RssApiImpl implements RssApi {
 							eventBus.post(new FetchAllItemsEvent(new Throwable(exception.getMessage())));
 						} else {
 							eventBus.post(new FetchAllItemsEvent(new Throwable("Error")));
+						}
+					}
+				}
+			}
+		});
+	}
+
+	/**
+	 * Fetches starred items from the api.
+	 */
+	@Override
+	public void fetchStarredItems() {
+		if (this.restService == null) {
+			initializeNetworkAttributes();
+		}
+
+		this.restService.fetchStarredItems().enqueue(new Callback<ItemsWrapper>() {
+			@Override
+			public void onFailure(Call<ItemsWrapper> call, Throwable throwable) {
+				if (throwable != null && throwable.getMessage() != null && throwable.getMessage().length() != 0) {
+					eventBus.post(new FetchStarredItemsEvent(throwable));
+				} else {
+					eventBus.post(new FetchStarredItemsEvent(new Throwable("Error")));
+				}
+			}
+
+			@Override
+			public void onResponse(Call<ItemsWrapper> call, Response<ItemsWrapper> response) {
+				if (response.isSuccessful()) {
+					System.out.println("[FETCH STARRED ITEMS] Success from the API");
+					ItemsWrapper wrapper = response.body();
+					eventBus.post(new FetchStarredItemsEvent(wrapper));
+				} else {
+					try {
+						String json = response.errorBody().string();
+						ApiError error = new Gson().fromJson(json, ApiError.class);
+						System.out.println("[FETCH STARRED ITEMS] Error from the API : " + error.getError());
+						eventBus.post(new FetchStarredItemsEvent(new Throwable(error.getError())));
+					} catch (Exception exception) {
+						exception.printStackTrace();
+						if (exception != null && exception.getMessage() != null
+								&& exception.getMessage().length() != 0) {
+							eventBus.post(new FetchStarredItemsEvent(new Throwable(exception.getMessage())));
+						} else {
+							eventBus.post(new FetchStarredItemsEvent(new Throwable("Error")));
+						}
+					}
+				}
+			}
+		});
+	}
+
+	/**
+	 * Fetches items by channel from the api.
+	 */
+	@Override
+	public void fetchItemsByChannel(Integer channelId) {
+		if (this.restService == null) {
+			initializeNetworkAttributes();
+		}
+
+		this.restService.fetchItemsByChannel(channelId).enqueue(new Callback<ItemsWrapper>() {
+			@Override
+			public void onFailure(Call<ItemsWrapper> call, Throwable throwable) {
+				if (throwable != null && throwable.getMessage() != null && throwable.getMessage().length() != 0) {
+					eventBus.post(new FetchItemsByChannelEvent(throwable));
+				} else {
+					eventBus.post(new FetchItemsByChannelEvent(new Throwable("Error")));
+				}
+			}
+
+			@Override
+			public void onResponse(Call<ItemsWrapper> call, Response<ItemsWrapper> response) {
+				if (response.isSuccessful()) {
+					System.out.println("[FETCH ITEMS BY CHANNEL] Success from the API");
+					ItemsWrapper wrapper = response.body();
+					eventBus.post(new FetchItemsByChannelEvent(wrapper));
+				} else {
+					try {
+						String json = response.errorBody().string();
+						ApiError error = new Gson().fromJson(json, ApiError.class);
+						System.out.println("[FETCH ITEMS BY CHANNEL] Error from the API : " + error.getError());
+						eventBus.post(new FetchItemsByChannelEvent(new Throwable(error.getError())));
+					} catch (Exception exception) {
+						exception.printStackTrace();
+						if (exception != null && exception.getMessage() != null
+								&& exception.getMessage().length() != 0) {
+							eventBus.post(new FetchItemsByChannelEvent(new Throwable(exception.getMessage())));
+						} else {
+							eventBus.post(new FetchItemsByChannelEvent(new Throwable("Error")));
+						}
+					}
+				}
+			}
+		});
+	}
+
+	@Override
+	public void deleteFeed(Integer channelId) {
+		if (this.restService == null) {
+			initializeNetworkAttributes();
+		}
+
+		this.restService.deleteFeed(channelId).enqueue(new Callback<Void>() {
+			@Override
+			public void onFailure(Call<Void> call, Throwable throwable) {
+				if (throwable != null && throwable.getMessage() != null && throwable.getMessage().length() != 0) {
+					eventBus.post(new FeedDeletedEvent(throwable));
+				} else {
+					eventBus.post(new FeedDeletedEvent(new Throwable("Error")));
+				}
+			}
+
+			@Override
+			public void onResponse(Call<Void> call, Response<Void> response) {
+				if (response.isSuccessful()) {
+					System.out.println("[DELETE FEED] Success from the API");
+					eventBus.post(new FeedDeletedEvent());
+				} else {
+					try {
+						String json = response.errorBody().string();
+						ApiError error = new Gson().fromJson(json, ApiError.class);
+						System.out.println("[DELETE FEED] Error from the API : " + error.getError());
+						eventBus.post(new FeedDeletedEvent(new Throwable(error.getError())));
+					} catch (Exception exception) {
+						exception.printStackTrace();
+						if (exception != null && exception.getMessage() != null
+								&& exception.getMessage().length() != 0) {
+							eventBus.post(new FeedDeletedEvent(new Throwable(exception.getMessage())));
+						} else {
+							eventBus.post(new FeedDeletedEvent(new Throwable("Error")));
 						}
 					}
 				}

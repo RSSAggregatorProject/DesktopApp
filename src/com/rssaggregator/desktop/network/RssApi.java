@@ -27,10 +27,16 @@ public interface RssApi {
 	//
 	void addFeed(Integer categoryId, String rssLink);
 
+	void deleteFeed(Integer channelId);
+
 	//
 	//
 	// Fetching data
 	//
 	//
 	void fetchAllItems();
+
+	void fetchStarredItems();
+
+	void fetchItemsByChannel(Integer channelId);
 }

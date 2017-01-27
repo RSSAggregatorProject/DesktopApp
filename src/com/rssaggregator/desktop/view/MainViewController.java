@@ -1,8 +1,11 @@
 package com.rssaggregator.desktop.view;
 
 import java.io.IOException;
+import java.util.List;
+import java.util.Optional;
 
 import com.google.common.eventbus.EventBus;
+import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXToggleButton;
 import com.rssaggregator.desktop.MainApp;
 import com.rssaggregator.desktop.MainViewScene;
@@ -10,7 +13,6 @@ import com.rssaggregator.desktop.event.RefreshCategoriesEvent;
 import com.rssaggregator.desktop.model.Category;
 import com.rssaggregator.desktop.model.Channel;
 import com.rssaggregator.desktop.model.Item;
-import com.rssaggregator.desktop.model.TmpArticle;
 import com.rssaggregator.desktop.utils.Globals;
 import com.rssaggregator.desktop.utils.UiUtils;
 
@@ -24,6 +26,9 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
 import javafx.scene.control.Accordion;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TitledPane;
@@ -42,9 +47,9 @@ public class MainViewController {
 
 	// Data
 	private ObservableList<Category> categories;
-	private VBox channelsBox;
-
-	private Stage loadingStage;
+	private ObservableList<Item> itemsList;
+	private Channel selectedChannel;
+	private Category selectedCategory;
 
 	@FXML
 	private Accordion categoriesAc;
@@ -65,21 +70,30 @@ public class MainViewController {
 	private Label categoryChannelTitleLb;
 	@FXML
 	private JFXToggleButton expandableListTb;
-
-	private FXMLLoader loader;
-	private MainViewScene mainViewScene;
+	@FXML
+	private JFXButton unsubscribeBt;
 
 	@FXML
-	ListView<TmpArticle> articlesLv;
+	ListView<Item> itemsLv;
 
+	// Views
+	private FXMLLoader loader;
+	private Stage loadingStage;
+	private MainViewScene mainViewScene;
+	private VBox channelsBox;
+
+	// Network
 	private EventBus eventBus;
 
-	private ObservableList<Item> itemsList;
+	// Others
+	private int LIST_ITEM_TYPE = 0;
 
-	private ObservableList<TmpArticle> articlesObservableList;
-
+	/**
+	 * Constructor.
+	 */
 	public MainViewController() {
 		this.loader = new FXMLLoader();
+		this.categories = FXCollections.observableArrayList();
 		this.itemsList = FXCollections.observableArrayList();
 	}
 
@@ -110,30 +124,36 @@ public class MainViewController {
 		// Initialize expandable list view Toggle Button
 		initExpandableToggleButton();
 
-		this.articlesLv.setItems(articlesObservableList);
-		this.articlesLv.setCellFactory(articlesLv -> new ArticleListViewCell(articlesLv.getWidth(), "Channel"));
-		articlesLv.setOnMouseClicked(new EventHandler<Event>() {
+		this.itemsLv.setItems(itemsList);
+		this.itemsLv.setCellFactory(itemsLv -> new ArticleListViewCell(itemsLv));
+		itemsLv.setOnMouseClicked(new EventHandler<Event>() {
 			@Override
 			public void handle(Event event) {
 				// TODO Auto-generated method stub
-				TmpArticle selectedArticle = articlesLv.getSelectionModel().getSelectedItem();
-
-				if (selectedArticle != null) {
-					mainViewScene.launchArticleDetailsView(selectedArticle);
-				}
+				/*
+				 * Item selectedArticle =
+				 * itemsLv.getSelectionModel().getSelectedItem();
+				 * 
+				 * if (selectedArticle != null) {
+				 * mainViewScene.launchArticleDetailsView(selectedArticle); }
+				 */
 			}
 		});
 	}
 
+	/**
+	 * Initializes the toggle button.
+	 */
 	private void initExpandableToggleButton() {
 		this.expandableListTb.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent e) {
 				if (expandableListTb.isSelected()) {
-					articlesLv.setCellFactory(
-							articlesLv -> new ArticleExtendedListViewCell(articlesLv.getWidth(), "Channel"));
+					expandableListTb.setText("Expandable List");
+					itemsLv.setCellFactory(itemsLv -> new ArticleExtendedListViewCell(itemsLv.getWidth(), "Channel"));
 				} else {
-					articlesLv.setCellFactory(articlesLv -> new ArticleListViewCell(articlesLv.getWidth(), "Channel"));
+					expandableListTb.setText("Simple List");
+					itemsLv.setCellFactory(articlesLv -> new ArticleListViewCell(itemsLv));
 				}
 			}
 		});
@@ -181,7 +201,7 @@ public class MainViewController {
 		try {
 			this.loader = new FXMLLoader();
 			this.loader.setLocation(MainApp.class.getResource(Globals.ROW_CATEGORY_VIEW));
-			this.loader.setController(new RowCategoryController(category));
+			this.loader.setController(new RowCategoryController(category, this));
 			TitledPane categoryTp = (TitledPane) this.loader.load();
 
 			categoryTp.setContent(this.channelsBox);
@@ -203,7 +223,7 @@ public class MainViewController {
 		try {
 			this.loader = new FXMLLoader();
 			this.loader.setLocation(MainApp.class.getResource(Globals.ROW_CHANNEL_VIEW));
-			this.loader.setController(new RowChannelController(channel));
+			this.loader.setController(new RowChannelController(channel, this));
 			AnchorPane channelPane = (AnchorPane) this.loader.load();
 
 			this.channelsBox.getChildren().add(channelPane);
@@ -212,22 +232,21 @@ public class MainViewController {
 		}
 	}
 
-	@FXML
-	private void handleAllItemPaneClicked(MouseEvent event) {
-		System.out.println("All Items");
-
-		// Remove no selected message.
-		this.noSelectedMessageLb.setVisible(false);
-
-		// Initialize view.
-		this.categoryChannelTitleLb.setText(Globals.ALL_ITEMS_TITLED_PANE);
-
-		this.mainViewScene.loadAllItems();
-	}
-
-	@FXML
-	private void handleAddFeed() {
-		this.mainViewScene.launchAddFeedView();
+	//
+	//
+	// Methods after api calls.
+	//
+	//
+	/**
+	 * Updates the view after fetching items.
+	 * 
+	 * @param data
+	 */
+	public void updateDataView(List<Item> data) {
+		this.itemsList.clear();
+		this.itemsList = FXCollections.observableArrayList();
+		this.itemsList.addAll(data);
+		this.itemsLv.setItems(this.itemsList);
 	}
 
 	/**
@@ -244,13 +263,6 @@ public class MainViewController {
 		this.eventBus.post(new RefreshCategoriesEvent());
 	}
 
-	@FXML
-	private void handleRefresh() {
-		TmpArticle article = new TmpArticle();
-		article.setTitle("New Article");
-		this.articlesObservableList.add(article);
-	}
-
 	/*
 	 * HANDLE METHODS
 	 */
@@ -258,27 +270,125 @@ public class MainViewController {
 	 * Handles click on the Starred Items category.
 	 */
 	@FXML
-	private void handleClickStarredItems() {
+	private void handleStarredItemsPaneClicked() {
+		LIST_ITEM_TYPE = Globals.LIST_STARRED_ITEMS_TYPE;
+
 		// Remove no selected message.
 		this.noSelectedMessageLb.setVisible(false);
 
 		// Initialize right view.
 		this.categoryChannelTitleLb.setText(Globals.STARRED_ITEMS_TITLED_PANE);
+		this.unsubscribeBt.setVisible(false);
 
-		// Load the data
-
-		this.articlesObservableList.clear();
-
-		TmpArticle article = new TmpArticle();
-		TmpArticle article2 = new TmpArticle();
-		article.setTitle("Titre 3");
-		article2.setTitle("Title 4");
-		articlesObservableList.add(article);
-		articlesObservableList.add(article2);
-
-		this.articlesLv.setItems(articlesObservableList);
+		this.mainViewScene.loadStarredItems();
 	}
 
+	/**
+	 * Handles click on the All Items category.
+	 */
+	@FXML
+	private void handleAllItemsPaneClicked(MouseEvent event) {
+		LIST_ITEM_TYPE = Globals.LIST_ALL_ITEMS_TYPE;
+
+		// Remove no selected message.
+		this.noSelectedMessageLb.setVisible(false);
+
+		// Initialize view.
+		this.categoryChannelTitleLb.setText(Globals.ALL_ITEMS_TITLED_PANE);
+		this.unsubscribeBt.setVisible(false);
+
+		this.mainViewScene.loadAllItems();
+	}
+
+	public void handleCategoryItemsPaneClicked(Category selectedCategory) {
+		LIST_ITEM_TYPE = Globals.LIST_CATEGORY_ITEMS_TYPE;
+		this.selectedCategory = selectedCategory;
+
+		// Remove no selected message.
+		this.noSelectedMessageLb.setVisible(false);
+
+		// Initialize view.
+		this.categoryChannelTitleLb.setText(this.selectedCategory.getName());
+		this.unsubscribeBt.setVisible(false);
+	}
+
+	/**
+	 * Handles click on a channel.
+	 * 
+	 * @param selectedChannel
+	 */
+	public void handleChannelItemsPaneClicked(Channel selectedChannel) {
+		LIST_ITEM_TYPE = Globals.LIST_CHANNEL_ITEMS_TYPE;
+
+		// Do nothing if the channel is already selected.
+		if (this.selectedChannel != null) {
+			if (this.selectedChannel.equals(selectedChannel)) {
+				return;
+			}
+		}
+		this.selectedChannel = selectedChannel;
+
+		// Remove no selected message.
+		this.noSelectedMessageLb.setVisible(false);
+
+		// Initialize view.
+		this.categoryChannelTitleLb.setText(selectedChannel.getName());
+		this.unsubscribeBt.setVisible(true);
+
+		this.mainViewScene.loadItemsByChannel(this.selectedChannel.getChannelId());
+	}
+
+	@FXML
+	private void handleAddFeed() {
+		this.mainViewScene.launchAddFeedView();
+	}
+
+	/**
+	 * Handles action when user refresh items.
+	 */
+	@FXML
+	private void handleRefresh() {
+		switch (LIST_ITEM_TYPE) {
+		case Globals.LIST_ALL_ITEMS_TYPE:
+			this.mainViewScene.loadAllItems();
+			break;
+		case Globals.LIST_STARRED_ITEMS_TYPE:
+			this.mainViewScene.loadStarredItems();
+			break;
+		case Globals.LIST_CATEGORY_ITEMS_TYPE:
+			break;
+		case Globals.LIST_CHANNEL_ITEMS_TYPE:
+			this.mainViewScene.loadItemsByChannel(this.selectedChannel.getChannelId());
+			break;
+		}
+	}
+
+	/**
+	 * Handles action when user unsubscribe to the channel.
+	 */
+	@FXML
+	private void handleUnsubscribeChannel() {
+		if (this.selectedChannel == null) {
+			UiUtils.showErrorDialog(MainApp.getStage(), Globals.ERROR_DELETE_FEED, Globals.ERROR_DELETE_FEED,
+					"Any channel is selected");
+			return;
+		}
+		Alert alert = new Alert(AlertType.CONFIRMATION);
+		alert.setTitle("Unsubscribe to the channel: " + this.selectedChannel.getName());
+		alert.setHeaderText("Unsubscribe to the channel: " + this.selectedChannel.getName());
+		alert.setContentText("Do you really want to unsubscribe to the channel " + this.selectedChannel.getName());
+
+		Optional<ButtonType> result = alert.showAndWait();
+		if (result.get() == ButtonType.OK) {
+			this.mainViewScene.deleteFeed(this.selectedChannel.getChannelId());
+		}
+	}
+
+	//
+	//
+	// Dialog methods.
+	//
+	//
 	/**
 	 * Shows a loading dialog.
 	 */

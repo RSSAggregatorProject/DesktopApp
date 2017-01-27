@@ -12,21 +12,16 @@ public class Item {
 	private Integer itemId;
 
 	@Expose
-	private String name;
-
-	@Expose
 	private String title;
 
 	@Expose
-	private String text;
+	private String description;
 
-	@SerializedName("url")
-	@Expose
-	private String linkUrl;
-
-	@SerializedName("date")
 	@Expose
 	private Date pubDate;
+
+	@Expose
+	private String link;
 
 	@SerializedName("id_feed")
 	@Expose
@@ -38,20 +33,15 @@ public class Item {
 	@Expose
 	private boolean starred;
 
+	private String channelName;
+	private Integer channelId;
+
 	public Integer getItemId() {
 		return itemId;
 	}
 
 	public void setItemId(Integer itemId) {
 		this.itemId = itemId;
-	}
-
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
 	}
 
 	public String getTitle() {
@@ -62,20 +52,12 @@ public class Item {
 		this.title = title;
 	}
 
-	public String getText() {
-		return text;
+	public String getDescription() {
+		return description;
 	}
 
-	public void setText(String text) {
-		this.text = text;
-	}
-
-	public String getLinkUrl() {
-		return linkUrl;
-	}
-
-	public void setLinkUrl(String linkUrl) {
-		this.linkUrl = linkUrl;
+	public void setDescription(String description) {
+		this.description = description;
 	}
 
 	public Date getPubDate() {
@@ -84,6 +66,14 @@ public class Item {
 
 	public void setPubDate(Date pubDate) {
 		this.pubDate = pubDate;
+	}
+
+	public String getLink() {
+		return link;
+	}
+
+	public void setLink(String link) {
+		this.link = link;
 	}
 
 	public Integer getFeedId() {
@@ -108,5 +98,21 @@ public class Item {
 
 	public void setStarred(boolean starred) {
 		this.starred = starred;
+	}
+
+	public String getChannelName() {
+		return channelName;
+	}
+
+	public void setChannelName(String channelName) {
+		this.channelName = channelName;
+	}
+
+	public Integer getChannelId() {
+		return channelId;
+	}
+
+	public void setChannelId(Integer channelId) {
+		this.channelId = channelId;
 	}
 }

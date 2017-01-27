@@ -6,7 +6,7 @@ public class Globals {
 	 * Application Name.
 	 */
 	public static final String APP_NAME = "RSS Aggregator";
-	
+
 	/**
 	 * API server address.
 	 */
@@ -18,7 +18,7 @@ public class Globals {
 	public static final String ADD_FEED_TITLE_NAME = "Add a feed";
 	public static final String CREATE_CATEGORY_TITLE_NAME = "Create a category";
 	public static final String ARTICLE_DETAILS_TITLE_NAME = "Article details";
-	
+
 	/**
 	 * Other texts
 	 */
@@ -72,9 +72,19 @@ public class Globals {
 	public static final String ERROR_LOGIN_MESSAGE = "Error when logging";
 	public static final String ERROR_SIGNUP_MESSAGE = "Error when signing up";
 	public static final String ERROR_FETCH_CATEGORIES = "Error when fetching categories";
+	public static final String ERROR_FETCH_ITEMS = "Error when fetching items";
+	public static final String ERROR_DELETE_FEED = "Error when unsubscribing to the channel";
 	public static final String ERROR_ADD_CATEGORY = "Error when adding category";
 	public static final String ERROR_INVALID_INPUTS = "Invalid Inputs";
 	public static final String ERROR_CATEGORY_FIELD_INVALID = "The Category Name field is invalid!";
 	public static final String ERROR_CATEGORY_ALREADY_EXISTS = "This category already exists!";
 	public static final String ERROR_RSS_LINK_FIELD_INVALID = "The RSS Link Field is empty!";
+
+	/**
+	 * List items Type
+	 */
+	public static final int LIST_ALL_ITEMS_TYPE = 0;
+	public static final int LIST_STARRED_ITEMS_TYPE = 1;
+	public static final int LIST_CATEGORY_ITEMS_TYPE = 2;
+	public static final int LIST_CHANNEL_ITEMS_TYPE = 3;
 }

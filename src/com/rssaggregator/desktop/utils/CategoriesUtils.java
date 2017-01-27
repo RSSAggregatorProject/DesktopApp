@@ -1,7 +1,14 @@
 package com.rssaggregator.desktop.utils;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
+
 import com.rssaggregator.desktop.model.Category;
 import com.rssaggregator.desktop.model.Channel;
+import com.rssaggregator.desktop.model.Item;
+import com.rssaggregator.desktop.model.ItemsWrapper;
 
 import javafx.collections.ObservableList;
 
@@ -48,5 +55,35 @@ public class CategoriesUtils {
 			}
 		}
 		return null;
+	}
+
+	public static List<Item> fillDataFromChannelList(ItemsWrapper data) {
+		List<Channel> channels = data.getChannels();
+		List<Item> items = new ArrayList<Item>();
+
+		if (channels != null && channels.size() != 0) {
+
+			for (Channel channel : channels) {
+
+				if (channel.getItems() != null && channel.getItems().size() != 0) {
+
+					for (Item item : channel.getItems()) {
+						item.setChannelId(channel.getChannelId());
+						item.setChannelName(channel.getName());
+						items.add(item);
+					}
+				}
+			}
+		}
+
+		if (items != null && items.size() != 0) {
+			Collections.sort(items, new Comparator<Item>() {
+				@Override
+				public int compare(Item item1, Item item2) {
+					return item2.getPubDate().compareTo(item1.getPubDate());
+				}
+			});
+		}
+		return items;
 	}
 }
