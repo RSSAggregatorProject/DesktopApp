@@ -9,6 +9,28 @@ public interface RssApi {
 	void logIn(String userEmail, String userPassword);
 
 	void signUp(String userEmail, String userPassword);
-	
-	void fetchCategories(String authorization);
+
+	//
+	//
+	// Categories
+	//
+	//
+
+	void fetchCategories();
+
+	void addCategory(String categoryName);
+
+	//
+	//
+	// Channels
+	//
+	//
+	void addFeed(Integer categoryId, String rssLink);
+
+	//
+	//
+	// Fetching data
+	//
+	//
+	void fetchAllItems();
 }

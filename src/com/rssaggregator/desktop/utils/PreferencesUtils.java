@@ -36,7 +36,11 @@ public class PreferencesUtils {
 
 	public static void setApiToken(String apiToken) {
 		Preferences preferences = Preferences.userNodeForPackage(MainApp.class);
-		preferences.put(Globals.PREF_API_TOKEN, apiToken);
+		if (apiToken == null) {
+			preferences.put(Globals.PREF_API_TOKEN, "");
+		} else {
+			preferences.put(Globals.PREF_API_TOKEN, apiToken);
+		}
 	}
 
 	public static Integer getUserId() {

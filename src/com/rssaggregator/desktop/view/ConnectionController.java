@@ -1,12 +1,10 @@
 package com.rssaggregator.desktop.view;
 
-import com.google.common.eventbus.EventBus;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
 import com.rssaggregator.desktop.ConnectionScene;
 import com.rssaggregator.desktop.MainApp;
-import com.rssaggregator.desktop.model.TestEvent;
 import com.rssaggregator.desktop.utils.UiUtils;
 
 import javafx.event.ActionEvent;
@@ -55,15 +53,15 @@ public class ConnectionController {
 	 */
 	@FXML
 	private void handleLogIn(ActionEvent event) {
-		String userEmail = userEmailTf.getText();
-		String userPassword = userPasswordPf.getText();
+		String userEmail = userEmailTf.getText().toString();
+		String userPassword = userPasswordPf.getText().toString();
 
 		if (userEmail.length() == 0) {
-			UiUtils.showErrorDialog(MainApp.getStage(), ERROR_TITLE, "The Email field is empty!");
+			UiUtils.showErrorDialog(MainApp.getStage(), ERROR_TITLE, ERROR_TITLE, "The Email field is empty!");
 			return;
 		}
 		if (userPassword.length() == 0) {
-			UiUtils.showErrorDialog(MainApp.getStage(), ERROR_TITLE, "The Password field is empty!");
+			UiUtils.showErrorDialog(MainApp.getStage(), ERROR_TITLE, ERROR_TITLE, "The Password field is empty!");
 			return;
 		}
 		this.scene.logIn(userEmail, userPassword);

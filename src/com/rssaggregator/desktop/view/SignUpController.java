@@ -63,21 +63,23 @@ public class SignUpController {
 		String userRetypePassword = this.userRetypePasswordPf.getText();
 
 		if (userEmail.length() == 0) {
-			UiUtils.showErrorDialog(this.signUpStage, "Invalid Inputs", "The Email field is empty!");
+			UiUtils.showErrorDialog(this.signUpStage, "Invalid Inputs", "Invalid Inputs", "The Email field is empty!");
 			return;
 		}
 		if (userPassword.length() == 0) {
-			UiUtils.showErrorDialog(this.signUpStage, "Invalid Inputs", "The Password field is empty!");
+			UiUtils.showErrorDialog(this.signUpStage, "Invalid Inputs", "Invalid Inputs",
+					"The Password field is empty!");
 			return;
 		}
 
 		if (userRetypePassword.length() == 0) {
-			UiUtils.showErrorDialog(this.signUpStage, "Invalid Inputs", "The Retype Password field is empty!");
+			UiUtils.showErrorDialog(this.signUpStage, "Invalid Inputs", "Invalid Inputs",
+					"The Retype Password field is empty!");
 			return;
 		}
 
 		if (!userPassword.equals(userRetypePassword)) {
-			UiUtils.showErrorDialog(this.signUpStage, "Invalid Inputs",
+			UiUtils.showErrorDialog(this.signUpStage, "Invalid Inputs", "Invalid Inputs",
 					"The Password and the Retype Password fields are not the same.");
 			return;
 		}

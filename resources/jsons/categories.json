@@ -26,5 +26,12 @@
 		"favicon_uri" : "null",
 		"unread" : 20
 		}]
-	}]
+	},
+	{
+	"id_cat" : 2,
+	"name" : "News",
+	"unread" : 20,
+	"feeds" : []
+	}
+	]
 }

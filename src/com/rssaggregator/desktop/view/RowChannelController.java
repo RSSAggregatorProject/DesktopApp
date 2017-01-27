@@ -4,7 +4,6 @@ import com.rssaggregator.desktop.model.Channel;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 
@@ -30,12 +29,17 @@ public class RowChannelController {
 	private void initialize() {
 		if (this.channel != null) {
 			this.nameLb.setText(this.channel.getName());
-			this.unreadArticlesLb.setText(String.valueOf(this.channel.getUnread()));
+
+			if (this.channel.getUnread() != null) {
+				this.unreadArticlesLb.setText(String.valueOf(this.channel.getUnread()));
+			} else {
+				this.unreadArticlesLb.setText("0");
+			}
 
 			// TODO Fix that (Image not working with web url)
-			if (this.channel.getFaviconUri() != null && !this.channel.getFaviconUri().equals("null")) {
-				Image icon = new Image(this.channel.getFaviconUri(), true);
-				this.iconIg.setImage(icon);
+			if (this.channel.getFaviconUri() != null
+					&& !this.channel.getFaviconUri().equals("favicon_not_implemented")) {
+				// TODO Implement Favicon when working.
 			}
 		}
 	}

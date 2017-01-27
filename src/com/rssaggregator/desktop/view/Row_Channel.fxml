@@ -13,6 +13,6 @@
          </image>
       </ImageView>
       <Label fx:id="nameLb" layoutX="33.0" layoutY="6.0" styleClass="titledpane-title-channel" text="Channel" AnchorPane.bottomAnchor="12.0" AnchorPane.leftAnchor="40.0" AnchorPane.topAnchor="12.0" />
-      <Label fx:id="unreadArticlesLb" layoutX="280.0" layoutY="8.0" styleClass="titledpane-title-channel" text="50" AnchorPane.bottomAnchor="12.0" AnchorPane.rightAnchor="16.0" AnchorPane.topAnchor="12.0" />
+      <Label fx:id="unreadArticlesLb" layoutX="280.0" layoutY="8.0" styleClass="titledpane-title-channel" text="50" AnchorPane.bottomAnchor="12.0" AnchorPane.rightAnchor="24.0" AnchorPane.topAnchor="12.0" />
    </children>
 </AnchorPane>

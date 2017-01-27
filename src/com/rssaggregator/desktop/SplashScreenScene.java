@@ -2,6 +2,7 @@ package com.rssaggregator.desktop;
 
 import java.io.IOException;
 
+import com.rssaggregator.desktop.model.AccessToken;
 import com.rssaggregator.desktop.utils.Globals;
 import com.rssaggregator.desktop.utils.PreferencesUtils;
 
@@ -82,6 +83,9 @@ public class SplashScreenScene {
 				if (apiToken == null || apiToken.length() == 0) {
 					launchConnectionView();
 				} else {
+					AccessToken accessToken = new AccessToken();
+					accessToken.setApiToken(apiToken);
+					MainApp.getTokenRequestInterceptor().setAccessToken(accessToken);
 					launchMainView();
 				}
 			}

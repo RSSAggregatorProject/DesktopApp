@@ -17,6 +17,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.layout.BorderPane;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 
@@ -64,7 +65,6 @@ public class SignUpScene {
 
 		// Check if the EventBus attribute is initialized.
 		if (this.eventBus == null) {
-			System.out.println("Event Bus Null");
 			this.eventBus = new EventBus();
 			this.rssApi.setEventBus(this.eventBus);
 		}
@@ -86,6 +86,7 @@ public class SignUpScene {
 
 			Scene scene = new Scene(this.rootView);
 			this.signUpStage.setTitle(Globals.APP_NAME);
+			this.signUpStage.initModality(Modality.APPLICATION_MODAL);
 			this.signUpStage.setResizable(false);
 			this.signUpStage.getIcons().add(new Image(Globals.RSS_LOGO_LINK));
 			this.signUpStage.setScene(scene);
@@ -169,7 +170,6 @@ public class SignUpScene {
 			Platform.runLater(new Runnable() {
 				@Override
 				public void run() {
-					System.out.println("Close the door");
 					eventBus.unregister(instance);
 					closeStage(userEmail, userPassword);
 				}
@@ -184,7 +184,8 @@ public class SignUpScene {
 			Platform.runLater(new Runnable() {
 				@Override
 				public void run() {
-					UiUtils.showErrorDialog(signUpStage, "Error", errorMessage);
+					UiUtils.showErrorDialog(signUpStage, Globals.ERROR_SIGNUP_MESSAGE, Globals.ERROR_SIGNUP_MESSAGE,
+							errorMessage);
 				}
 			});
 		}

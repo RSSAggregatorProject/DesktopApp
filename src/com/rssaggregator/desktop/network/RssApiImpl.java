@@ -1,64 +1,121 @@
 package com.rssaggregator.desktop.network;
 
-import java.io.FileReader;
-import java.io.IOException;
+import java.util.Date;
 
 import com.google.common.eventbus.EventBus;
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.rssaggregator.desktop.MainApp;
+import com.rssaggregator.desktop.model.AccessToken;
+import com.rssaggregator.desktop.model.AddCategoryWrapper;
+import com.rssaggregator.desktop.model.AddFeedWrapper;
 import com.rssaggregator.desktop.model.ApiError;
 import com.rssaggregator.desktop.model.CategoriesWrapper;
+import com.rssaggregator.desktop.model.CategoryAddedWrapper;
 import com.rssaggregator.desktop.model.Credentials;
-import com.rssaggregator.desktop.model.SignUpWrapper;
-import com.rssaggregator.desktop.model.User;
+import com.rssaggregator.desktop.model.FeedAddedWrapper;
+import com.rssaggregator.desktop.model.ItemsWrapper;
+import com.rssaggregator.desktop.network.event.CategoryAddedEvent;
+import com.rssaggregator.desktop.network.event.FeedAddedEvent;
+import com.rssaggregator.desktop.network.event.FetchAllItemsEvent;
 import com.rssaggregator.desktop.network.event.FetchCategoriesEvent;
 import com.rssaggregator.desktop.network.event.LogInEvent;
 import com.rssaggregator.desktop.network.event.SignUpEvent;
+import com.rssaggregator.desktop.utils.DateDeserializer;
 import com.rssaggregator.desktop.utils.Globals;
 import com.rssaggregator.desktop.utils.PreferencesUtils;
-import com.rssaggregator.desktop.utils.UiUtils;
+import com.rssaggregator.desktop.utils.TokenRequestInterceptor;
 
-import javafx.application.Platform;
 import okhttp3.OkHttpClient;
+import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
+import retrofit2.Retrofit.Builder;
 import retrofit2.converter.gson.GsonConverterFactory;
 
+/**
+ * Class which fetches/send data from the API.
+ * 
+ * @author Irina
+ *
+ */
 public class RssApiImpl implements RssApi {
 	private RestService restService;
 	private EventBus eventBus;
 
+	/**
+	 * Constructor
+	 * 
+	 * @param restService
+	 * @param eventBus
+	 */
 	public RssApiImpl(RestService restService, EventBus eventBus) {
 		this.restService = restService;
 		this.eventBus = eventBus;
 	}
 
+	/**
+	 * Sets the EventBus attribute.
+	 */
 	public void setEventBus(EventBus eventBus) {
 		this.eventBus = eventBus;
 	}
 
+	/**
+	 * Initializes the Network attributes.
+	 */
 	private void initializeNetworkAttributes() {
 		System.out.println("Initiliaze Attributes.");
 
 		// Set OkHttpClient.
 		OkHttpClient client = MainApp.getOkHttpClient();
+		TokenRequestInterceptor tokenRequestInterceptor = MainApp.getTokenRequestInterceptor();
 		if (client == null) {
+			HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
+			interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
+
 			OkHttpClient.Builder builder = new OkHttpClient.Builder();
+			builder.addInterceptor(interceptor);
+
+			if (tokenRequestInterceptor == null) {
+				String apiToken = PreferencesUtils.getApiToken();
+				AccessToken accessToken = new AccessToken();
+				accessToken.setApiToken(apiToken);
+				if (apiToken != null) {
+					builder.addInterceptor(new TokenRequestInterceptor(accessToken));
+				} else {
+					builder.addInterceptor(new TokenRequestInterceptor());
+				}
+			} else {
+				builder.addInterceptor(tokenRequestInterceptor);
+			}
+
 			client = builder.build();
 		}
 
 		// Set Retrofit.
 		Retrofit retrofit = MainApp.getRetrofit();
 		if (retrofit == null) {
-			retrofit = new Retrofit.Builder().baseUrl(Globals.API_SERVER_URL)
-					.addConverterFactory(GsonConverterFactory.create()).client(client).build();
+			GsonBuilder gsonBuilder = new GsonBuilder();
+			gsonBuilder.registerTypeAdapter(Date.class, new DateDeserializer());
+			gsonBuilder.excludeFieldsWithoutExposeAnnotation();
+			Gson gson = gsonBuilder.create();
+
+			Builder retrofitBuilder = new Retrofit.Builder();
+			retrofitBuilder.baseUrl(Globals.API_SERVER_URL);
+			retrofitBuilder.addConverterFactory(GsonConverterFactory.create(gson));
+			retrofitBuilder.client(client);
+			retrofit = retrofitBuilder.build();
 		}
 
 		this.restService = retrofit.create(RestService.class);
 	}
 
+	/**
+	 * Logs In from the API.
+	 */
 	@Override
 	public void logIn(String userEmail, String userPassword) {
 		Credentials credentials = new Credentials(userEmail, userPassword);
@@ -67,44 +124,52 @@ public class RssApiImpl implements RssApi {
 			initializeNetworkAttributes();
 		}
 
-		this.restService.logIn(credentials).enqueue(new Callback<User>() {
+		this.restService.logIn(credentials).enqueue(new Callback<AccessToken>() {
 
 			@Override
-			public void onFailure(Call<User> call, Throwable e) {
-				eventBus.post(new LogInEvent(new Throwable("Error")));
+			public void onFailure(Call<AccessToken> call, Throwable throwable) {
+				if (throwable != null && throwable.getMessage() != null && throwable.getMessage().length() != 0) {
+					eventBus.post(new LogInEvent(throwable));
+				} else {
+					eventBus.post(new LogInEvent(new Throwable("Error")));
+				}
 			}
 
 			@Override
-			public void onResponse(Call<User> call, Response<User> response) {
+			public void onResponse(Call<AccessToken> call, Response<AccessToken> response) {
 				if (response.isSuccessful()) {
 					System.out.println("[LOGIN] Success from the Api");
-					User user = response.body();
-					PreferencesUtils.setUserConnected(userEmail, userPassword, user.getApiToken(), user.getUserId(),
-							true);
-					eventBus.post(new LogInEvent(user));
+					AccessToken accessToken = response.body();
+					PreferencesUtils.setUserConnected(userEmail, userPassword, accessToken.getApiToken(),
+							accessToken.getUserId(), true);
+
+					// Set Interceptor
+					MainApp.getTokenRequestInterceptor().setAccessToken(accessToken);
+
+					eventBus.post(new LogInEvent(accessToken));
 				} else {
 					try {
 						String json = response.errorBody().string();
 						ApiError error = new Gson().fromJson(json, ApiError.class);
 						System.out.println("[LOGIN] Error from the Api: " + error.getError());
-						/**
-						 * TEMPORARY
-						 */
-						// TODO Delete this line
-						PreferencesUtils.setUserConnected(userEmail, userPassword, "Token", 0, true);
-						eventBus.post(new LogInEvent(new User()));
-						// TODO Uncomment
-						// eventBus.post(new LogInEvent(new
-						// Throwable(error.getError())));
-					} catch (IOException e) {
-						e.printStackTrace();
-						eventBus.post(new LogInEvent(new Throwable("Error")));
+						eventBus.post(new LogInEvent(new Throwable(error.getError())));
+					} catch (Exception exception) {
+						exception.printStackTrace();
+						if (exception != null && exception.getMessage() != null
+								&& exception.getMessage().length() != 0) {
+							eventBus.post(new LogInEvent(new Throwable(exception.getMessage())));
+						} else {
+							eventBus.post(new LogInEvent(new Throwable("Error")));
+						}
 					}
 				}
 			}
 		});
 	}
 
+	/**
+	 * Signs Up from the API.
+	 */
 	@Override
 	public void signUp(String userEmail, String userPassword) {
 		Credentials credentials = new Credentials(userEmail, userPassword);
@@ -113,52 +178,59 @@ public class RssApiImpl implements RssApi {
 			initializeNetworkAttributes();
 		}
 
-		this.restService.signUp(credentials).enqueue(new Callback<SignUpWrapper>() {
+		this.restService.signUp(credentials).enqueue(new Callback<Void>() {
 
 			@Override
-			public void onFailure(Call<SignUpWrapper> call, Throwable e) {
-				eventBus.post(new SignUpEvent(new Throwable("Error")));
+			public void onFailure(Call<Void> call, Throwable throwable) {
+				if (throwable != null && throwable.getMessage() != null && throwable.getMessage().length() != 0) {
+					eventBus.post(new SignUpEvent(throwable));
+				} else {
+					eventBus.post(new SignUpEvent(new Throwable("Error")));
+				}
 			}
 
 			@Override
-			public void onResponse(Call<SignUpWrapper> call, Response<SignUpWrapper> response) {
+			public void onResponse(Call<Void> call, Response<Void> response) {
 				if (response.isSuccessful()) {
 					System.out.println("[SIGNUP] Success from the API");
-					SignUpWrapper wrapper = response.body();
-					eventBus.post(new SignUpEvent(wrapper));
+					eventBus.post(new SignUpEvent());
 				} else {
 					try {
 						String json = response.errorBody().string();
 						ApiError error = new Gson().fromJson(json, ApiError.class);
 						System.out.println("[SIGNUP] Error from the API : " + error.getError());
-						/**
-						 * TEMPORARY
-						 */
-						// TODO Delete this line
-						eventBus.post(new SignUpEvent(new SignUpWrapper()));
-						// TODO Uncomment this line
-						// eventBus.post(new SignUpEvent(new
-						// Throwable(error.getError())));
-					} catch (IOException e) {
-						e.printStackTrace();
-						eventBus.post(new SignUpEvent(new Throwable("Error")));
+						eventBus.post(new SignUpEvent(new Throwable(error.getError())));
+					} catch (Exception exception) {
+						exception.printStackTrace();
+						if (exception != null && exception.getMessage() != null
+								&& exception.getMessage().length() != 0) {
+							eventBus.post(new SignUpEvent(new Throwable(exception.getMessage())));
+						} else {
+							eventBus.post(new SignUpEvent(new Throwable("Error")));
+						}
 					}
 				}
 			}
 		});
 	}
 
+	/**
+	 * Fetches categories from the API.
+	 */
 	@Override
-	public void fetchCategories(String authorization) {
+	public void fetchCategories() {
 		if (this.restService == null) {
 			initializeNetworkAttributes();
 		}
 
-		this.restService.fetchCategories(authorization).enqueue(new Callback<CategoriesWrapper>() {
+		this.restService.fetchCategories().enqueue(new Callback<CategoriesWrapper>() {
 			@Override
-			public void onFailure(Call<CategoriesWrapper> call, Throwable e) {
-				System.out.println("[FETCH CATEGORIES] Error\n");
-				eventBus.post(new FetchCategoriesEvent(new Throwable("Error")));
+			public void onFailure(Call<CategoriesWrapper> call, Throwable throwable) {
+				if (throwable != null && throwable.getMessage() != null && throwable.getMessage().length() != 0) {
+					eventBus.post(new FetchCategoriesEvent(throwable));
+				} else {
+					eventBus.post(new FetchCategoriesEvent(new Throwable("Error")));
+				}
 			}
 
 			@Override
@@ -172,23 +244,154 @@ public class RssApiImpl implements RssApi {
 						String json = response.errorBody().string();
 						ApiError error = new Gson().fromJson(json, ApiError.class);
 						System.out.println("[FETCH CATEGORIES] Error from the API : " + error.getError());
-						// TODO Delete this line
-						try {
-							Gson gson = new Gson();
-							CategoriesWrapper wrapper = gson.fromJson(
-									new FileReader(
-											"C:\\Users\\Irina\\Documents\\DesktopApp\\resources\\jsons\\categories.json"),
-									CategoriesWrapper.class);
-							eventBus.post(new FetchCategoriesEvent(wrapper));
-						} catch (Exception e) {
-							e.printStackTrace();
+						eventBus.post(new FetchCategoriesEvent(new Throwable(error.getError())));
+					} catch (Exception exception) {
+						exception.printStackTrace();
+						if (exception != null && exception.getMessage() != null
+								&& exception.getMessage().length() != 0) {
+							eventBus.post(new FetchCategoriesEvent(new Throwable(exception.getMessage())));
+						} else {
+							eventBus.post(new FetchCategoriesEvent(new Throwable("Error")));
 						}
-						// TODO Uncomment this line
-						// eventBus.post(new FetchCategoriesEvent(new
-						// Throwable(error.getError())));
-					} catch (IOException e) {
-						e.printStackTrace();
-						eventBus.post(new FetchCategoriesEvent(new Throwable("Error")));
+					}
+				}
+			}
+		});
+	}
+
+	/**
+	 * Adds a category from the API.
+	 */
+	@Override
+	public void addCategory(String categoryName) {
+		AddCategoryWrapper wrapper = new AddCategoryWrapper(categoryName);
+
+		if (this.restService == null) {
+			initializeNetworkAttributes();
+		}
+
+		this.restService.addCategory(wrapper).enqueue(new Callback<CategoryAddedWrapper>() {
+			@Override
+			public void onFailure(Call<CategoryAddedWrapper> call, Throwable throwable) {
+				if (throwable != null && throwable.getMessage() != null && throwable.getMessage().length() != 0) {
+					eventBus.post(new CategoryAddedEvent(throwable));
+				} else {
+					eventBus.post(new CategoryAddedEvent(new Throwable("Error")));
+				}
+			}
+
+			@Override
+			public void onResponse(Call<CategoryAddedWrapper> call, Response<CategoryAddedWrapper> response) {
+				if (response.isSuccessful()) {
+					System.out.println("[ADD CATEGORY] Success from the API");
+					CategoryAddedWrapper wrapper = response.body();
+					eventBus.post(new CategoryAddedEvent(wrapper));
+				} else {
+					try {
+						String json = response.errorBody().string();
+						ApiError error = new Gson().fromJson(json, ApiError.class);
+						System.out.println("[ADD CATEGORY] Error from the API : " + error.getError());
+						eventBus.post(new CategoryAddedEvent(new Throwable(error.getError())));
+					} catch (Exception exception) {
+						exception.printStackTrace();
+						if (exception != null && exception.getMessage() != null
+								&& exception.getMessage().length() != 0) {
+							eventBus.post(new CategoryAddedEvent(new Throwable(exception.getMessage())));
+						} else {
+							eventBus.post(new CategoryAddedEvent(new Throwable("Error")));
+						}
+					}
+				}
+			}
+		});
+	}
+
+	/**
+	 * Adds a feed from the API.
+	 */
+	@Override
+	public void addFeed(Integer categoryId, String rssLink) {
+		AddFeedWrapper wrapper = new AddFeedWrapper(categoryId, rssLink);
+
+		if (this.restService == null) {
+			initializeNetworkAttributes();
+		}
+
+		this.restService.addFeed(wrapper).enqueue(new Callback<FeedAddedWrapper>() {
+			@Override
+			public void onFailure(Call<FeedAddedWrapper> call, Throwable throwable) {
+				if (throwable != null && throwable.getMessage() != null && throwable.getMessage().length() != 0) {
+					eventBus.post(new FeedAddedEvent(throwable));
+				} else {
+					eventBus.post(new FeedAddedEvent(new Throwable("Error")));
+				}
+			}
+
+			@Override
+			public void onResponse(Call<FeedAddedWrapper> call, Response<FeedAddedWrapper> response) {
+				if (response.isSuccessful()) {
+					System.out.println("[ADD FEED] Success from the API");
+					FeedAddedWrapper wrapper = response.body();
+					eventBus.post(new FeedAddedEvent(wrapper));
+				} else {
+					try {
+						String json = response.errorBody().string();
+						ApiError error = new Gson().fromJson(json, ApiError.class);
+						System.out.println("[ADD FEED] Error from the API : " + error.getError());
+						eventBus.post(new FeedAddedEvent(new Throwable(error.getError())));
+					} catch (Exception exception) {
+						exception.printStackTrace();
+						if (exception != null && exception.getMessage() != null
+								&& exception.getMessage().length() != 0) {
+							eventBus.post(new FeedAddedEvent(new Throwable(exception.getMessage())));
+						} else {
+							eventBus.post(new FeedAddedEvent(new Throwable("Error")));
+						}
+					}
+				}
+			}
+		});
+	}
+
+	/**
+	 * Fetchs all items from the api.
+	 */
+	@Override
+	public void fetchAllItems() {
+		if (this.restService == null) {
+			initializeNetworkAttributes();
+		}
+
+		this.restService.fetchAllItems().enqueue(new Callback<ItemsWrapper>() {
+			@Override
+			public void onFailure(Call<ItemsWrapper> call, Throwable throwable) {
+				if (throwable != null && throwable.getMessage() != null && throwable.getMessage().length() != 0) {
+					eventBus.post(new FetchAllItemsEvent(throwable));
+				} else {
+					eventBus.post(new FetchAllItemsEvent(new Throwable("Error")));
+				}
+			}
+
+			@Override
+			public void onResponse(Call<ItemsWrapper> call, Response<ItemsWrapper> response) {
+				if (response.isSuccessful()) {
+					System.out.println("[FETCH ALL ITEMS] Success from the API");
+					ItemsWrapper wrapper = response.body();
+					eventBus.post(new FetchAllItemsEvent(wrapper));
+				} else {
+					try {
+						String json = response.errorBody().string();
+						ApiError error = new Gson().fromJson(json, ApiError.class);
+						System.out.println("[FETCH ALL ITEMS] Error from the API : " + error.getError());
+						eventBus.post(new FetchAllItemsEvent(new Throwable(error.getError())));
+					} catch (Exception exception) {
+						exception.printStackTrace();
+						if (exception != null && exception.getMessage() != null
+								&& exception.getMessage().length() != 0) {
+							eventBus.post(new FetchAllItemsEvent(new Throwable(exception.getMessage())));
+						} else {
+							eventBus.post(new FetchAllItemsEvent(new Throwable("Error")));
+						}
 					}
 				}
 			}

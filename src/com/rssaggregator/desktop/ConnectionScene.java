@@ -25,7 +25,7 @@ import javafx.stage.Stage;
  */
 public class ConnectionScene {
 
-	// View attributs
+	// View attributes
 	private Stage primaryStage;
 	private BorderPane rootView;
 
@@ -53,7 +53,6 @@ public class ConnectionScene {
 
 		// Check if the EventBus attribute is initialized.
 		if (this.eventBus == null) {
-			System.out.println("Event Bus Null");
 			this.eventBus = new EventBus();
 			this.rssApi.setEventBus(this.eventBus);
 		}
@@ -147,7 +146,6 @@ public class ConnectionScene {
 		});
 
 		if (event.isSuccess()) {
-			System.out.println("Succes");
 			Platform.runLater(new Runnable() {
 				@Override
 				public void run() {
@@ -157,7 +155,7 @@ public class ConnectionScene {
 			});
 		} else {
 			String errorMessage;
-			if (event.getThrowable().getMessage() != null) {
+			if (event.getThrowable() != null && event.getThrowable().getMessage() != null) {
 				errorMessage = event.getThrowable().getMessage();
 			} else {
 				errorMessage = "Error";
@@ -165,7 +163,8 @@ public class ConnectionScene {
 			Platform.runLater(new Runnable() {
 				@Override
 				public void run() {
-					UiUtils.showErrorDialog(MainApp.getStage(), "Error", errorMessage);
+					UiUtils.showErrorDialog(MainApp.getStage(), Globals.ERROR_LOGIN_MESSAGE,
+							Globals.ERROR_LOGIN_MESSAGE, errorMessage);
 				}
 			});
 		}

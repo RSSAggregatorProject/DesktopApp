@@ -3,13 +3,13 @@ package com.rssaggregator.desktop.model;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class SignUpWrapper {
+public class FeedAddedWrapper {
 
 	@Expose
 	private String status;
-	@SerializedName("id_user")
+	@SerializedName("id_feed")
 	@Expose
-	private Integer userId;
+	private Integer channelId;
 
 	public String getStatus() {
 		return status;
@@ -19,11 +19,11 @@ public class SignUpWrapper {
 		this.status = status;
 	}
 
-	public Integer getUserId() {
-		return userId;
+	public Integer getChannelId() {
+		return channelId;
 	}
 
-	public void setUserId(Integer userId) {
-		this.userId = userId;
+	public void setChannelId(Integer channelId) {
+		this.channelId = channelId;
 	}
 }

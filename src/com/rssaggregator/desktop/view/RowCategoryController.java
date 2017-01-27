@@ -1,7 +1,6 @@
 package com.rssaggregator.desktop.view;
 
 import com.rssaggregator.desktop.model.Category;
-import com.rssaggregator.desktop.utils.CategoriesUtils;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -30,9 +29,12 @@ public class RowCategoryController {
 	private void initialize() {
 		if (this.category != null) {
 			this.nameLb.setText(this.category.getName());
-			// TODO Can be replace by category.getUnread()
-			int unreadArticles = CategoriesUtils.getUnreadArticles(this.category);
-			this.unreadArticlesLb.setText(String.valueOf(unreadArticles));
+			// TODO Fix this when read state works.
+			if (this.category.getUnread() != null) {
+				this.unreadArticlesLb.setText(String.valueOf(this.category.getUnread()));
+			} else {
+				this.unreadArticlesLb.setText("0");
+			}
 		}
 	}
 

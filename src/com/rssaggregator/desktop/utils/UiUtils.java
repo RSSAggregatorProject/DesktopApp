@@ -7,15 +7,16 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 public class UiUtils {
 
-	public static void showErrorDialog(Stage owner, String title, String errorMessage) {
+	public static void showErrorDialog(Stage owner, String title, String header, String errorMessage) {
 		Alert alert = new Alert(AlertType.ERROR);
 		alert.initOwner(owner);
 		alert.setTitle(title);
-		alert.setHeaderText("Error");
+		alert.setHeaderText(header);
 		alert.setContentText(errorMessage);
 		alert.showAndWait();
 	}
@@ -32,6 +33,7 @@ public class UiUtils {
 			stage = new Stage();
 			stage.setResizable(false);
 			stage.initOwner(owner);
+			stage.initModality(Modality.APPLICATION_MODAL);
 			stage.centerOnScreen();
 			stage.setScene(scene);
 			return stage;

@@ -1,27 +1,23 @@
 package com.rssaggregator.desktop;
 
-import java.lang.reflect.Type;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.TimeZone;
 
 import com.google.common.eventbus.EventBus;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.google.gson.JsonDeserializationContext;
-import com.google.gson.JsonDeserializer;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonParseException;
 import com.rssaggregator.desktop.network.RestService;
 import com.rssaggregator.desktop.network.RssApi;
 import com.rssaggregator.desktop.network.RssApiImpl;
+import com.rssaggregator.desktop.utils.DateDeserializer;
 import com.rssaggregator.desktop.utils.Globals;
+import com.rssaggregator.desktop.utils.TokenRequestInterceptor;
 
 import javafx.application.Application;
 import javafx.stage.Stage;
 import okhttp3.OkHttpClient;
+import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
+import retrofit2.Retrofit.Builder;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 /**
@@ -36,6 +32,7 @@ public class MainApp extends Application {
 
 	private static MainApp instance;
 	private static OkHttpClient okHttpClient;
+	private static TokenRequestInterceptor tokenRequestInterceptor;
 	private static Retrofit retrofit;
 	private static EventBus eventBus;
 	private static RssApi rssApi;
@@ -46,16 +43,29 @@ public class MainApp extends Application {
 	@Override
 	public void start(Stage primaryStage) {
 		MainApp.instance = this;
+		MainApp.tokenRequestInterceptor = new TokenRequestInterceptor();
 
 		// Set OkHttpClient
+		HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
+		interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
+
 		OkHttpClient.Builder builder = new OkHttpClient.Builder();
-		MainApp.okHttpClient = builder.build();
+		builder.addInterceptor(interceptor);
+		builder.addInterceptor(MainApp.tokenRequestInterceptor);
+		okHttpClient = builder.build();
 
 		// Set Retrofit
-		Gson gson = new GsonBuilder().setDateFormat("YYYY-MM-DD HH:mm:ss").excludeFieldsWithoutExposeAnnotation()
-				.create();
-		MainApp.retrofit = new Retrofit.Builder().baseUrl(Globals.API_SERVER_URL)
-				.addConverterFactory(GsonConverterFactory.create(gson)).client(MainApp.okHttpClient).build();
+		GsonBuilder gsonBuilder = new GsonBuilder();
+		gsonBuilder.registerTypeAdapter(Date.class, new DateDeserializer());
+		gsonBuilder.excludeFieldsWithoutExposeAnnotation();
+		Gson gson = gsonBuilder.create();
+
+		Builder retrofitBuilder = new Retrofit.Builder();
+		retrofitBuilder.baseUrl(Globals.API_SERVER_URL);
+		retrofitBuilder.addConverterFactory(GsonConverterFactory.create(gson));
+		retrofitBuilder.client(okHttpClient);
+		MainApp.retrofit = retrofitBuilder.build();
+
 		RestService restService = retrofit.create(RestService.class);
 
 		// Set EventBus
@@ -68,24 +78,6 @@ public class MainApp extends Application {
 
 		SplashScreenScene scene = new SplashScreenScene(this);
 		scene.launchSplashScreen();
-	}
-
-	public class DateDeserializer implements JsonDeserializer<Date> {
-
-		@Override
-		public Date deserialize(JsonElement element, Type arg1, JsonDeserializationContext arg2)
-				throws JsonParseException {
-			String date = element.getAsString();
-
-			SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-DD hh:mm:ss");
-			formatter.setTimeZone(TimeZone.getTimeZone("UTC"));
-
-			try {
-				return formatter.parse(date);
-			} catch (ParseException e) {
-				return null;
-			}
-		}
 	}
 
 	/**
@@ -139,6 +131,10 @@ public class MainApp extends Application {
 
 	public static RssApi getRssApi() {
 		return rssApi;
+	}
+
+	public static TokenRequestInterceptor getTokenRequestInterceptor() {
+		return tokenRequestInterceptor;
 	}
 
 	/**

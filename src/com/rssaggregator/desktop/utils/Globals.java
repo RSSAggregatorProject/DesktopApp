@@ -6,11 +6,11 @@ public class Globals {
 	 * Application Name.
 	 */
 	public static final String APP_NAME = "RSS Aggregator";
-
+	
 	/**
 	 * API server address.
 	 */
-	public static final String API_SERVER_URL = "http://api.comeon.io";
+	public static final String API_SERVER_URL = "http://dreamteamrssfeader.ddns.net:8080/";
 
 	/**
 	 * Windows Names.
@@ -18,6 +18,11 @@ public class Globals {
 	public static final String ADD_FEED_TITLE_NAME = "Add a feed";
 	public static final String CREATE_CATEGORY_TITLE_NAME = "Create a category";
 	public static final String ARTICLE_DETAILS_TITLE_NAME = "Article details";
+	
+	/**
+	 * Other texts
+	 */
+	public static final String ENTER_CATEGORY_NAME = "Please enter a category name: ";
 
 	/**
 	 * Preferences Keys
@@ -60,4 +65,16 @@ public class Globals {
 	 */
 	private static final int SECONDS = 1000;
 	public static final int SPLASH_SCREEN_TIME = 3 * SECONDS;
+
+	/**
+	 * Error Messages
+	 */
+	public static final String ERROR_LOGIN_MESSAGE = "Error when logging";
+	public static final String ERROR_SIGNUP_MESSAGE = "Error when signing up";
+	public static final String ERROR_FETCH_CATEGORIES = "Error when fetching categories";
+	public static final String ERROR_ADD_CATEGORY = "Error when adding category";
+	public static final String ERROR_INVALID_INPUTS = "Invalid Inputs";
+	public static final String ERROR_CATEGORY_FIELD_INVALID = "The Category Name field is invalid!";
+	public static final String ERROR_CATEGORY_ALREADY_EXISTS = "This category already exists!";
+	public static final String ERROR_RSS_LINK_FIELD_INVALID = "The RSS Link Field is empty!";
 }

@@ -1,16 +1,16 @@
 package com.rssaggregator.desktop.view;
 
 import java.io.IOException;
-import java.util.ArrayList;
 
+import com.google.common.eventbus.EventBus;
 import com.jfoenix.controls.JFXToggleButton;
 import com.rssaggregator.desktop.MainApp;
 import com.rssaggregator.desktop.MainViewScene;
+import com.rssaggregator.desktop.event.RefreshCategoriesEvent;
 import com.rssaggregator.desktop.model.Category;
 import com.rssaggregator.desktop.model.Channel;
+import com.rssaggregator.desktop.model.Item;
 import com.rssaggregator.desktop.model.TmpArticle;
-import com.rssaggregator.desktop.model.TmpCategory;
-import com.rssaggregator.desktop.model.TmpChannel;
 import com.rssaggregator.desktop.utils.Globals;
 import com.rssaggregator.desktop.utils.UiUtils;
 
@@ -41,8 +41,6 @@ import javafx.stage.Stage;
 public class MainViewController {
 
 	// Data
-
-	private ObservableList<TmpCategory> tmpCategories;
 	private ObservableList<Category> categories;
 	private VBox channelsBox;
 
@@ -74,27 +72,25 @@ public class MainViewController {
 	@FXML
 	ListView<TmpArticle> articlesLv;
 
+	private EventBus eventBus;
+
+	private ObservableList<Item> itemsList;
+
 	private ObservableList<TmpArticle> articlesObservableList;
 
 	public MainViewController() {
 		this.loader = new FXMLLoader();
-		articlesObservableList = FXCollections.observableArrayList();
-
-		TmpArticle article = new TmpArticle();
-		TmpArticle article2 = new TmpArticle();
-		article.setTitle("Titre 1");
-		article2.setTitle("Title 2");
-		articlesObservableList.add(article);
-		articlesObservableList.add(article2);
+		this.itemsList = FXCollections.observableArrayList();
 	}
 
 	/**
-	 * Sets the Main View Scene.
+	 * Sets Data.
 	 * 
 	 * @param scene
 	 */
-	public void setMainViewScene(MainViewScene scene) {
+	public void setData(MainViewScene scene, EventBus eventBus) {
 		this.mainViewScene = scene;
+		this.eventBus = eventBus;
 	}
 
 	/**
@@ -224,18 +220,9 @@ public class MainViewController {
 		this.noSelectedMessageLb.setVisible(false);
 
 		// Initialize view.
-		this.categoryChannelTitleLb.setText("All Items");
+		this.categoryChannelTitleLb.setText(Globals.ALL_ITEMS_TITLED_PANE);
 
-		this.articlesObservableList.clear();
-
-		TmpArticle article = new TmpArticle();
-		TmpArticle article2 = new TmpArticle();
-		article.setTitle("Titre 1");
-		article2.setTitle("Title 2");
-		articlesObservableList.add(article);
-		articlesObservableList.add(article2);
-
-		this.articlesLv.setItems(articlesObservableList);
+		this.mainViewScene.loadAllItems();
 	}
 
 	@FXML
@@ -243,25 +230,18 @@ public class MainViewController {
 		this.mainViewScene.launchAddFeedView();
 	}
 
-	public void updateNewCategory(TmpCategory category) {
-		// initCategories(category);
+	/**
+	 * Updates the view after a new category created.
+	 */
+	public void updateNewCategory() {
+		this.eventBus.post(new RefreshCategoriesEvent());
 	}
 
-	public void updateNewChannel(TmpCategory category, TmpChannel channel) {
-		for (int i = 0; i < this.categories.size(); i++) {
-			if (this.categories.get(i).getName().equals(category.getName())) {
-				ArrayList<TmpChannel> newChannels = this.tmpCategories.get(i).getChannels();
-				if (newChannels == null) {
-					newChannels = new ArrayList<>();
-				}
-				newChannels.add(channel);
-				this.tmpCategories.get(i).setChannels(newChannels);
-				System.out.println("SIZE: " + this.categories.size());
-				this.categoriesAc.getPanes().clear();
-				initCategoriesView();
-				return;
-			}
-		}
+	/**
+	 * Updates the view after a new channel created.
+	 */
+	public void updateNewChannel() {
+		this.eventBus.post(new RefreshCategoriesEvent());
 	}
 
 	@FXML
@@ -286,7 +266,6 @@ public class MainViewController {
 		this.categoryChannelTitleLb.setText(Globals.STARRED_ITEMS_TITLED_PANE);
 
 		// Load the data
-		this.mainViewScene.loadChannels(true);
 
 		this.articlesObservableList.clear();
 
