@@ -2,39 +2,37 @@
 
 <?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXToggleButton?>
-<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.web.WebView?>
 
-
-<AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" style="-fx-background-color: white;" stylesheets="@css/material.css" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.111">
+<AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" style="-fx-background-color: white;" stylesheets="@css/material.css" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Label fx:id="titleLb" alignment="CENTER" layoutX="106.0" layoutY="49.0" styleClass="article-details-title" text="Article title" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="16.0" />
-      <Label fx:id="channelNameLb" layoutX="36.0" layoutY="84.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="250.0" styleClass="article-details-channel" text="Channel Name" AnchorPane.leftAnchor="16.0" AnchorPane.topAnchor="60.0" />
-      <Label fx:id="pubDateLb" alignment="CENTER_RIGHT" layoutX="736.0" layoutY="76.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="150.0" text="There was 30 mins ago." AnchorPane.rightAnchor="16.0" AnchorPane.topAnchor="60.0">
+      <Label fx:id="titleLb" alignment="TOP_CENTER" contentDisplay="CENTER" layoutX="106.0" layoutY="49.0" maxHeight="1.7976931348623157E308" prefHeight="80.0" styleClass="article-details-title" text="Article title" textAlignment="CENTER" wrapText="true" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="16.0" />
+      <Label fx:id="channelNameLb" layoutX="36.0" layoutY="84.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="350.0" styleClass="article-details-channel" text="Channel Name" AnchorPane.leftAnchor="16.0" AnchorPane.topAnchor="110.0" />
+      <Label fx:id="pubDateLb" alignment="CENTER_RIGHT" layoutX="736.0" layoutY="76.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="350.0" text="There was 30 mins ago." AnchorPane.rightAnchor="16.0" AnchorPane.topAnchor="110.0">
          <font>
             <Font name="System Italic" size="12.0" />
          </font>
       </Label>
-      <AnchorPane layoutX="300.0" layoutY="95.0" prefHeight="150.0" AnchorPane.leftAnchor="250.0" AnchorPane.rightAnchor="250.0" AnchorPane.topAnchor="105.0">
-         <children>
-            <ImageView fx:id="pictureIg" fitHeight="150.0" fitWidth="300.0" pickOnBounds="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-               <image>
-                  <Image url="@../../../../../resources/images/logo_rss.png" />
-               </image>
-            </ImageView>
-         </children>
-      </AnchorPane>
-      <JFXButton fx:id="starBt" layoutX="24.0" layoutY="288.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" styleClass="button-rounded" text="Star the article" AnchorPane.leftAnchor="16.0" AnchorPane.topAnchor="275.0" />
-      <JFXToggleButton fx:id="readTg" layoutX="180.0" layoutY="274.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" text="Read" AnchorPane.leftAnchor="180.0" AnchorPane.topAnchor="275.0" />
-      <Label fx:id="descriptionLb" alignment="TOP_LEFT" layoutX="36.0" layoutY="357.0" style="-fx-font: 16px Roboto;" text="Description" AnchorPane.bottomAnchor="90.0" AnchorPane.leftAnchor="16.0" AnchorPane.rightAnchor="16.0" AnchorPane.topAnchor="340.0">
-         <padding>
-            <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
-         </padding>
-      </Label>
-      <JFXButton layoutX="374.0" layoutY="542.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="400.0" styleClass="article-details-visit-article" text="See the entire article..." AnchorPane.bottomAnchor="24.0" AnchorPane.leftAnchor="200.0" AnchorPane.rightAnchor="200.0" />
+      <JFXButton ellipsisString="" layoutX="24.0" layoutY="288.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" onAction="#handleStarItem" prefHeight="45.0" prefWidth="200.0" style="-fx-background-color: #673AB7;" styleClass="button-rounded" text=" " textAlignment="CENTER" textOverrun="CLIP" wrapText="true" AnchorPane.leftAnchor="16.0" AnchorPane.topAnchor="180.0">
+         <graphic>
+            <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="200.0" style="-fx-background-color: transparent;">
+               <children>
+                  <ImageView fx:id="starIconIv" fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="-0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <image>
+                        <Image url="@../../../../../resources/images/ic_star_border.png" />
+                     </image>
+                  </ImageView>
+                  <Label fx:id="starTextLb" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefWidth="180.0" style="-fx-background-color: transparent; -fx-font-size: 16px;" styleClass="button-rounded" text="Star the article" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+               </children>
+            </AnchorPane>
+         </graphic></JFXButton>
+      <JFXToggleButton fx:id="readTg" layoutX="180.0" layoutY="274.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" text="Unread" AnchorPane.leftAnchor="260.0" AnchorPane.topAnchor="188.0" />
+      <JFXButton layoutX="374.0" layoutY="542.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" onAction="#handleVisitWebsite" prefHeight="50.0" prefWidth="400.0" styleClass="article-details-visit-article" text="See the entire article..." AnchorPane.bottomAnchor="24.0" AnchorPane.leftAnchor="200.0" AnchorPane.rightAnchor="200.0" />
+      <WebView fx:id="descriptionWv" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="90.0" AnchorPane.leftAnchor="16.0" AnchorPane.rightAnchor="16.0" AnchorPane.topAnchor="250.0" />
    </children>
 </AnchorPane>

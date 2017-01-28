@@ -72,6 +72,8 @@ public class MainViewController {
 	private JFXToggleButton expandableListTb;
 	@FXML
 	private JFXButton unsubscribeBt;
+	@FXML
+	private JFXButton markAsReadBt;
 
 	@FXML
 	ListView<Item> itemsLv;
@@ -129,14 +131,11 @@ public class MainViewController {
 		itemsLv.setOnMouseClicked(new EventHandler<Event>() {
 			@Override
 			public void handle(Event event) {
-				// TODO Auto-generated method stub
-				/*
-				 * Item selectedArticle =
-				 * itemsLv.getSelectionModel().getSelectedItem();
-				 * 
-				 * if (selectedArticle != null) {
-				 * mainViewScene.launchArticleDetailsView(selectedArticle); }
-				 */
+				Item selectedItem = itemsLv.getSelectionModel().getSelectedItem();
+
+				if (selectedItem != null) {
+					mainViewScene.launchArticleDetailsView(selectedItem);
+				}
 			}
 		});
 	}
@@ -150,7 +149,7 @@ public class MainViewController {
 			public void handle(ActionEvent e) {
 				if (expandableListTb.isSelected()) {
 					expandableListTb.setText("Expandable List");
-					itemsLv.setCellFactory(itemsLv -> new ArticleExtendedListViewCell(itemsLv.getWidth(), "Channel"));
+					itemsLv.setCellFactory(itemsLv -> new ArticleExtendedListViewCell(itemsLv));
 				} else {
 					expandableListTb.setText("Simple List");
 					itemsLv.setCellFactory(articlesLv -> new ArticleListViewCell(itemsLv));
@@ -263,6 +262,20 @@ public class MainViewController {
 		this.eventBus.post(new RefreshCategoriesEvent());
 	}
 
+	public void updateStateSingleItem(Item newItem) {
+		if (this.itemsList != null) {
+			for (int i = 0; i < this.itemsList.size(); i++) {
+				if (this.itemsList.get(i).getItemId().equals(newItem.getItemId())) {
+					this.itemsList.set(i, newItem);
+				}
+			}
+		}
+	}
+
+	public void updateStateChannelItem() {
+		this.mainViewScene.loadItemsByChannel(this.selectedChannel.getChannelId());
+	}
+
 	/*
 	 * HANDLE METHODS
 	 */
@@ -273,12 +286,16 @@ public class MainViewController {
 	private void handleStarredItemsPaneClicked() {
 		LIST_ITEM_TYPE = Globals.LIST_STARRED_ITEMS_TYPE;
 
+		this.selectedCategory = null;
+		this.selectedChannel = null;
+
 		// Remove no selected message.
 		this.noSelectedMessageLb.setVisible(false);
 
 		// Initialize right view.
 		this.categoryChannelTitleLb.setText(Globals.STARRED_ITEMS_TITLED_PANE);
 		this.unsubscribeBt.setVisible(false);
+		this.markAsReadBt.setVisible(false);
 
 		this.mainViewScene.loadStarredItems();
 	}
@@ -290,18 +307,32 @@ public class MainViewController {
 	private void handleAllItemsPaneClicked(MouseEvent event) {
 		LIST_ITEM_TYPE = Globals.LIST_ALL_ITEMS_TYPE;
 
+		this.selectedCategory = null;
+		this.selectedChannel = null;
+
 		// Remove no selected message.
 		this.noSelectedMessageLb.setVisible(false);
 
 		// Initialize view.
 		this.categoryChannelTitleLb.setText(Globals.ALL_ITEMS_TITLED_PANE);
 		this.unsubscribeBt.setVisible(false);
+		this.markAsReadBt.setVisible(false);
 
 		this.mainViewScene.loadAllItems();
 	}
 
 	public void handleCategoryItemsPaneClicked(Category selectedCategory) {
 		LIST_ITEM_TYPE = Globals.LIST_CATEGORY_ITEMS_TYPE;
+
+		this.selectedChannel = null;
+
+		// Do nothing if the channel is already selected.
+		if (this.selectedCategory != null) {
+			if (this.selectedCategory.equals(selectedCategory)) {
+				return;
+			}
+		}
+
 		this.selectedCategory = selectedCategory;
 
 		// Remove no selected message.
@@ -310,6 +341,9 @@ public class MainViewController {
 		// Initialize view.
 		this.categoryChannelTitleLb.setText(this.selectedCategory.getName());
 		this.unsubscribeBt.setVisible(false);
+		this.markAsReadBt.setVisible(false);
+
+		this.mainViewScene.loadItemsByCategory(this.selectedCategory.getCategoryId());
 	}
 
 	/**
@@ -319,6 +353,8 @@ public class MainViewController {
 	 */
 	public void handleChannelItemsPaneClicked(Channel selectedChannel) {
 		LIST_ITEM_TYPE = Globals.LIST_CHANNEL_ITEMS_TYPE;
+
+		this.selectedCategory = null;
 
 		// Do nothing if the channel is already selected.
 		if (this.selectedChannel != null) {
@@ -332,8 +368,9 @@ public class MainViewController {
 		this.noSelectedMessageLb.setVisible(false);
 
 		// Initialize view.
-		this.categoryChannelTitleLb.setText(selectedChannel.getName());
+		this.categoryChannelTitleLb.setText(this.selectedChannel.getName());
 		this.unsubscribeBt.setVisible(true);
+		this.markAsReadBt.setVisible(true);
 
 		this.mainViewScene.loadItemsByChannel(this.selectedChannel.getChannelId());
 	}
@@ -356,6 +393,7 @@ public class MainViewController {
 			this.mainViewScene.loadStarredItems();
 			break;
 		case Globals.LIST_CATEGORY_ITEMS_TYPE:
+			this.mainViewScene.loadItemsByCategory(this.selectedCategory.getCategoryId());
 			break;
 		case Globals.LIST_CHANNEL_ITEMS_TYPE:
 			this.mainViewScene.loadItemsByChannel(this.selectedChannel.getChannelId());
@@ -381,6 +419,24 @@ public class MainViewController {
 		Optional<ButtonType> result = alert.showAndWait();
 		if (result.get() == ButtonType.OK) {
 			this.mainViewScene.deleteFeed(this.selectedChannel.getChannelId());
+		}
+	}
+
+	@FXML
+	private void handleMarkAsRead() {
+		if (this.selectedChannel == null) {
+			UiUtils.showErrorDialog(MainApp.getStage(), "Error", "Error", "Any channel is selected");
+			return;
+		}
+		Alert alert = new Alert(AlertType.CONFIRMATION);
+		alert.setTitle("Mark all items as read: " + this.selectedChannel.getName());
+		alert.setHeaderText("Mark all items as read: " + this.selectedChannel.getName());
+		alert.setContentText(
+				"Do you really want to mark all items as read to the channel " + this.selectedChannel.getName());
+
+		Optional<ButtonType> result = alert.showAndWait();
+		if (result.get() == ButtonType.OK) {
+			this.mainViewScene.updateStateItemByChannel(this.selectedChannel.getChannelId());
 		}
 	}
 

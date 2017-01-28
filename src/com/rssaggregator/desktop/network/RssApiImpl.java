@@ -14,14 +14,19 @@ import com.rssaggregator.desktop.model.CategoriesWrapper;
 import com.rssaggregator.desktop.model.CategoryAddedWrapper;
 import com.rssaggregator.desktop.model.Credentials;
 import com.rssaggregator.desktop.model.FeedAddedWrapper;
+import com.rssaggregator.desktop.model.ItemReadStateWrapper;
+import com.rssaggregator.desktop.model.ItemStateWrapper;
 import com.rssaggregator.desktop.model.ItemsWrapper;
 import com.rssaggregator.desktop.network.event.CategoryAddedEvent;
 import com.rssaggregator.desktop.network.event.FeedAddedEvent;
 import com.rssaggregator.desktop.network.event.FeedDeletedEvent;
 import com.rssaggregator.desktop.network.event.FetchAllItemsEvent;
 import com.rssaggregator.desktop.network.event.FetchCategoriesEvent;
+import com.rssaggregator.desktop.network.event.FetchItemsByCategoryEvent;
 import com.rssaggregator.desktop.network.event.FetchItemsByChannelEvent;
 import com.rssaggregator.desktop.network.event.FetchStarredItemsEvent;
+import com.rssaggregator.desktop.network.event.ItemUpdatedEvent;
+import com.rssaggregator.desktop.network.event.ItemsByChannelUpdatedEvent;
 import com.rssaggregator.desktop.network.event.LogInEvent;
 import com.rssaggregator.desktop.network.event.SignUpEvent;
 import com.rssaggregator.desktop.utils.DateDeserializer;
@@ -447,6 +452,51 @@ public class RssApiImpl implements RssApi {
 	}
 
 	/**
+	 * Fetches items by category from the api.
+	 */
+	@Override
+	public void fetchItemsByCategory(Integer categoryId) {
+		if (this.restService == null) {
+			initializeNetworkAttributes();
+		}
+
+		this.restService.fetchItemsByCategory(categoryId).enqueue(new Callback<CategoriesWrapper>() {
+			@Override
+			public void onFailure(Call<CategoriesWrapper> call, Throwable throwable) {
+				if (throwable != null && throwable.getMessage() != null && throwable.getMessage().length() != 0) {
+					eventBus.post(new FetchItemsByCategoryEvent(throwable));
+				} else {
+					eventBus.post(new FetchItemsByCategoryEvent(new Throwable("Error")));
+				}
+			}
+
+			@Override
+			public void onResponse(Call<CategoriesWrapper> call, Response<CategoriesWrapper> response) {
+				if (response.isSuccessful()) {
+					System.out.println("[FETCH ITEMS BY CATEGORY] Success from the API");
+					CategoriesWrapper wrapper = response.body();
+					eventBus.post(new FetchItemsByCategoryEvent(wrapper));
+				} else {
+					try {
+						String json = response.errorBody().string();
+						ApiError error = new Gson().fromJson(json, ApiError.class);
+						System.out.println("[FETCH ITEMS BY CATEGORY] Error from the API : " + error.getError());
+						eventBus.post(new FetchItemsByCategoryEvent(new Throwable(error.getError())));
+					} catch (Exception exception) {
+						exception.printStackTrace();
+						if (exception != null && exception.getMessage() != null
+								&& exception.getMessage().length() != 0) {
+							eventBus.post(new FetchItemsByCategoryEvent(new Throwable(exception.getMessage())));
+						} else {
+							eventBus.post(new FetchItemsByCategoryEvent(new Throwable("Error")));
+						}
+					}
+				}
+			}
+		});
+	}
+
+	/**
 	 * Fetches items by channel from the api.
 	 */
 	@Override
@@ -484,6 +534,88 @@ public class RssApiImpl implements RssApi {
 							eventBus.post(new FetchItemsByChannelEvent(new Throwable(exception.getMessage())));
 						} else {
 							eventBus.post(new FetchItemsByChannelEvent(new Throwable("Error")));
+						}
+					}
+				}
+			}
+		});
+	}
+
+	@Override
+	public void updateItemState(Integer itemId, ItemStateWrapper wrapper) {
+		if (this.restService == null) {
+			initializeNetworkAttributes();
+		}
+
+		this.restService.updateItemState(itemId, wrapper).enqueue(new Callback<Void>() {
+			@Override
+			public void onFailure(Call<Void> call, Throwable throwable) {
+				if (throwable != null && throwable.getMessage() != null && throwable.getMessage().length() != 0) {
+					eventBus.post(new ItemUpdatedEvent(throwable));
+				} else {
+					eventBus.post(new ItemUpdatedEvent(new Throwable("Error")));
+				}
+			}
+
+			@Override
+			public void onResponse(Call<Void> call, Response<Void> response) {
+				if (response.isSuccessful()) {
+					System.out.println("[UPDATE ITEM] Success from the API");
+					eventBus.post(new ItemUpdatedEvent());
+				} else {
+					try {
+						String json = response.errorBody().string();
+						ApiError error = new Gson().fromJson(json, ApiError.class);
+						System.out.println("[UPDATE ITEM] Error from the API : " + error.getError());
+						eventBus.post(new ItemUpdatedEvent(new Throwable(error.getError())));
+					} catch (Exception exception) {
+						exception.printStackTrace();
+						if (exception != null && exception.getMessage() != null
+								&& exception.getMessage().length() != 0) {
+							eventBus.post(new ItemUpdatedEvent(new Throwable(exception.getMessage())));
+						} else {
+							eventBus.post(new ItemUpdatedEvent(new Throwable("Error")));
+						}
+					}
+				}
+			}
+		});
+	}
+
+	@Override
+	public void updateItemStateByChannel(Integer channelId, ItemReadStateWrapper wrapper) {
+		if (this.restService == null) {
+			initializeNetworkAttributes();
+		}
+
+		this.restService.updateItemStateByChannel(channelId, wrapper).enqueue(new Callback<Void>() {
+			@Override
+			public void onFailure(Call<Void> call, Throwable throwable) {
+				if (throwable != null && throwable.getMessage() != null && throwable.getMessage().length() != 0) {
+					eventBus.post(new ItemsByChannelUpdatedEvent(throwable));
+				} else {
+					eventBus.post(new ItemsByChannelUpdatedEvent(new Throwable("Error")));
+				}
+			}
+
+			@Override
+			public void onResponse(Call<Void> call, Response<Void> response) {
+				if (response.isSuccessful()) {
+					System.out.println("[UPDATE ITEM BY CHANNEL] Success from the API");
+					eventBus.post(new ItemsByChannelUpdatedEvent());
+				} else {
+					try {
+						String json = response.errorBody().string();
+						ApiError error = new Gson().fromJson(json, ApiError.class);
+						System.out.println("[UPDATE ITEM BY CHANNEL] Error from the API : " + error.getError());
+						eventBus.post(new ItemsByChannelUpdatedEvent(new Throwable(error.getError())));
+					} catch (Exception exception) {
+						exception.printStackTrace();
+						if (exception != null && exception.getMessage() != null
+								&& exception.getMessage().length() != 0) {
+							eventBus.post(new ItemsByChannelUpdatedEvent(new Throwable(exception.getMessage())));
+						} else {
+							eventBus.post(new ItemsByChannelUpdatedEvent(new Throwable("Error")));
 						}
 					}
 				}

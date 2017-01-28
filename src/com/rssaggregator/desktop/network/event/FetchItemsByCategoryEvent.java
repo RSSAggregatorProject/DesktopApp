@@ -1,17 +1,13 @@
 package com.rssaggregator.desktop.network.event;
 
-import com.rssaggregator.desktop.model.ItemsWrapper;
+import com.rssaggregator.desktop.model.CategoriesWrapper;
 
-public class FetchItemsByCategoryEvent {
-
-	public class FetchItemsByChannelEvent extends BaseEvent<ItemsWrapper> {
-		public FetchItemsByChannelEvent(ItemsWrapper wrapper) {
-			super(wrapper);
-		}
-
-		public FetchItemsByChannelEvent(Throwable throwable) {
-			super(throwable);
-		}
+public class FetchItemsByCategoryEvent extends BaseEvent<CategoriesWrapper> {
+	public FetchItemsByCategoryEvent(CategoriesWrapper wrapper) {
+		super(wrapper);
 	}
-	
+
+	public FetchItemsByCategoryEvent(Throwable throwable) {
+		super(throwable);
+	}
 }

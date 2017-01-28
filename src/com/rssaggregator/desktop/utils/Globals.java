@@ -74,6 +74,7 @@ public class Globals {
 	public static final String ERROR_FETCH_CATEGORIES = "Error when fetching categories";
 	public static final String ERROR_FETCH_ITEMS = "Error when fetching items";
 	public static final String ERROR_DELETE_FEED = "Error when unsubscribing to the channel";
+	public static final String ERROR_UPDATE_ITEM = "Error when updating item";
 	public static final String ERROR_ADD_CATEGORY = "Error when adding category";
 	public static final String ERROR_INVALID_INPUTS = "Invalid Inputs";
 	public static final String ERROR_CATEGORY_FIELD_INVALID = "The Category Name field is invalid!";

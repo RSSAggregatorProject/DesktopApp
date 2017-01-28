@@ -106,8 +106,9 @@
                               </ImageView>
                            </graphic>
                         </JFXButton>
-                        <JFXButton alignment="CENTER" contentDisplay="CENTER" layoutX="757.0" layoutY="27.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="60.0" prefWidth="80.0" styleClass="button-rounded" text="Mark All As Read" textAlignment="CENTER" wrapText="true" AnchorPane.bottomAnchor="25.0" AnchorPane.rightAnchor="100.0" AnchorPane.topAnchor="25.0" />
-                        <JFXToggleButton fx:id="expandableListTb" alignment="CENTER_LEFT" layoutX="556.0" layoutY="27.0" text="Simple List" AnchorPane.bottomAnchor="25.0" AnchorPane.leftAnchor="500.0" AnchorPane.topAnchor="25.0" />
+                        <JFXButton fx:id="markAsReadBt" alignment="CENTER" contentDisplay="CENTER" layoutX="757.0" layoutY="27.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onAction="#handleMarkAsRead" prefHeight="60.0" prefWidth="80.0" styleClass="button-rounded" text="Mark All As Read" textAlignment="CENTER" wrapText="true" AnchorPane.bottomAnchor="25.0" AnchorPane.rightAnchor="100.0" AnchorPane.topAnchor="25.0" />
+                        <JFXToggleButton fx:id="expandableListTb" alignment="CENTER_LEFT" layoutX="556.0" layoutY="27.0" text="Simple List" AnchorPane.bottomAnchor="25.0" AnchorPane.leftAnchor="570.0" AnchorPane.topAnchor="25.0" />
+                        <JFXToggleButton fx:id="showAllTb" alignment="CENTER_LEFT" layoutX="414.0" layoutY="25.0" text="Show All" AnchorPane.bottomAnchor="25.0" AnchorPane.rightAnchor="350.0" AnchorPane.topAnchor="25.0" />
                      </children>
                   </AnchorPane>
                   <ListView fx:id="itemsLv" layoutY="327.0" minWidth="-Infinity" AnchorPane.bottomAnchor="8.0" AnchorPane.leftAnchor="8.0" AnchorPane.rightAnchor="8.0" AnchorPane.topAnchor="110.0" />

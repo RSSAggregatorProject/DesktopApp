@@ -1,6 +1,8 @@
 package com.rssaggregator.desktop.network;
 
 import com.google.common.eventbus.EventBus;
+import com.rssaggregator.desktop.model.ItemReadStateWrapper;
+import com.rssaggregator.desktop.model.ItemStateWrapper;
 
 public interface RssApi {
 
@@ -38,5 +40,16 @@ public interface RssApi {
 
 	void fetchStarredItems();
 
+	void fetchItemsByCategory(Integer categoryId);
+
 	void fetchItemsByChannel(Integer channelId);
+
+	//
+	//
+	// Items
+	//
+	//
+	void updateItemState(Integer itemId, ItemStateWrapper wrapper);
+
+	void updateItemStateByChannel(Integer channelId, ItemReadStateWrapper wrapper);
 }

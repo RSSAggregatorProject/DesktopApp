@@ -17,6 +17,7 @@ import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.paint.Color;
 
 public class ArticleListViewCell extends ListCell<Item> {
 
@@ -38,11 +39,8 @@ public class ArticleListViewCell extends ListCell<Item> {
 	// Data
 	private Item item;
 
-	private boolean isRead;
-
 	public ArticleListViewCell(ListView<Item> itemsLv) {
 		this.itemsLv = itemsLv;
-		this.isRead = false;
 	}
 
 	@Override
@@ -91,6 +89,22 @@ public class ArticleListViewCell extends ListCell<Item> {
 				});
 			}
 
+			if (this.item.isRead()) {
+				this.titleLb.setTextFill(Color.rgb(117, 117, 117));
+			} else {
+				this.titleLb.setTextFill(Color.rgb(33, 33, 33));
+			}
+
+			ImageView image;
+			if (this.item.isStarred()) {
+				image = new ImageView("file:resources/images/ic_star.png");
+			} else {
+				image = new ImageView("file:resources/images/ic_star_border.png");
+			}
+			image.setFitWidth(30);
+			image.setFitHeight(30);
+			this.starBt.setGraphic(image);
+
 			setText(null);
 			setGraphic(this.rootView);
 		}
@@ -98,17 +112,6 @@ public class ArticleListViewCell extends ListCell<Item> {
 
 	@FXML
 	private void handleStarredArticle() {
-		ImageView image;
-		if (!isRead) {
-			image = new ImageView("file:resources/images/ic_star.png");
-			this.isRead = true;
-		} else {
-			image = new ImageView("file:resources/images/ic_star_border.png");
-			this.isRead = false;
-		}
-		image.setFitWidth(30);
-		image.setFitHeight(30);
-		this.starBt.setGraphic(image);
 	}
 
 }

@@ -1,11 +1,12 @@
 package com.rssaggregator.desktop.view;
 
 import java.io.IOException;
+import java.util.Date;
 
 import com.jfoenix.controls.JFXButton;
-import com.jfoenix.controls.JFXToggleButton;
+import com.rssaggregator.desktop.MainApp;
 import com.rssaggregator.desktop.model.Item;
-import com.rssaggregator.desktop.model.TmpArticle;
+import com.rssaggregator.desktop.utils.FormatterTime;
 import com.rssaggregator.desktop.utils.Globals;
 
 import javafx.fxml.FXML;
@@ -13,13 +14,14 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
+import javafx.scene.control.ListView;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.paint.Color;
+import javafx.scene.web.WebEngine;
+import javafx.scene.web.WebView;
 
 public class ArticleExtendedListViewCell extends ListCell<Item> {
-
-	private String channelName;
-	private boolean isRead;
 
 	@FXML
 	private AnchorPane rootView;
@@ -32,21 +34,16 @@ public class ArticleExtendedListViewCell extends ListCell<Item> {
 	@FXML
 	private JFXButton starBt;
 	@FXML
-	private JFXToggleButton readTb;
-	@FXML
-	private ImageView pictureIv;
-	@FXML
 	private Label descriptionLb;
 
 	private FXMLLoader loader;
-	private double parentWidth;
-	
+	private ListView<Item> itemsLv;
+
+	// Data
 	private Item item;
 
-	public ArticleExtendedListViewCell(double parentWidth, String channelName) {
-		this.parentWidth = parentWidth;
-		this.channelName = channelName;
-		this.isRead = false;
+	public ArticleExtendedListViewCell(ListView<Item> itemsLv) {
+		this.itemsLv = itemsLv;
 	}
 
 	@Override
@@ -68,12 +65,51 @@ public class ArticleExtendedListViewCell extends ListCell<Item> {
 					e.printStackTrace();
 				}
 			}
-			this.rootView.setPrefWidth(this.parentWidth);
-			this.titleLb.setText(this.item.getTitle());
-			this.pubDateLb.setText("Il y a 30 mins.");
-			this.descriptionLb.setText("Description de la night");
+			String title = this.item.getTitle();
+			Date pubDate = this.item.getPubDate();
+			String link = this.item.getLink();
+			String channelName = this.item.getChannelName();
+			String description = this.item.getDescription();
 
-			this.readTb.setSelected(this.isRead);
+			if (title != null) {
+				this.titleLb.setText(title);
+			}
+
+			if (pubDate != null) {
+				this.pubDateLb.setText(FormatterTime.formattedAsTimeAgo(pubDate));
+			}
+
+			if (channelName != null) {
+				this.linkHl.setText(channelName);
+			}
+
+			if (link != null) {
+				this.linkHl.setOnAction(t -> {
+					MainApp.getMainApp().getHostServices().showDocument(link);
+				});
+			}
+
+			if (description != null) {
+				this.descriptionLb.setText(description);
+			}
+
+			this.rootView.prefWidthProperty().bind(this.itemsLv.widthProperty());
+
+			if (this.item.isRead()) {
+				this.titleLb.setTextFill(Color.rgb(117, 117, 117));
+			} else {
+				this.titleLb.setTextFill(Color.rgb(33, 33, 33));
+			}
+
+			ImageView image;
+			if (this.item.isStarred()) {
+				image = new ImageView("file:resources/images/ic_star.png");
+			} else {
+				image = new ImageView("file:resources/images/ic_star_border.png");
+			}
+			image.setFitWidth(30);
+			image.setFitHeight(30);
+			this.starBt.setGraphic(image);
 
 			setText(null);
 			setGraphic(rootView);
@@ -86,17 +122,6 @@ public class ArticleExtendedListViewCell extends ListCell<Item> {
 
 	@FXML
 	private void handleStarredArticle() {
-		ImageView image;
-		if (!isRead) {
-			image = new ImageView("file:resources/images/ic_star.png");
-			this.isRead = true;
-		} else {
-			image = new ImageView("file:resources/images/ic_star_border.png");
-			this.isRead = false;
-		}
-		image.setFitWidth(30);
-		image.setFitHeight(30);
-		this.starBt.setGraphic(image);
 	}
 
 }
