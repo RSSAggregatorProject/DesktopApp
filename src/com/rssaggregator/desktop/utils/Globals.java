@@ -10,7 +10,7 @@ public class Globals {
 	/**
 	 * API server address.
 	 */
-	public static final String API_SERVER_URL = "http://dreamteamrssfeader.ddns.net:8080/";
+	public static final String API_SERVER_URL = "http://dreamteamrssfeader.ddns.net:8080/rssserver/api/";
 
 	/**
 	 * Windows Names.

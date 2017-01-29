@@ -23,32 +23,32 @@ public class FormatterTime {
 	 * Change the simple date format to a "Time Ago" style. The style change
 	 * according to the current date. Example: < 1 hour => "x minutes ago"
 	 *
-	 * @param dateIssue
-	 *            {@link Date} of the issue formatted.
+	 * @param dateItem
+	 *            {@link Date} of the item formatted.
 	 *
 	 * @return The new formatted String date.
 	 */
-	public static String formattedAsTimeAgo(Date dateIssue) {
-		if (dateIssue == null) {
+	public static String formattedAsTimeAgo(Date dateItem) {
+		if (dateItem == null) {
 			return "Unknown date";
 		}
 		Date currentDate = new Date();
-		return selectCaseTimeAgo(currentDate, dateIssue);
+		return selectCaseTimeAgo(currentDate, dateItem);
 	}
 
 	/**
 	 * Return the new date format according to the current date and the date of
-	 * the issue.
+	 * the item.
 	 *
 	 * @param currentDate
 	 *            {@link Date} and time of the current date.
-	 * @param dateIssue
-	 *            {@link Date} of the issue.
+	 * @param dateItem
+	 *            {@link Date} of the item.
 	 *
 	 * @return The new {@link String} date format
 	 */
-	private static String selectCaseTimeAgo(Date currentDate, Date dateIssue) {
-		long diffSecondes = (currentDate.getTime() - dateIssue.getTime()) / 1000;
+	private static String selectCaseTimeAgo(Date currentDate, Date dateItem) {
+		long diffSecondes = (currentDate.getTime() - dateItem.getTime()) / 1000;
 
 		// Impossible case but for future case
 		if (diffSecondes < 0) {
@@ -64,26 +64,26 @@ public class FormatterTime {
 			return formatMinutesAgo(diffSecondes);
 		}
 
-		if (isSameDay(dateIssue, currentDate)) {
+		if (isSameDay(dateItem, currentDate)) {
 			return formatAsToday(diffSecondes);
 		}
 
-		if (isYesterday(dateIssue, currentDate)) {
-			return formatAsYesterday(dateIssue);
+		if (isYesterday(dateItem, currentDate)) {
+			return formatAsYesterday(dateItem);
 		}
 
 		if (isLastWeek(diffSecondes)) {
-			return formatAsLastWeek(dateIssue);
+			return formatAsLastWeek(dateItem);
 		}
 
 		if (isLastMonth(diffSecondes)) {
-			return formatAsLastMonth(dateIssue);
+			return formatAsLastMonth(dateItem);
 		}
 
 		if (isLastYear(diffSecondes)) {
-			return formatAsLastYear(dateIssue, currentDate);
+			return formatAsLastYear(dateItem, currentDate);
 		}
-		return formatAsOther(dateIssue);
+		return formatAsOther(dateItem);
 	}
 
 	/**
@@ -91,7 +91,7 @@ public class FormatterTime {
 	 *
 	 * @param diffSecondes
 	 *            Number of secondes between the current date and the date of
-	 *            the issue.
+	 *            the item.
 	 *
 	 * @return The new formatted {@link String} date.
 	 */
@@ -106,7 +106,7 @@ public class FormatterTime {
 	 *
 	 * @param diffSecondes
 	 *            Number of secondes between the current date and the date of
-	 *            the issue.
+	 *            the item.
 	 *
 	 * @return The new formatted {@link String} date.
 	 */
@@ -120,85 +120,85 @@ public class FormatterTime {
 	/**
 	 * Return the new formatted date like "Yesterday at h:mm AM/PM".
 	 *
-	 * @param dateIssue
-	 *            {@link Date} of the issue.
+	 * @param dateItem
+	 *            {@link Date} of the item.
 	 *
 	 * @return The new formatted {@link String} date.
 	 */
-	private static String formatAsYesterday(Date dateIssue) {
-		SimpleDateFormat format = new SimpleDateFormat("h:mm a", Locale.getDefault());
+	private static String formatAsYesterday(Date dateItem) {
+		SimpleDateFormat format = new SimpleDateFormat("h:mm a", Locale.ENGLISH);
 
-		return "Yesterday at " + format.format(dateIssue);
+		return "Yesterday at " + format.format(dateItem);
 	}
 
 	/**
 	 * Return the new formatted date like "WeekDay at h:mm AM/PM".
 	 *
-	 * @param dateIssue
-	 *            {@link Date} of the issue.
+	 * @param dateItem
+	 *            {@link Date} of the item.
 	 *
 	 * @return The new formatted {@link String} date.
 	 */
-	private static String formatAsLastWeek(Date dateIssue) {
-		SimpleDateFormat formatDate = new SimpleDateFormat("EEE", Locale.getDefault());
-		SimpleDateFormat formatTime = new SimpleDateFormat("h:mm a", Locale.getDefault());
+	private static String formatAsLastWeek(Date dateItem) {
+		SimpleDateFormat formatDate = new SimpleDateFormat("EEEE", Locale.ENGLISH);
+		SimpleDateFormat formatTime = new SimpleDateFormat("h:mm a", Locale.ENGLISH);
 
-		return formatDate.format(dateIssue) + " at " + formatTime.format(dateIssue);
+		return formatDate.format(dateItem) + " at " + formatTime.format(dateItem);
 	}
 
 	/**
 	 * Return the new formatted date like "Month Day at h:mm AM/PM".
 	 *
-	 * @param dateIssue
-	 *            {@link Date} of the issue.
+	 * @param dateItem
+	 *            {@link Date} of the item.
 	 *
 	 * @return The new formatted {@link String} date.
 	 */
-	private static String formatAsLastMonth(Date dateIssue) {
-		SimpleDateFormat formatMonth = new SimpleDateFormat("MMMM dd", Locale.getDefault());
-		SimpleDateFormat formatTime = new SimpleDateFormat("h:mm a", Locale.getDefault());
+	private static String formatAsLastMonth(Date dateItem) {
+		SimpleDateFormat formatMonth = new SimpleDateFormat("MMMM d", Locale.ENGLISH);
+		SimpleDateFormat formatTime = new SimpleDateFormat("h:mm a", Locale.ENGLISH);
 
-		return formatMonth.format(dateIssue) + " at " + formatTime.format(dateIssue);
+		return formatMonth.format(dateItem) + " at " + formatTime.format(dateItem);
 	}
 
 	/**
 	 * Return the new formatted date like "Month Day".
 	 *
-	 * @param dateIssue
-	 *            {@link Date} of the issue.
+	 * @param dateItem
+	 *            {@link Date} of the item.
 	 *
 	 * @return The new formatted {@link String} date.
 	 */
-	private static String formatAsLastYear(Date dateIssue, Date currentDate) {
-		Calendar calIssue = Calendar.getInstance();
-		calIssue.setTime(dateIssue);
+	private static String formatAsLastYear(Date dateItem, Date currentDate) {
+		Calendar calitem = Calendar.getInstance();
+		calitem.setTime(dateItem);
 		Calendar calCurrent = Calendar.getInstance();
 		calCurrent.setTime(currentDate);
 		SimpleDateFormat format;
 
-		if (calIssue.get(Calendar.YEAR) == calCurrent.get(Calendar.YEAR)) {
-			format = new SimpleDateFormat("MMMM dd", Locale.getDefault());
+		if (calitem.get(Calendar.YEAR) == calCurrent.get(Calendar.YEAR)) {
+			format = new SimpleDateFormat("MMMM d", Locale.ENGLISH);
 		} else {
-			format = new SimpleDateFormat("MMMM dd", Locale.getDefault());
+			format = new SimpleDateFormat("MMMM d", Locale.ENGLISH);
 		}
-		return format.format(dateIssue);
+		return format.format(dateItem);
 	}
 
 	/**
 	 * Return the new formatted date like "Month Day, Year"
 	 *
-	 * @param dateIssue
-	 *            {@link Date} of the issue.
+	 * @param dateItem
+	 *            {@link Date} of the item.
 	 *
 	 * @return The new formatted {@link String} date.
 	 */
-	private static String formatAsOther(Date dateIssue) {
-		SimpleDateFormat format = new SimpleDateFormat("MMMM dd, yyyy", Locale.getDefault());
-		return format.format(dateIssue);
+	private static String formatAsOther(Date dateItem) {
+		SimpleDateFormat format = new SimpleDateFormat("MMMM d, yyyy", Locale.ENGLISH);
+		return format.format(dateItem);
 	}
 
 	/**
-	 * Compare the current date and the date of the issue and check if these two
+	 * Compare the current date and the date of the item and check if these two
 	 * dates have the same day.
 	 *
 	 * @param dateToCompare
@@ -209,7 +209,7 @@ public class FormatterTime {
 	 * @return True if it's the same day.
 	 */
 	private static boolean isSameDay(Date dateToCompare, Date currentDate) {
-		SimpleDateFormat format = new SimpleDateFormat("yyyy/MM/dd", Locale.getDefault());
+		SimpleDateFormat format = new SimpleDateFormat("yyyy/MM/dd", Locale.ENGLISH);
 		String dateToCompareString = format.format(dateToCompare);
 		String currentDateString = format.format(currentDate);
 
@@ -217,31 +217,31 @@ public class FormatterTime {
 	}
 
 	/**
-	 * Compare the current date and the date of the issue and check if there is
+	 * Compare the current date and the date of the item and check if there is
 	 * one day between the two dates.
 	 *
-	 * @param dateIssue
-	 *            {@link Date} of the issue.
+	 * @param dateItem
+	 *            {@link Date} of the item.
 	 * @param currentDate
 	 *            Current {@link Date}.
 	 *
 	 * @return True if it's there is one day between the two dates.
 	 */
-	private static boolean isYesterday(Date dateIssue, Date currentDate) {
+	private static boolean isYesterday(Date dateItem, Date currentDate) {
 		Calendar tmpCal = Calendar.getInstance();
-		tmpCal.setTime(dateIssue);
+		tmpCal.setTime(dateItem);
 		tmpCal.add(Calendar.DAY_OF_MONTH, 1);
-		dateIssue = tmpCal.getTime();
-		return isSameDay(dateIssue, currentDate);
+		dateItem = tmpCal.getTime();
+		return isSameDay(dateItem, currentDate);
 	}
 
 	/**
 	 * Check if the difference (in secondes) between the current date and the
-	 * date of the issue is less than a week (604800 secondes).
+	 * date of the item is less than a week (604800 secondes).
 	 *
 	 * @param diffSecondes
 	 *            Number of secondes between the current date and the date of
-	 *            the issue.
+	 *            the item.
 	 *
 	 * @return True if it's less than a week.
 	 */
@@ -251,11 +251,11 @@ public class FormatterTime {
 
 	/**
 	 * Check if the difference (in secondes) between the current date and the
-	 * date of the issue is less than a month (2678400 secondes).
+	 * date of the item is less than a month (2678400 secondes).
 	 *
 	 * @param diffSecondes
 	 *            Number of secondes between the current date and the date of
-	 *            the issue.
+	 *            the item.
 	 *
 	 * @return True if it's less than a month.
 	 */
@@ -265,11 +265,11 @@ public class FormatterTime {
 
 	/**
 	 * Check if the difference (in secondes) between the current date and the
-	 * date of the issue is less than a year (31557600 secondes).
+	 * date of the item is less than a year (31557600 secondes).
 	 *
 	 * @param diffSecondes
 	 *            Number of secondes between the current date and the date of
-	 *            the issue.
+	 *            the item.
 	 *
 	 * @return True if it's less than a year.
 	 */

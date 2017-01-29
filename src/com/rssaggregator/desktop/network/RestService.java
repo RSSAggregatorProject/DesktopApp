@@ -26,10 +26,10 @@ public interface RestService {
 	// AUTH AND USER METHODS
 	//
 	//
-	@POST("rssserver/auth/")
+	@POST("auth/")
 	Call<AccessToken> logIn(@Body Credentials credentials);
 
-	@POST("rssserver/users/")
+	@POST("users/")
 	Call<Void> signUp(@Body Credentials credentials);
 
 	//
@@ -37,10 +37,10 @@ public interface RestService {
 	// CATEGORIES METHODS
 	//
 	//
-	@GET("rssserver/categories/")
+	@GET("categories/")
 	Call<CategoriesWrapper> fetchCategories();
 
-	@POST("rssserver/categories/")
+	@POST("categories/")
 	Call<CategoryAddedWrapper> addCategory(@Body AddCategoryWrapper wrapper);
 
 	//
@@ -48,22 +48,22 @@ public interface RestService {
 	// CHANNELS METHODS
 	//
 	//
-	@POST("rssserver/feeds/")
+	@POST("feeds/")
 	Call<FeedAddedWrapper> addFeed(@Body AddFeedWrapper wrapper);
 
-	@GET("rssserver/feeds/")
+	@GET("feeds/")
 	Call<ItemsWrapper> fetchAllItems();
 
-	@GET("rssserver/feeds/starred/")
+	@GET("feeds/starred/")
 	Call<ItemsWrapper> fetchStarredItems();
 
-	@GET("rssserver/categories/{id_category}/")
+	@GET("categories/{id_category}/")
 	Call<CategoriesWrapper> fetchItemsByCategory(@Path("id_category") Integer categoryId);
 
-	@GET("rssserver/feeds/{id_channel}/")
+	@GET("feeds/{id_channel}/")
 	Call<ItemsWrapper> fetchItemsByChannel(@Path("id_channel") Integer channelId);
 
-	@DELETE("rssserver/feeds/{id_channel}")
+	@DELETE("feeds/{id_channel}")
 	Call<Void> deleteFeed(@Path("id_channel") Integer channelId);
 
 	//
@@ -71,9 +71,9 @@ public interface RestService {
 	// ITEMS METHODS.
 	//
 	//
-	@PUT("rssserver/items/{id_item}")
+	@PUT("items/{id_item}")
 	Call<Void> updateItemState(@Path("id_item") Integer itemId, @Body ItemStateWrapper wrapper);
 
-	@PUT("rssserver/feeds/{id_channel}/items/")
+	@PUT("feeds/{id_channel}/items/")
 	Call<Void> updateItemStateByChannel(@Path("id_channel") Integer channelId, @Body ItemReadStateWrapper wrapper);
 }

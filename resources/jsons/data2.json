@@ -4,12 +4,124 @@
     {
       "id_cat": 12,
       "name": "Automobile",
+      "unread": 4,
       "feeds": [
         {
           "id_feed": 8,
           "name": "Caradisiac",
           "favicon_uri": "favicon_not_implemented",
+          "unread": 3,
           "items": [
+            {
+              "id_item": 502,
+              "title": "Autoroutes?: nouveau plan d'investissement signé, hausse des péages assurée",
+              "description": "<img src=\"http://images.caradisiac.com/logos/4/9/7/7/194977/S4-autoroutes-nouveau-plan-d-investissement-signe-hausse-des-peages-assuree-112308.jpg\"/>\n\t\t\t\t\tAprès un premier plan de 3,2 milliards d'euros conclu en 2015, en voici déjà un nouveau, d'un montant de 800 millions d'euros. Il sera financé par les collectivités locales et les usagers. Des augmentations des prix des péages sont donc déjà annoncées?!",
+              "pubDate": "2017-01-28 09:01:30",
+              "link": "http://www.caradisiac.com/autoroutes-nouveau-plan-d-investissement-signe-hausse-des-peages-assuree-112308.htm#xtor=RSS-40",
+              "id_feed": 8,
+              "read": false,
+              "starred": false
+            },
+            {
+              "id_item": 353,
+              "title": "Rétromobile 2017 : Mercedes, entre passé et présent",
+              "description": "<img src=\"http://images.caradisiac.com/logos/4/9/8/9/194989/S4-retromobile-2017-mercedes-entre-passe-et-present-112318.jpg\"/>\n\t\t\t\t\tLes salons de la voiture ancienne sont souvent composés de stands de clubs privés et d'associations et collectionneurs en tout genre. Les constructeurs se mêlent toutefois régulièrement à l'animation avec des expositions centrées autour de la marque. Ce sera notamment le cas à Rétromobile avec Mercedes qui nous présentera plusieurs modèles anciens et actuels.",
+              "pubDate": "2017-01-27 17:00:00",
+              "link": "http://www.caradisiac.com/retromobile-2017-mercedes-entre-passe-et-present-112318.htm#xtor=RSS-40",
+              "id_feed": 8,
+              "read": true,
+              "starred": false
+            },
+            {
+              "id_item": 354,
+              "title": "Surprise : voici la toute nouvelle McLaren 720S",
+              "description": "<img src=\"http://images.caradisiac.com/logos/4/9/9/3/194993/S4-surprise-voici-la-toute-nouvelle-mclaren-720s-112322.jpg\"/>\n\t\t\t\t\tTrop \"gentille\", la gamme \"Super Series\" de McLaren bombe le torse avec la venue d'un tout nouveau modèle qui a fuité alors qu'il ne devait être présenté qu'au salon de Genève, dans quelques semaines. Mesdames et messieurs, voici la 720S.",
+              "pubDate": "2017-01-27 16:26:11",
+              "link": "http://www.caradisiac.com/surprise-voici-la-toute-nouvelle-mclaren-720s-112322.htm#xtor=RSS-40",
+              "id_feed": 8,
+              "read": false,
+              "starred": false
+            },
+            {
+              "id_item": 355,
+              "title": "Bruxelles indique aux autorités européennes comment détecter les logiciels truqueurs",
+              "description": "<img src=\"http://images.caradisiac.com/logos/4/9/8/4/194984/S4-bruxelles-indique-aux-autorites-europeennes-comment-detecter-les-logiciels-truqueurs-112314.jpg\"/>\n\t\t\t\t\tBruxelles et sa Commission européenne avaient été vivement critiquées lors de l'affaire Volkswagen pour la non prise de décision. Aujourd'hui, Bruxelles publie un rapport dans lequel il est indiqué aux différentes autorités les méthodes pour repérer des logiciels truqueurs lors des tests d'homologation.",
+              "pubDate": "2017-01-27 16:00:00",
+              "link": "http://www.caradisiac.com/bruxelles-indique-aux-autorites-europeennes-comment-detecter-les-logiciels-truqueurs-112314.htm#xtor=RSS-40",
+              "id_feed": 8,
+              "read": false,
+              "starred": false
+            },
+            {
+              "id_item": 356,
+              "title": "Vignette Crit'Air?: oui mais sur quels critères??",
+              "description": "<img src=\"http://images.caradisiac.com/logos/4/9/9/0/194990/S4-vignette-crit-air-oui-mais-sur-quels-criteres-112319.jpg\"/>\n\t\t\t\t\tC’est la pastille que l’on nous fait avaler pour nous absoudre du péché de polluer. Une bonne conscience offerte à 4,18 euros, ce qui n’est finalement pas cher payé pour être en paix avec soi-même. Et tant pis pour celles et ceux qui ne peuvent y accéder à cause d’un véhicule de plus de vingt ans qui rend tout de même bien des services à un prix raisonnable. Un rapport coût prestation essentiel lorsque le budget est très serré. Et si ces voitures stigmatisées comme sales étaient finalement aussi propres que les automobiles récentes classées comme vertueuses?? Car les critères de la vignette Crit’air méritent que l’on s’y attarde.",
+              "pubDate": "2017-01-27 15:20:38",
+              "link": "http://www.caradisiac.com/vignette-crit-air-oui-mais-sur-quels-criteres-112319.htm#xtor=RSS-40",
+              "id_feed": 8,
+              "read": true,
+              "starred": false
+            },
+            {
+              "id_item": 357,
+              "title": "Nissan : le retour du coupé \"Z\" en concept à Tokyo",
+              "description": "<img src=\"http://images.caradisiac.com/logos/4/9/7/8/194978/S4-nissan-le-retour-du-coupe-z-en-concept-a-tokyo-112309.jpg\"/>\n\t\t\t\t\tA l'heure où un quatre cylindres de plus de 1500 centimètres cubes est presque considéré comme un gros moteur, imaginez un peu ce qu'il advient de modèles comme la Nissan 370Z, qui se paye le pire des malus depuis déjà de nombreux mois. Heureusement, la relève arrive, par un concept, dans un premier temps.",
+              "pubDate": "2017-01-27 15:00:00",
+              "link": "http://www.caradisiac.com/nissan-le-retour-du-coupe-z-en-concept-a-tokyo-112309.htm#xtor=RSS-40",
+              "id_feed": 8,
+              "read": true,
+              "starred": false
+            },
+            {
+              "id_item": 358,
+              "title": "Fiabilité du Ford Kuga 2?: la maxi-fiche occasion de Caradisiac",
+              "description": "<img src=\"http://images.caradisiac.com/logos/4/9/5/7/194957/S4-fiabilite-du-ford-kuga-2-la-maxi-fiche-occasion-de-caradisiac-112283.jpg\"/>\n\t\t\t\t\tEn 2008, Ford lance en France le Kuga, un SUV compact, concurrent des Toyota Rav-4, Nissan Qashqai, ou Volkswagen Tiguan.  Cinq ans plus tard, c'est déjà une deuxième génération qui fait son apparition, et l'objet de cette \"radioscopie\".",
+              "pubDate": "2017-01-27 14:55:57",
+              "link": "http://www.caradisiac.com/fiabilite-du-ford-kuga-2-la-maxi-fiche-occasion-de-caradisiac-112283.htm#xtor=RSS-40",
+              "id_feed": 8,
+              "read": true,
+              "starred": false
+            },
+            {
+              "id_item": 359,
+              "title": "Scandale Volkswagen?: Winterkorn soupçonné de fraude",
+              "description": "<img src=\"http://images.caradisiac.com/logos/4/9/8/7/194987/S4-scandale-volkswagen-winterkorn-soupconne-de-fraude-112316.jpg\"/>\n\t\t\t\t\tLa fumée des moteurs diesels truqués ne cesse de monter dans une affaire Volkswagen qui a éclaté en septembre 2015. Une fumée qui s’est élevée jusqu’aux hautes sphères, enveloppant à présent l’ex-patron Martin Winterkorn. Il avait récemment juré de son innocence devant une commission parlementaire. La justice semble penser exactement le contraire.",
+              "pubDate": "2017-01-27 14:32:42",
+              "link": "http://www.caradisiac.com/scandale-volkswagen-winterkorn-soupconne-de-fraude-112316.htm#xtor=RSS-40",
+              "id_feed": 8,
+              "read": true,
+              "starred": false
+            },
+            {
+              "id_item": 360,
+              "title": "Découvrez le palmarès des voitures volées en 2016",
+              "description": "<img src=\"http://images.caradisiac.com/logos/4/9/8/2/194982/S4-decouvrez-le-palmares-des-voitures-volees-en-2016-112313.jpg\"/>\n\t\t\t\t\tLe classement des voitures les plus volées l'an dernier vient d'être publié, et sans surprise, nous retrouvons notre trio de tête avec toutefois quelques changements puisque la première place est désormais occupée par le Range Rover Evoque, qui double la Smart Fortwo. Globalement, les SUV sont toujours autant visés.",
+              "pubDate": "2017-01-27 14:00:00",
+              "link": "http://www.caradisiac.com/decouvrez-le-palmares-des-voitures-volees-en-2016-112313.htm#xtor=RSS-40",
+              "id_feed": 8,
+              "read": true,
+              "starred": false
+            },
+            {
+              "id_item": 361,
+              "title": "Essai vidéo - Mitsubishi ASX 2017 : une bien légère mise à jour",
+              "description": "<img src=\"http://images.caradisiac.com/logos/4/9/6/8/194968/S4-essai-video-mitsubishi-asx-2017-une-bien-legere-mise-a-jour-112293.jpg\"/>\n\t\t\t\t\tSorti en 2010, le Mitsubishi ASX connaît une carrière bien discrète en France, malgré un premier coup de bistouri en 2012 pour le rajeunir. Il repasse cette année sur le billard une seconde fois mais est-ce suffisant pour se démarquer dans une catégorie extrêmement fournie ? Afin de le déterminer, nous sommes allés à Nice prendre le volant d'une version 1,6 l DI-D 115 ch.",
+              "pubDate": "2017-01-27 13:14:29",
+              "link": "http://www.caradisiac.com/essai-video-mitsubishi-asx-2017-une-bien-legere-mise-a-jour-112293.htm#xtor=RSS-40",
+              "id_feed": 8,
+              "read": true,
+              "starred": false
+            },
+            {
+              "id_item": 362,
+              "title": "Citroën se lance dans l'autopartage",
+              "description": "<img src=\"http://images.caradisiac.com/logos/4/9/7/4/194974/S4-citroen-se-lance-dans-l-autopartage-112299.jpg\"/>\n\t\t\t\t\tDe plus en plus encouragé par les différentes municipalités mais également par l’État afin de réduire la pollution et donc les embouteillages, l’autopartage se développe progressivement. Aujourd’hui, c’est au tour des constructeurs de s’engager dans cette voie et notamment Citroën qui lance une offre inédite pour une marque automobile en Europe.",
+              "pubDate": "2017-01-27 12:00:00",
+              "link": "http://www.caradisiac.com/citroen-se-lance-dans-l-autopartage-112299.htm#xtor=RSS-40",
+              "id_feed": 8,
+              "read": true,
+              "starred": false
+            },
             {
               "id_item": 50,
               "title": "La voiture la plus produite en France est de nouveau une japonaise",
@@ -17,7 +129,7 @@
               "pubDate": "2017-01-25 20:38:50",
               "link": "http://www.caradisiac.com/la-voiture-la-plus-produite-en-france-est-de-nouveau-une-japonaise-112274.htm#xtor=RSS-40",
               "id_feed": 8,
-              "read": false,
+              "read": true,
               "starred": false
             },
             {
@@ -27,7 +139,7 @@
               "pubDate": "2017-01-25 20:00:00",
               "link": "http://www.caradisiac.com/une-collection-automobile-estimee-a-30-millions-de-dollars-accompagne-cette-maison-de-reve-112269.htm#xtor=RSS-40",
               "id_feed": 8,
-              "read": false,
+              "read": true,
               "starred": false
             },
             {
@@ -37,7 +149,7 @@
               "pubDate": "2017-01-25 19:00:00",
               "link": "http://www.caradisiac.com/des-polonais-se-cotisent-pour-offrir-une-fiat-126-a-l-acteur-tom-hanks-112272.htm#xtor=RSS-40",
               "id_feed": 8,
-              "read": false,
+              "read": true,
               "starred": false
             },
             {
@@ -47,7 +159,7 @@
               "pubDate": "2017-01-25 18:30:00",
               "link": "http://www.caradisiac.com/une-camera-thermique-montre-le-temps-que-met-un-moteur-a-chauffer-112284.htm#xtor=RSS-40",
               "id_feed": 8,
-              "read": false,
+              "read": true,
               "starred": false
             },
             {
@@ -57,7 +169,7 @@
               "pubDate": "2017-01-25 18:07:47",
               "link": "http://www.caradisiac.com/top-10-caradisiac-les-disparitions-annoncees-dans-l-automobile-112259.htm#xtor=RSS-40",
               "id_feed": 8,
-              "read": false,
+              "read": true,
               "starred": false
             },
             {
@@ -67,7 +179,7 @@
               "pubDate": "2017-01-25 16:39:48",
               "link": "http://www.caradisiac.com/pollution-nouvelles-restrictions-a-grenoble-fin-de-la-circulation-alternee-a-lyon-112271.htm#xtor=RSS-40",
               "id_feed": 8,
-              "read": false,
+              "read": true,
               "starred": false
             },
             {
@@ -77,7 +189,7 @@
               "pubDate": "2017-01-25 16:00:00",
               "link": "http://www.caradisiac.com/toyota-lancera-la-nouvelle-supra-sous-la-division-gazoo-112270.htm#xtor=RSS-40",
               "id_feed": 8,
-              "read": false,
+              "read": true,
               "starred": false
             },
             {
@@ -87,7 +199,7 @@
               "pubDate": "2017-01-25 15:00:00",
               "link": "http://www.caradisiac.com/une-petite-lamborghini-sous-l-huracan-est-envisageable-112264.htm#xtor=RSS-40",
               "id_feed": 8,
-              "read": false,
+              "read": true,
               "starred": false
             },
             {
@@ -97,7 +209,7 @@
               "pubDate": "2017-01-25 14:04:28",
               "link": "http://www.caradisiac.com/le-succes-du-x1-pousse-bmw-a-muscler-sa-production-112268.htm#xtor=RSS-40",
               "id_feed": 8,
-              "read": false,
+              "read": true,
               "starred": false
             },
             {
@@ -107,8 +219,8 @@
               "pubDate": "2017-01-25 14:00:00",
               "link": "http://www.caradisiac.com/ford-gt-nous-connaissons-enfin-sa-puissance-112258.htm#xtor=RSS-40",
               "id_feed": 8,
-              "read": false,
-              "starred": false
+              "read": true,
+              "starred": true
             }
           ]
         },
@@ -116,7 +228,218 @@
           "id_feed": 10,
           "name": "Jeux Videos.com",
           "favicon_uri": "favicon_not_implemented",
+          "unread": 1,
           "items": [
+            {
+              "id_item": 504,
+              "title": "Les infos qu'il ne fallait pas manquer hier : Resident Evil 7, Overwatch, Pillars of Eternity 2...",
+              "description": "Comme chaque jour, nous vous proposons de retrouver ici un bref récapitulatif des actualités les plus marquantes de la veille, pour ne rien rater des événements rythmant le quotidien de l'industrie du jeu vidéo.\nLES NEWS MARQUANTES\n* Resident Evil 7 :...",
+              "pubDate": "2017-01-28 09:27:00",
+              "link": "http://www.jeuxvideo.com/news/600737/les-infos-qu-il-ne-fallait-pas-manquer-hier-resident-evil-7-overwatch-pillars-of-eternity-2.htm",
+              "id_feed": 10,
+              "read": false,
+              "starred": false
+            },
+            {
+              "id_item": 375,
+              "title": "Dead Rising 4 : Deux nouveaux modes de difficulté et des skins Street Fighter !",
+              "description": "Cela fait désormais près de deux mois que Dead Rising 4 est disponible sur Xbox One et PC et bien que le titre n'ait pas vraiment fait l'unanimité, les joueurs dézinguent du zombie à tour de bras et ne manquent pas une occasion de capturer leurs méfaits...",
+              "pubDate": "2017-01-27 21:20:00",
+              "link": "http://www.jeuxvideo.com/news/600731/dead-rising-4-deux-nouveaux-modes-de-difficulte-et-des-skins-street-fighter.htm",
+              "id_feed": 10,
+              "read": true,
+              "starred": false
+            },
+            {
+              "id_item": 376,
+              "title": "Steep : Début du World Tour avec la mise à jour 1.04 et une date pour la carte Alaska",
+              "description": "Si Steep a su séduire les amateurs de glisse et de sensations fortes, le titre ne compte pas s'en arrêter là et continue d'étoffer son contenu. Ubisoft vient en effet de sortir la mise à jour 1.04 qui comporte notamment le Steep World Tour et l'éditeur...",
+              "pubDate": "2017-01-27 20:56:00",
+              "link": "http://www.jeuxvideo.com/news/600729/steep-debut-du-world-tour-avec-la-mise-a-jour-1-04-et-une-date-pour-la-carte-alaska.htm",
+              "id_feed": 10,
+              "read": true,
+              "starred": false
+            },
+            {
+              "id_item": 377,
+              "title": "Ninja Theory annonce le portage de DEXED sur PlayStation VR",
+              "description": "Les joueurs sur PlayStation 4 amateurs d'ambiance et de précision seront probablement intéressés par l'annonce du studio Ninja Theory, à qui l'on doit déjà des titres estimés ou très attendus tels que Heavenly Sword, Devil May Cry et bien entendu Hellblade....",
+              "pubDate": "2017-01-27 19:21:00",
+              "link": "http://www.jeuxvideo.com/news/600711/ninja-theory-annonce-le-portage-de-dexed-sur-playstation-vr.htm",
+              "id_feed": 10,
+              "read": true,
+              "starred": false
+            },
+            {
+              "id_item": 378,
+              "title": "La Boîte à Questions : jeuxvideo.com répond à vos questions !",
+              "description": "La Boîte à Questions est un pilote de l'incubateur JV le Lab de jeuxvideo.com.\nCette semaine, JV le Lab vous propose un nouveau pilote d'émission sobrement baptisé la Boîte à Questions. Avouons-le, le concept est fortement inspiré de la chronique du Grand...",
+              "pubDate": "2017-01-27 18:43:00",
+              "link": "http://www.jeuxvideo.com/videos/chroniques/600700/la-boite-a-questions-jeuxvideo-com-repond-a-vos-questions.htm",
+              "id_feed": 10,
+              "read": true,
+              "starred": false
+            },
+            {
+              "id_item": 379,
+              "title": "Sword Art Online : Memory Defrag : Notre guide pour bien débuter",
+              "description": "Sorti dans un premier temps sous forme de light novel, la saga Sword Art Online n'a pas tardé à être adaptée en manga puis en animé déjà considéré comme culte par bien des amateurs. Une telle popularité s'est bien évidemment vue exploitée en jeux vidéo...",
+              "pubDate": "2017-01-27 18:19:00",
+              "link": "http://www.jeuxvideo.com/dossier/600607/sword-art-online-memory-defrag-notre-guide-pour-bien-debuter/",
+              "id_feed": 10,
+              "read": true,
+              "starred": false
+            },
+            {
+              "id_item": 380,
+              "title": "Au coeur de Ghost Recon Wildlands : La conception technique de l'Open World",
+              "description": "Nous vous proposons aujourd'hui la troisième et dernière partie de notre reportage dédié à Ghost Recon Wildlands. Cet open world multi et solo vous proposera d'ici quelques mois une épopée bolivienne de haute volée, développée principalement en France,...",
+              "pubDate": "2017-01-27 18:02:00",
+              "link": "http://www.jeuxvideo.com/videos/reportages/600702/au-coeur-de-ghost-recon-wildlands-la-conception-technique-de-l-open-world.htm",
+              "id_feed": 10,
+              "read": true,
+              "starred": false
+            },
+            {
+              "id_item": 381,
+              "title": "FUT 17 : La mise à jour de Janvier est arrivée !",
+              "description": "On l’attendait depuis le lancement du jeu et il aura fallu attendre mi-janvier pour la voir enfin débarquer ! Il y a une semaine,EA Sports a enfin mis à disposition des joueurs un gros patch qui corrige pas mal d’énormes bugs, mais qui modifie également...",
+              "pubDate": "2017-01-27 18:00:00",
+              "link": "http://www.jeuxvideo.com/news/600446/fut-17-la-mise-a-jour-de-janvier-est-arrivee.htm",
+              "id_feed": 10,
+              "read": true,
+              "starred": true
+            },
+            {
+              "id_item": 382,
+              "title": "PlayStation Plus League : Défie Gotaga sur Call of Duty Infinite Warfare demain !",
+              "description": "Feu à volonté ! Après Vinsky et FIFA 17, voici venir le champion Gotaga sur la PlayStation Plus League. Tentez de défaire cet as de la gâchette samedi 28 janvier pour empocher le cash prize du jour.\nRassemblez votre team Call of Duty Infinite Warfare...",
+              "pubDate": "2017-01-27 17:24:00",
+              "link": "http://www.jeuxvideo.com/news/600520/playstation-plus-league-defie-gotaga-sur-call-of-duty-infinite-warfare-demain.htm",
+              "id_feed": 10,
+              "read": true,
+              "starred": false
+            },
+            {
+              "id_item": 383,
+              "title": "DiRT 4 : l'épisode de la maturité",
+              "description": "Si tôt annoncé, si tôt testé. Hier, Codemasters et Koch Media officialisaient la sortie à venir de DiRT 4, le 5ème épisode de la série. Une annonce surprenante quand on connaît le succès de DiRT Rally : là où la série DiRT se voulait plutôt généreuse...",
+              "pubDate": "2017-01-27 17:19:00",
+              "link": "http://www.jeuxvideo.com/preview/600549/dirt-4-l-episode-de-la-maturite.htm",
+              "id_feed": 10,
+              "read": true,
+              "starred": false
+            },
+            {
+              "id_item": 384,
+              "title": "Death Stranding : Hideo Kojima lâche quelques indices",
+              "description": "Au détour d'un voyage organisé par Kojima pour la chaîne d'information BBC, au cœur de ses nouveaux locaux, le game designer star de l'archipel nippon s'est fendu de quelques déclarations très intéressantes concernant son futur titre : Death Stranding,...",
+              "pubDate": "2017-01-27 17:14:00",
+              "link": "http://www.jeuxvideo.com/news/600559/death-stranding-hideo-kojima-lache-quelques-indices.htm",
+              "id_feed": 10,
+              "read": true,
+              "starred": false
+            },
+            {
+              "id_item": 385,
+              "title": "Dossier comparatif : 15 claviers gamer à l'essai, entre 50 et 200€",
+              "description": "En matière d’accessoires gaming, les claviers font sans doute partie des périphériques qui ont connu le plus d’évolutions technologiques ces dernières années. Et si certaines d’entre-elles n’ont pas forcément fait l’unanimité, dans la mesure où elles...",
+              "pubDate": "2017-01-27 17:00:00",
+              "link": "http://www.jeuxvideo.com/dossier/458859/dossier-comparatif-8-claviers-mecaniques-gamer-entre-100-et-200/",
+              "id_feed": 10,
+              "read": true,
+              "starred": false
+            },
+            {
+              "id_item": 386,
+              "title": "We Are Fans : 20€ de commande = 1 place ESWC offerte !",
+              "description": "Du 17 au 19 février 2017 se déroule, porte de Versaille, l’ESWC winter. Au programme de cet ESWC : Call Of Duty World League sur Infinite Warfare, un tournoi Clash Royal, la finale mondiale de Just Dance et le HP OMEN Trophy League Of Legends, du beau...",
+              "pubDate": "2017-01-27 16:51:00",
+              "link": "http://www.jeuxvideo.com/news/600530/we-are-fans-20-de-commande-1-place-eswc-offerte.htm",
+              "id_feed": 10,
+              "read": true,
+              "starred": false
+            },
+            {
+              "id_item": 387,
+              "title": "Fire Emblem Heroes : Le roster continue de s'étoffer",
+              "description": " Après nous avoir montré une partie de son roster, Fire Emblem Heroes s'offre une nouvelle bande annonce. \nCelle-ci nous montre de nouveaux personnages qu'il sera possible recruter. Pour rappel, le titre permet de jouer avec de nombreux protagonistes...",
+              "pubDate": "2017-01-27 16:06:00",
+              "link": "http://www.jeuxvideo.com/videos/600434/fire-emblem-heroes-le-roster-continue-de-s-etoffer.htm",
+              "id_feed": 10,
+              "read": true,
+              "starred": false
+            },
+            {
+              "id_item": 388,
+              "title": "Nintendo Switch : 80% du stock de départ est déjà précommandé au Japon",
+              "description": "Témoin d’une bonne réception et d’un engouement certain au sein d’un pays où le jeu transportable s’impose de plus en plus comme une religion auprès de nombreuses tranches d’âge, le taux de précommandes de la Nintendo Switch expose aujourd’hui des chiffres...",
+              "pubDate": "2017-01-27 16:04:00",
+              "link": "http://www.jeuxvideo.com/news/600546/nintendo-switch-80-du-stock-de-depart-est-deja-precommande-au-japon.htm",
+              "id_feed": 10,
+              "read": true,
+              "starred": false
+            },
+            {
+              "id_item": 389,
+              "title": "[Maj] Leslie Benzies, ancien producteur des GTA, monte ses propres studios",
+              "description": "Un an après son départ de Rockstar Games, où il officiait depuis 1995, Leslie Benzies vole à nouveau de ses propres ailes, bien que poursuivant toujours en justice son ancien employeur, et crée actuellement plusieurs entreprises dans le domaine du jeu...",
+              "pubDate": "2017-01-27 15:22:00",
+              "link": "http://www.jeuxvideo.com/news/598358/leslie-benzies-ancien-producteur-des-gta-monte-ses-propres-studios.htm",
+              "id_feed": 10,
+              "read": true,
+              "starred": false
+            },
+            {
+              "id_item": 390,
+              "title": "NVIDIA met finalement à jour sa première Shield TV (version 2015)",
+              "description": "On attendait cette mise à jour pour le 15 janvier, elle aura finalement eu deux petites semaines de retard. NVIDIA vient en effet d'annoncer la disponibilité de Nougat 7.0 pour ses consoles Shield TV et Shield TV Pro de 2015, les mettant au passage au...",
+              "pubDate": "2017-01-27 15:05:00",
+              "link": "http://www.jeuxvideo.com/news/600215/nvidia-met-finalement-a-jour-sa-premiere-shield-tv-version-2015.htm",
+              "id_feed": 10,
+              "read": true,
+              "starred": false
+            },
+            {
+              "id_item": 391,
+              "title": "Hitman présente sa 3e mission bonus",
+              "description": "Square Enix présente la prochaine mission de l'agent 47 à travers cette vidéo sur fond de coucher de soleil et ambiance méditerranéenne.\nLa mission se déroule à Sapienza, le soleil commence à se coucher, les habitants se regroupent sur la place principale....",
+              "pubDate": "2017-01-27 15:03:00",
+              "link": "http://www.jeuxvideo.com/videos/600473/hitman-presente-sa-3e-mission-bonus.htm",
+              "id_feed": 10,
+              "read": true,
+              "starred": false
+            },
+            {
+              "id_item": 392,
+              "title": "Civilization 6 : Les mods et le Workshop arrivent bel et bien",
+              "description": "Chose promise chose due ? C’est en tout cas ce que ce continuent de penser les membres les plus assidus de la communauté Civilization VI. Il faut dire que l’annonce du support officiel des mods et de l’outil Steam Workshop avait suscité un grand intérêt...",
+              "pubDate": "2017-01-27 15:00:00",
+              "link": "http://www.jeuxvideo.com/news/600508/civilization-6-les-mods-et-le-workshop-arrivent-bel-et-bien.htm",
+              "id_feed": 10,
+              "read": true,
+              "starred": false
+            },
+            {
+              "id_item": 393,
+              "title": "Ni No Kuni 2 nous livre de nouvelles images",
+              "description": "On le sait depuis hier, Ni no Kuni 2 : Revenant Kingdom sortira aussi sur PC en simultané de son arrivée sur PlayStation 4. Pour l’occasion, le jeu s’offre une nouvelle fournée de captures d’écran. De quoi nous plonger dans cet univers visuellement toujours...",
+              "pubDate": "2017-01-27 14:21:00",
+              "link": "http://www.jeuxvideo.com/news/600445/ni-no-kuni-2-nous-livre-de-nouvelles-images.htm",
+              "id_feed": 10,
+              "read": true,
+              "starred": false
+            },
+            {
+              "id_item": 394,
+              "title": "Fire Emblem Heroes dévoile une partie des son roster ",
+              "description": " Annoncé officiellement lors du Nintendo direct du 18 Janvier dernier, Fire Emblem Heroes, itération free-to-play de la saga sur mobile, nous présente une partie des personnages qu'il sera possible de recruter. \nCet opus met donc en scène des personnages...",
+              "pubDate": "2017-01-27 14:01:00",
+              "link": "http://www.jeuxvideo.com/videos/600398/fire-emblem-heroes-devoile-une-partie-des-son-roster.htm",
+              "id_feed": 10,
+              "read": true,
+              "starred": false
+            },
             {
               "id_item": 110,
               "title": "Sniper : Ghost Warrior 3 - devenez un meilleur sniper",
@@ -124,7 +447,7 @@
               "pubDate": "2017-01-26 15:45:00",
               "link": "http://www.jeuxvideo.com/videos/599850/sniper-ghost-warrior-3-devenez-un-meilleur-sniper.htm",
               "id_feed": 10,
-              "read": false,
+              "read": true,
               "starred": false
             },
             {
@@ -134,7 +457,7 @@
               "pubDate": "2017-01-26 15:36:00",
               "link": "http://www.jeuxvideo.com/news/599797/sword-art-online-le-film-en-avant-premiere-a-paris-et-lille-en-fevrier.htm",
               "id_feed": 10,
-              "read": false,
+              "read": true,
               "starred": false
             },
             {
@@ -144,7 +467,7 @@
               "pubDate": "2017-01-26 14:51:00",
               "link": "http://www.jeuxvideo.com/videos/599609/linelight-un-puzzle-game-lumineux.htm",
               "id_feed": 10,
-              "read": false,
+              "read": true,
               "starred": false
             },
             {
@@ -154,7 +477,7 @@
               "pubDate": "2017-01-26 14:50:00",
               "link": "http://www.jeuxvideo.com/news/599774/arizona-sunshine-1-4-million-de-dollars-de-recettes-en-un-mois.htm",
               "id_feed": 10,
-              "read": false,
+              "read": true,
               "starred": false
             },
             {
@@ -164,7 +487,7 @@
               "pubDate": "2017-01-26 14:36:00",
               "link": "http://www.jeuxvideo.com/news/598378/nintendo-eshop-les-telechargements-de-la-semaine-du-26-janvier-au-2-fevrier-2017.htm",
               "id_feed": 10,
-              "read": false,
+              "read": true,
               "starred": false
             },
             {
@@ -174,7 +497,7 @@
               "pubDate": "2017-01-26 14:21:00",
               "link": "http://www.jeuxvideo.com/news/599540/des-sticks-arcade-pour-tekken-7-annonces-chez-mad-catz.htm",
               "id_feed": 10,
-              "read": false,
+              "read": true,
               "starred": false
             },
             {
@@ -184,7 +507,7 @@
               "pubDate": "2017-01-26 14:05:00",
               "link": "http://www.jeuxvideo.com/news/599770/nintendo-switch-le-prix-tombe-en-dessous-des-300-a-la-fnac.htm",
               "id_feed": 10,
-              "read": false,
+              "read": true,
               "starred": false
             },
             {
@@ -194,7 +517,7 @@
               "pubDate": "2017-01-26 11:55:00",
               "link": "http://www.jeuxvideo.com/news/598870/dead-cells-de-motion-twin-a-ete-greenlighte-en-4-jours.htm",
               "id_feed": 10,
-              "read": false,
+              "read": true,
               "starred": false
             },
             {
@@ -204,7 +527,7 @@
               "pubDate": "2017-01-26 11:52:00",
               "link": "http://www.jeuxvideo.com/news/599653/mobius-final-fantasy-debarque-sur-steam-le-6-fevrier.htm",
               "id_feed": 10,
-              "read": false,
+              "read": true,
               "starred": false
             },
             {
@@ -214,7 +537,7 @@
               "pubDate": "2017-01-26 11:52:00",
               "link": "http://www.jeuxvideo.com/videos/599676/the-surge-l-humanite-aura-besoin-de-vous-en-mai-2017.htm",
               "id_feed": 10,
-              "read": false,
+              "read": true,
               "starred": false
             },
             {
@@ -224,7 +547,7 @@
               "pubDate": "2017-01-26 11:48:00",
               "link": "http://www.jeuxvideo.com/news/599672/nioh-art-du-sabre-et-japon-feodal-fantastique-en-images.htm",
               "id_feed": 10,
-              "read": false,
+              "read": true,
               "starred": false
             },
             {
@@ -234,7 +557,7 @@
               "pubDate": "2017-01-26 11:45:00",
               "link": "http://www.jeuxvideo.com/videos/599429/dragon-ball-xenoverse-2-champa-demontre-sa-puissance-divine.htm",
               "id_feed": 10,
-              "read": false,
+              "read": true,
               "starred": false
             },
             {
@@ -244,7 +567,7 @@
               "pubDate": "2017-01-26 11:44:00",
               "link": "http://www.jeuxvideo.com/videos/599530/ghost-recon-wildlands-luttez-contre-le-cartel-santa-blanca.htm",
               "id_feed": 10,
-              "read": false,
+              "read": true,
               "starred": false
             },
             {
@@ -254,7 +577,7 @@
               "pubDate": "2017-01-26 11:16:00",
               "link": "http://www.jeuxvideo.com/news/599648/mass-effect-andromeda-la-planete-habitat-7-en-approche.htm",
               "id_feed": 10,
-              "read": false,
+              "read": true,
               "starred": false
             },
             {
@@ -264,7 +587,7 @@
               "pubDate": "2017-01-26 11:11:00",
               "link": "http://www.jeuxvideo.com/news/599563/pillars-of-eternity-2-devoile-en-avance.htm",
               "id_feed": 10,
-              "read": false,
+              "read": true,
               "starred": false
             },
             {
@@ -274,7 +597,7 @@
               "pubDate": "2017-01-26 11:06:00",
               "link": "http://www.jeuxvideo.com/videos/599554/the-sexy-brutale-devoile-son-gameplay.htm",
               "id_feed": 10,
-              "read": false,
+              "read": true,
               "starred": false
             },
             {
@@ -284,7 +607,7 @@
               "pubDate": "2017-01-26 11:01:00",
               "link": "http://www.jeuxvideo.com/preview/599539/tekken-7-la-fin-d-une-generation.htm",
               "id_feed": 10,
-              "read": false,
+              "read": true,
               "starred": false
             },
             {
@@ -294,7 +617,7 @@
               "pubDate": "2017-01-26 10:48:00",
               "link": "http://www.jeuxvideo.com/news/599606/la-nintendo-switch-a-partir-de-129-99-en-echange-de-votre-console.htm",
               "id_feed": 10,
-              "read": false,
+              "read": true,
               "starred": false
             },
             {
@@ -304,7 +627,7 @@
               "pubDate": "2017-01-26 10:27:00",
               "link": "http://www.jeuxvideo.com/news/599533/apocalypse-now-the-game-debarque-sur-kickstarter.htm",
               "id_feed": 10,
-              "read": false,
+              "read": true,
               "starred": false
             },
             {
@@ -314,7 +637,215 @@
               "pubDate": "2017-01-26 09:54:00",
               "link": "http://www.jeuxvideo.com/videos/599537/power-rangers-legacy-wars-les-heros-debarquent-sur-mobile.htm",
               "id_feed": 10,
-              "read": false,
+              "read": true,
+              "starred": false
+            }
+          ]
+        },
+        {
+          "id_feed": 20,
+          "name": "Europe 1: Humour",
+          "favicon_uri": "favicon_not_implemented",
+          "unread": 0,
+          "items": [
+            {
+              "id_item": 416,
+              "title": "TEASER - Nicolas Sarkozy en pôle pour incarner l'après-Pénélope",
+              "description": "Nicolas Sarkozy est venu saluer Nathalie Kosciusko-Morizet et en profite pour la recruter pour le mystérieux \"projet come-back\".\n",
+              "pubDate": "2017-01-27 10:10:53",
+              "link": "http://www.europe1.fr/emissions/teaser-de-la-revue-de-presque/teaser-nicolas-sarkozy-en-pole-pour-incarner-lapres-penelope-2962157",
+              "id_feed": 20,
+              "read": true,
+              "starred": true
+            },
+            {
+              "id_item": 417,
+              "title": "Benoît Hamon promet une Ferrari pour tout le monde en 2035",
+              "description": "Après le revenu universel et la légalisation du cannabis, Benoît Hamon envisage une montée en puissance progressive dans ses promesses aux Français.\n",
+              "pubDate": "2017-01-27 09:54:14",
+              "link": "http://www.europe1.fr/emissions/la-revue-de-presque/benoit-hamon-promet-une-ferrari-pour-tout-le-monde-en-2035-2962130",
+              "id_feed": 20,
+              "read": true,
+              "starred": true
+            },
+            {
+              "id_item": 418,
+              "title": "Patrick Sébastien : \"Demain soir dans le Cabaret, les sœurs Titi et Grominou, deux siamoises lituaniennes qui ont été séparées et recollées !\"  ",
+              "description": "Patrick Sébastien est venu saluer les auditeurs d'Europe 1 avant la sortie de son nouveau livre : \"Les tomates à Mémé vont bientôt plus faire de jus\".\n",
+              "pubDate": "2017-01-27 08:10:11",
+              "link": "http://www.europe1.fr/emissions/commandeur-news/patrick-sebastien-demain-soir-dans-le-cabaret-les-soeurs-titi-et-grominou-deux-siamoises-lituaniennes-qui-ont-ete-separees-et-recollees-2962010",
+              "id_feed": 20,
+              "read": true,
+              "starred": true
+            },
+            {
+              "id_item": 419,
+              "title": "Willy Rovelli : \"le bon, la brute et le truand\"",
+              "description": "Willy Rovelli a profité de la venue de nos experts média pour leur attribuer de nouveaux personnages...\n",
+              "pubDate": "2017-01-26 11:58:52",
+              "link": "http://www.europe1.fr/emissions/faites-le-taire-willy-rovelli/willy-rovelli-le-bon-la-brute-et-le-truand-2961389",
+              "id_feed": 20,
+              "read": true,
+              "starred": true
+            },
+            {
+              "id_item": 420,
+              "title": "Les chansons fictives de Carla Bruni",
+              "description": "Nicolas Sarkozy tente de justifier que l'emploi de sa femme n'est pas fictif puisqu'elle est chanteuse, même si on ne l'entend pas.\n",
+              "pubDate": "2017-01-26 09:08:09",
+              "link": "http://www.europe1.fr/emissions/la-revue-de-presque/les-chansons-fictives-de-carla-bruni-2961224",
+              "id_feed": 20,
+              "read": true,
+              "starred": false
+            },
+            {
+              "id_item": 421,
+              "title": "TEASER - Chéri, préviens l'oncle Maurice, on va voter pour Manuel Valls !",
+              "description": "Jean-Luc Bennahmias a pris sa décision, il invite donc tous ses électeurs a reporté leurs voix sur la candidature de Manuel Valls.\n",
+              "pubDate": "2017-01-26 08:23:24",
+              "link": "http://www.europe1.fr/emissions/teaser-de-la-revue-de-presque/teaser-cheri-previens-loncle-maurice-on-va-voter-pour-manuel-valls-2961182",
+              "id_feed": 20,
+              "read": true,
+              "starred": false
+            },
+            {
+              "id_item": 422,
+              "title": "Virginie Choupard : \"Pénélope Fillon, elle vient tous les jours ! Non, pas par là Penelope, c'est le cagibi !\"",
+              "description": "Alors que la polémique enfle autour de l'emploi fictif de Pénélope Fillon, Virginie Choupard, hôtesse d'accueil aux Républicains, est en ligne avec Commandeur News.\n",
+              "pubDate": "2017-01-26 07:55:25",
+              "link": "http://www.europe1.fr/emissions/commandeur-news/virginie-choupard-penelope-fillon-elle-vient-tous-les-jours-non-pas-par-la-penelope-cest-le-cagibi-2961125",
+              "id_feed": 20,
+              "read": true,
+              "starred": false
+            },
+            {
+              "id_item": 423,
+              "title": "Faites entrer la cuisine et Touche pas à mon toast : les prochaines émissions culinaires",
+              "description": "Après la venue d'Élodie Gossuin pour son émission Un chef à l'oreille, Willy est à court de blagues culinaires.\n",
+              "pubDate": "2017-01-25 10:27:50",
+              "link": "http://www.europe1.fr/emissions/faites-le-taire-willy-rovelli/faites-entrer-la-cuisine-et-touche-pas-a-mon-toast-les-prochaines-emissions-culinaires-2960300",
+              "id_feed": 20,
+              "read": true,
+              "starred": false
+            },
+            {
+              "id_item": 424,
+              "title": "Les Pampers, les Pampers, c'est pas facile de devenir vieux !",
+              "description": "Charles Aznavour a décidé de reprendre l'une de ses chansons fétiches en compagnie de Valéry Giscard d'Estaing.\n",
+              "pubDate": "2017-01-25 09:10:22",
+              "link": "http://www.europe1.fr/emissions/la-revue-de-presque/les-pampers-les-pampers-cest-pas-facile-de-devenir-vieux-2960204",
+              "id_feed": 20,
+              "read": true,
+              "starred": false
+            },
+            {
+              "id_item": 425,
+              "title": "TEASER - Jean-Marie Le Pen, le papa tendresse",
+              "description": "Jean-Marie Le Pen tient à préciser que sa fille Marine n'est pas Léonarda et qu'il n'y a que lui qui puisse s'en prendre à elle.\n",
+              "pubDate": "2017-01-25 08:27:34",
+              "link": "http://www.europe1.fr/emissions/teaser-de-la-revue-de-presque/teaser-jean-marie-le-pen-le-papa-tendresse-2960126",
+              "id_feed": 20,
+              "read": true,
+              "starred": false
+            },
+            {
+              "id_item": 426,
+              "title": "Bernard Fiskar, consultant sportif à Europe 1 : \"Les Suédois, tu leur enlèves Zlatan et Volvo, il reste plus rien !\"  ",
+              "description": "Au lendemain de la victoire des handballeurs français contre la Suède, Commandeur News reçoit Bernard Fiskar, le commentateur sportif.\n",
+              "pubDate": "2017-01-25 07:35:36",
+              "link": "http://www.europe1.fr/emissions/commandeur-news/bernard-fiskar-consultant-sportif-a-europe-1-les-suedois-tu-leur-enleves-zlatan-et-volvo-il-reste-plus-rien-2960069",
+              "id_feed": 20,
+              "read": true,
+              "starred": false
+            },
+            {
+              "id_item": 427,
+              "title": "La primaire de la gauche, c’est une médaille en chocolat !",
+              "description": "François Hollande se fiche de savoir qui va gagner la primaire et perdre la présidentielle juste après.\n",
+              "pubDate": "2017-01-24 09:09:37",
+              "link": "http://www.europe1.fr/emissions/la-revue-de-presque/ps-il-ny-a-pas-que-les-urnes-qui-soient-bourrees-2959304",
+              "id_feed": 20,
+              "read": true,
+              "starred": false
+            },
+            {
+              "id_item": 428,
+              "title": "TEASER - Manuel Valls, le grand poète français",
+              "description": "Manuel Valls tient à rappeler que le projet de Benoît Hamon qu'il le soutiendra en cas de défaite.\n",
+              "pubDate": "2017-01-24 08:28:48",
+              "link": "http://www.europe1.fr/emissions/teaser-de-la-revue-de-presque/teaser-manuel-valls-le-grand-poete-francais-2959241",
+              "id_feed": 20,
+              "read": true,
+              "starred": false
+            },
+            {
+              "id_item": 429,
+              "title": "Sylvia Pinel : \"Va chercher une chaise à maman Jérémie, Maman, elle a gagné à St-Pierre-et-Miquelon !\"",
+              "description": "Sylvia Pinel est arrivée en tête du premier tour de la primaire de gauche à Saint-Pierre et Miquelon. Elle est l'invitée de Commandeur News ce matin.\n",
+              "pubDate": "2017-01-24 07:43:26",
+              "link": "http://www.europe1.fr/emissions/commandeur-news/sylvia-pinel-va-chercher-une-chaise-a-maman-jeremie-maman-elle-a-gagne-a-st-pierre-et-miquelon-2959178",
+              "id_feed": 20,
+              "read": true,
+              "starred": false
+            },
+            {
+              "id_item": 430,
+              "title": "En cas de grand froid, rien de mieux que la méthode couette !",
+              "description": "Avec le froid de ces derniers jours, la fraicheur d'Élodie Gossuin est un peu déplacée.\n",
+              "pubDate": "2017-01-23 10:27:01",
+              "link": "http://www.europe1.fr/emissions/faites-le-taire-willy-rovelli/en-cas-de-grand-froid-rien-de-mieux-que-la-methode-couette-2958331",
+              "id_feed": 20,
+              "read": true,
+              "starred": false
+            },
+            {
+              "id_item": 431,
+              "title": "Efficace et pas chère, c'est la baffe que je préfère !",
+              "description": "Manuel Valls s'insurge contre le programme de Benoît Hamon qu'il soutiendra tout de même s'il s'impose au second tour de la primaire.\n",
+              "pubDate": "2017-01-23 09:15:40",
+              "link": "http://www.europe1.fr/emissions/la-revue-de-presque/efficace-et-pas-chere-cest-la-baffe-que-je-prefere-2958217",
+              "id_feed": 20,
+              "read": true,
+              "starred": false
+            },
+            {
+              "id_item": 432,
+              "title": "TEASER - À qui iront les voix de Jean-Luc Bennahmias ?",
+              "description": "Le suspense est encore total, Jean-Luc Bennahmias n'a toujours pas dit à quel candidat se rallier pour le second tour.\n",
+              "pubDate": "2017-01-23 08:54:52",
+              "link": "http://www.europe1.fr/emissions/teaser-de-la-revue-de-presque/teaser-a-qui-iront-les-voix-de-jean-luc-bennahmias-2958184",
+              "id_feed": 20,
+              "read": true,
+              "starred": false
+            },
+            {
+              "id_item": 433,
+              "title": "Jean-Claude Poncif : \"Benoît Hamon est arrivé 1er mais si Manuel Valls avait fait plus, ce serait alors lui qui serait arrivé en tête.\"",
+              "description": "Le nouvel éditorialiste d'Europe 1, Jean-Claude Poncif, livre son analyse du premier tour de la primaire PS au micro de Commandeur News.\n",
+              "pubDate": "2017-01-23 07:46:20",
+              "link": "http://www.europe1.fr/emissions/commandeur-news/jean-claude-poncif-benoit-hamon-est-arrive-1er-mais-si-manuel-valls-avait-fait-plus-ce-serait-alors-lui-qui-serait-arrive-en-tete-2958103",
+              "id_feed": 20,
+              "read": true,
+              "starred": false
+            },
+            {
+              "id_item": 434,
+              "title": "Arnaud, le convertible, veut devenir président !",
+              "description": "Arnaud Montebourg estime qu'il a été très bon et qu'il va pouvoir devenir président de la République.\n",
+              "pubDate": "2017-01-20 09:15:32",
+              "link": "http://www.europe1.fr/emissions/la-revue-de-presque/arnaud-le-convertible-veut-devenir-president-2955655",
+              "id_feed": 20,
+              "read": true,
+              "starred": false
+            },
+            {
+              "id_item": 435,
+              "title": "TEASER - Merci de ne pas m'avoir giflé !",
+              "description": "Manuel Valls aimerait saluer Jean-Marc Ayrault et remercier Fabien Namias de ne pas lui avoir donner de gifle hier soir lors du débat.\n",
+              "pubDate": "2017-01-20 08:55:40",
+              "link": "http://www.europe1.fr/emissions/teaser-de-la-revue-de-presque/teaser-merci-de-ne-pas-mavoir-gifler-2955634",
+              "id_feed": 20,
+              "read": true,
               "starred": false
             }
           ]
@@ -324,22 +855,255 @@
     {
       "id_cat": 19,
       "name": "Automobile",
+      "unread": 0,
       "feeds": []
     },
     {
       "id_cat": 20,
       "name": "Sport",
-      "feeds": []
+      "unread": 16,
+      "feeds": [
+        {
+          "id_feed": 21,
+          "name": "Europe 1: Sport",
+          "favicon_uri": "favicon_not_implemented",
+          "unread": 16,
+          "items": [
+            {
+              "id_item": 450,
+              "title": "Ligue 1 : Marco Verratti forfait pour le choc PSG-Monaco",
+              "description": "Le milieu de terrain italien, touché au mollet à l'entraînement, est indisponible pour deux semaines. \n",
+              "pubDate": "2017-01-27 23:52:59",
+              "link": "http://www.europe1.fr/sport/ligue-1-marco-verratti-forfait-pour-le-choc-psg-monaco-2962700",
+              "id_feed": 21,
+              "read": false,
+              "starred": false
+            },
+            {
+              "id_item": 451,
+              "title": "Mondial de hand : la Norvège rejoint la France en finale ",
+              "description": "Les Norvégiens ont arraché leur ticket pour la finale grâce à leur victoire après prolongations contre la Croatie (28-25), vendredi soir. \n",
+              "pubDate": "2017-01-27 22:43:55",
+              "link": "http://www.europe1.fr/sport/mondial-de-hand-la-norvege-rejoint-la-france-en-finale-2962685",
+              "id_feed": 21,
+              "read": false,
+              "starred": false
+            },
+            {
+              "id_item": 452,
+              "title": "Ligue 1 : l'OM écrase Montpellier avec un triplé de Bafétimbi Gomis",
+              "description": "Marseille a facilement battu Montpellier (5-1), vendredi, lors du premier match de la 22ème journée de Ligue 1. \n",
+              "pubDate": "2017-01-27 22:38:04",
+              "link": "http://www.europe1.fr/sport/ligue-1-lom-ecrase-montpellier-avec-un-triple-de-gomis-2962682",
+              "id_feed": 21,
+              "read": false,
+              "starred": false
+            },
+            {
+              "id_item": 453,
+              "title": "Des moteurs dans les vélos depuis 1998, LeMond sceptique sur les résultats du Tour ",
+              "description": "Un ingénieur hongrois affirme que des moteurs miniatures pour vélos sont utilisés par certains coureurs professionnels depuis 1998.\n",
+              "pubDate": "2017-01-27 21:37:48",
+              "link": "http://www.europe1.fr/sport/des-moteurs-dans-les-velos-depuis-1998-lemond-sceptique-sur-les-resultats-du-tour-2962664",
+              "id_feed": 21,
+              "read": false,
+              "starred": false
+            },
+            {
+              "id_item": 454,
+              "title": "Angleterre : l'entraîneur d'Arsenal Arsène Wenger suspendu quatre matches",
+              "description": "L'entraîneur est suspendu pour son \"comportement inapproprié\" à l'encontre du quatrième arbitre lors du match contre Burnley, dimanche dernier.\n",
+              "pubDate": "2017-01-27 21:07:19",
+              "link": "http://www.europe1.fr/sport/angleterre-lentraineur-darsenal-arsene-wenger-suspendu-quatre-matches-2962655",
+              "id_feed": 21,
+              "read": false,
+              "starred": false
+            },
+            {
+              "id_item": 455,
+              "title": "Open d’Australie : Federer-Nadal, retour vers le futur",
+              "description": "Éternels rivaux, les deux géants du tennis mondial s’affronteront dimanche en finale de l’Open d’Australie, pour un classique au bon goût de vintage.\n",
+              "pubDate": "2017-01-27 18:02:25",
+              "link": "http://www.europe1.fr/sport/open-daustralie-federer-nadal-retour-vers-le-futur-2962544",
+              "id_feed": 21,
+              "read": false,
+              "starred": false
+            },
+            {
+              "id_item": 456,
+              "title": "Open d'Australie : victoire de Lucie Safarova et Bettanie Mattek-Sands en double",
+              "description": "À 29 ans, Lucie Safarova remporte sa quatrième victoire en Grand Chelem.\n",
+              "pubDate": "2017-01-27 10:06:37",
+              "link": "http://www.europe1.fr/sport/open-daustralie-victoire-de-lucie-safarova-et-bettanie-mattek-sands-en-double-2962142",
+              "id_feed": 21,
+              "read": false,
+              "starred": false
+            },
+            {
+              "id_item": 457,
+              "title": "NBA : Russel Westbrook continue de flamber",
+              "description": "La star d'Oklahoma City Russell Westbrook enchaîne les prestations de haute volée : il a assommé Dallas (109-98) avec 45 points, jeudi.\n",
+              "pubDate": "2017-01-27 07:38:42",
+              "link": "http://www.europe1.fr/sport/nba-russel-westbrook-continue-de-flamber-2961971",
+              "id_feed": 21,
+              "read": true,
+              "starred": false
+            },
+            {
+              "id_item": 458,
+              "title": "Mondial de handball : les Bleus en totale communion avec leur public",
+              "description": "Qualifiés pour la finale du Mondial en France, les \"Experts\" n'ont pas manqué de saluer le soutien sans faille du public tricolore, encore venu en nombre jeudi soir pour la demi-finale.\n",
+              "pubDate": "2017-01-27 00:45:29",
+              "link": "http://www.europe1.fr/sport/mondial-de-hand-les-bleus-en-totale-communion-avec-leur-public-2961833",
+              "id_feed": 21,
+              "read": false,
+              "starred": false
+            },
+            {
+              "id_item": 459,
+              "title": "Patinage - Euro 2017 : Vanessa James et Morgan Ciprès médaillés de bronze en couple",
+              "description": "Les Français Vanessa James et Morgan Ciprès ont obtenu la médaille de bronze en couples aux Championnats d'Europe de patinage artistique, jeudi à Ostrava, en République Tchèque. \n",
+              "pubDate": "2017-01-26 22:30:55",
+              "link": "http://www.europe1.fr/sport/patinage-euro-2017-vanessa-james-et-morgan-cipres-medailles-de-bronze-en-couple-2961809",
+              "id_feed": 21,
+              "read": false,
+              "starred": false
+            },
+            {
+              "id_item": 460,
+              "title": "Mondial de handball : les \"Experts\" se rapprochent de leur rêve",
+              "description": "Sans trembler, l'équipe de France a parfaitement maîtrisé sa demie face à la Slovénie (31-25), jeudi. Les \"Experts\" ne sont plus qu'à une marche de l'apothéose.\n",
+              "pubDate": "2017-01-26 22:29:01",
+              "link": "http://www.europe1.fr/sport/mondial-de-handball-les-experts-battent-la-slovenie-et-vont-en-finale-2961806",
+              "id_feed": 21,
+              "read": false,
+              "starred": false
+            },
+            {
+              "id_item": 461,
+              "title": "Ligue 1 : la LFP met en instruction l'affaire des cris racistes contre Balotelli",
+              "description": "L'attaquant de Nice a été victime de cris de singe lors du match à Bastia vendredi dernier. \n",
+              "pubDate": "2017-01-26 22:19:47",
+              "link": "http://www.europe1.fr/sport/ligue-1-la-lfp-met-en-instruction-laffaire-des-cris-racistes-contre-balotelli-2961803",
+              "id_feed": 21,
+              "read": false,
+              "starred": false
+            },
+            {
+              "id_item": 462,
+              "title": "Mondial de hand - France-Slovénie : un spectateur déjoue la sécurité pour saluer les joueurs",
+              "description": "Le spectateur a été ensuite intercepté par le service d'ordre. \n",
+              "pubDate": "2017-01-26 21:37:42",
+              "link": "http://www.europe1.fr/sport/mondial-de-hand-france-slovenie-un-spectateur-dejoue-la-securite-pour-saluer-les-joueurs-2961788",
+              "id_feed": 21,
+              "read": false,
+              "starred": false
+            },
+            {
+              "id_item": 463,
+              "title": "Mondial de handball : les \"Experts\" sont en finale ! ",
+              "description": "Grâce à une demie maîtrisée de bout en bout face à la Slovénie (31- 25), les \"Experts\" sont en finale de \"leur\" Mondial !\n",
+              "pubDate": "2017-01-26 20:31:02",
+              "link": "http://www.europe1.fr/sport/mondial-de-handball-suivez-en-direct-la-demi-finale-france-slovenie-2961764",
+              "id_feed": 21,
+              "read": false,
+              "starred": false
+            },
+            {
+              "id_item": 464,
+              "title": "Mondial 2017-Olivier Krumbholz : \"Le handball est en train de changer de dimension en France\"",
+              "description": "Le directeur du tournoi et sélectionneur de l'équipe de France féminine de handball estime sur Europe 1 que l'engouement autour du Mondial en France transcende les Bleus.\n",
+              "pubDate": "2017-01-26 18:44:26",
+              "link": "http://www.europe1.fr/sport/mondial-2017-olivier-krumbholz-le-handball-est-en-train-de-changer-de-dimension-en-france-2961686",
+              "id_feed": 21,
+              "read": false,
+              "starred": false
+            },
+            {
+              "id_item": 465,
+              "title": "Soupçons de matches arrangés en Ligue 2 : huit personnes dans le viseur du parquet financier",
+              "description": "Le parquet financier demande à ce que huit personnes issues des clubs de Caen et de Nîmes soient jugées dans une affaire de soupçons de matches arrangés. \n",
+              "pubDate": "2017-01-26 14:59:15",
+              "link": "http://www.europe1.fr/sport/soupcons-de-matchs-arranges-en-ligue-2-huit-personnes-dans-le-viseur-du-parquet-financier-2961515",
+              "id_feed": 21,
+              "read": false,
+              "starred": false
+            },
+            {
+              "id_item": 466,
+              "title": "Roger Federer qualifié pour la finale de l'Open d'Australie",
+              "description": "Le Suisse Roger Federer s'est qualifié pour la finale de l'Open d'Australie en battant son compatriote Stan Wawrinka en cinq sets.\n",
+              "pubDate": "2017-01-26 12:50:55",
+              "link": "http://www.europe1.fr/sport/roger-federer-qualifie-pour-la-finale-de-lopen-daustralie-2961437",
+              "id_feed": 21,
+              "read": false,
+              "starred": false
+            }
+          ]
+        }
+      ]
     },
     {
       "id_cat": 21,
       "name": "Test",
+      "unread": 139,
       "feeds": [
         {
           "id_feed": 13,
           "name": "Flux de LORACTU.fr",
           "favicon_uri": "favicon_not_implemented",
+          "unread": 49,
           "items": [
+            {
+              "id_item": 402,
+              "title": "En Meurthe-et-Moselle, Manuel Valls espère un rebond de la participation",
+              "description": "<img align=\"left\" hspace=\"5\" src=\"http://loractu.fr/uploads/library/images/small/e78f071c542273feadafa614900536ed49c07f5a.jpg\">Pour son dernier déplacement de campagne avant l’heure de vérité dimanche, Manuel Valls espère un rebond de la mobilisation au second tour. En Meurthe-et-Moselle ce vendredi, le candidat a défendu son idée de revenu décent en opposition au revenu universel de Benoit Hamon.",
+              "pubDate": "2017-01-27 18:29:00",
+              "link": "http://loractu.fr/nancy/15152-en-meurthe-et-moselle-manuel-valls-espere-un-rebond-de-la-participation.html",
+              "id_feed": 13,
+              "read": true,
+              "starred": false
+            },
+            {
+              "id_item": 403,
+              "title": "Patricia Kaas revient sur ses terres à Metz et à Nancy pour des concerts",
+              "description": "<img align=\"left\" hspace=\"5\" src=\"http://loractu.fr/uploads/library/images/small/1a0cdcebef5d13b0ef19573ebd14dae26863dee4.jpg\">A force de le chanter, Mademoiselle a eu le blues: Patricia Kaas est de retour avec un nouvel album studio, le premier depuis treize ans, avec lequel elle dit avoir \"retrouvé l'envie, plus sereine et libre que jamais\", après avoir été victime d'un \"burn-out\". Elle a aussi débuté une tournée et passera à Metz fin janvier et à Nancy début février.",
+              "pubDate": "2017-01-27 18:10:00",
+              "link": "http://loractu.fr/metz/15151-patricia-kaas-revient-sur-ses-terres-a-metz-et-a-nancy-pour-des-concerts.html",
+              "id_feed": 13,
+              "read": true,
+              "starred": false
+            },
+            {
+              "id_item": 404,
+              "title": "Fillon \"rémunère\" ses enfants au Sénat alors qu’ils étaient encore étudiants",
+              "description": "<img align=\"left\" hspace=\"5\" src=\"http://loractu.fr/uploads/library/images/small/cd835e96f04153c5840b8b1a2eecb1f54358d9a2.jpg\">Le candidat LR à la présidentielle a expliqué jeudi à la télévision qu’il avait également rémunéré deux de ses enfants quand il était sénateur. Selon plusieurs médias, ses deux fils n’étaient pas avocats mais étudiants à cette époque. L’entourage évoque une «erreur de langage».",
+              "pubDate": "2017-01-27 17:22:00",
+              "link": "http://loractu.fr/france/15150-fillon-remunere-ses-enfants-au-senat-alors-qu-ils-etaient-encore-etudiants.html",
+              "id_feed": 13,
+              "read": true,
+              "starred": true
+            },
+            {
+              "id_item": 405,
+              "title": "Lorraine: un homme humilié par sa femme et torturé par son fils",
+              "description": "<img align=\"left\" hspace=\"5\" src=\"http://loractu.fr/uploads/library/images/small/7b782e681810b137654b901bb9f8c0c445e6e011.jpg\">Un homme a été humilié et torturé par sa compagne et son fils mardi en Meurthe-et-Moselle. L’affaire douloureuse cache des relations complexe entre les membres de cette famille de Pont-Saint-Vincent. Les deux protagonistes sont jugés à Nancy ce vendredi.",
+              "pubDate": "2017-01-27 16:33:00",
+              "link": "http://loractu.fr/nancy/15149-lorraine-un-homme-humilie-par-sa-femme-et-torture-par-son-fils.html",
+              "id_feed": 13,
+              "read": true,
+              "starred": false
+            },
+            {
+              "id_item": 406,
+              "title": "La directrice de Lorraine Airport, contestée en interne, débarquée",
+              "description": "<img align=\"left\" hspace=\"5\" src=\"http://loractu.fr/uploads/library/images/small/3d92639297d83b989a07c5d9c9c2d06dc2740619.jpg\">La région Grand-Est qui a le contrôle de l’aéroport régional a annoncé vendredi le débarquement de la directrice de Lorraine Airport. Contestée en interne, elle avait été propulsée à la tête de l’institution par l’ex-président PS de la région Lorraine.",
+              "pubDate": "2017-01-27 15:38:00",
+              "link": "http://loractu.fr/metz/15148-la-directrice-de-lorraine-airport-contestee-en-interne-debarquee.html",
+              "id_feed": 13,
+              "read": true,
+              "starred": false
+            },
             {
               "id_item": 170,
               "title": "Primaire du PS: Manuel Valls \"s'effacera\" en cas de victoire de Benoît Hamon",
@@ -357,7 +1121,7 @@
               "pubDate": "2017-01-27 10:41:00",
               "link": "http://loractu.fr/thionville/15146-les-ter-et-tgv-ne-circulent-plus-vendredi-entre-thionville-et-luxembourg.html",
               "id_feed": 13,
-              "read": false,
+              "read": true,
               "starred": false
             },
             {
@@ -846,7 +1610,138 @@
           "id_feed": 9,
           "name": "Turbo",
           "favicon_uri": "favicon_not_implemented",
+          "unread": 58,
           "items": [
+            {
+              "id_item": 503,
+              "title": "Diaporama : quatre Renault 8 Gordini au Rallye Monte-Carlo Historique 2017",
+              "description": "Quatre Renault 8 Gordini (R8 Gordini) participent à la XXème édition du Rallye Monte-Carlo Historique (départ de Barcelone le vendredi 27 janvier 2017, arrivée à Monaco le mercredi 1er février 2017).",
+              "pubDate": "2017-01-28 09:10:02",
+              "link": "http://www.turbo.fr/photos/diaporama-quatre-renault-8-gordini-au-rallye-monte-carlo-historique-2017-d_3853",
+              "id_feed": 9,
+              "read": false,
+              "starred": false
+            },
+            {
+              "id_item": 363,
+              "title": "Autoroutes : 57 chantiers et les tarifs des péages en hausse",
+              "description": "Le projet était dans les cartons du secrétaire d'Etat aux Transports, Alain Vidalies, depuis des mois : il espérait débloquer 1 milliard d'euros pour les chantiers nécessaires &amp;agrave; la réfection des [...]",
+              "pubDate": "2017-01-27 19:14:08",
+              "link": "http://www.turbo.fr/actualite-automobile/824414-autoroutes-57-chantiers-peages-hausse/",
+              "id_feed": 9,
+              "read": true,
+              "starred": false
+            },
+            {
+              "id_item": 364,
+              "title": "Faire tatouer son Audi c'est désormais possible !",
+              "description": "Les heureux propriétaires de la célèbre R8 pourront bientôt faire tatouer leur voiture, selon leurs goûts !    Audi veut tatouer ses voitures  Certains y verront une énième tactique commerciale, d'autres [...]",
+              "pubDate": "2017-01-27 18:03:15",
+              "link": "http://www.turbo.fr/actualite-automobile/824430-tatouer-audi/",
+              "id_feed": 9,
+              "read": true,
+              "starred": false
+            },
+            {
+              "id_item": 365,
+              "title": "Diaporama : les nouveaux scooters Yamaha TMAX disponibles dès le mois d'avril 2017",
+              "description": "les nouveaux scooters Yamaha TMAX, TMAX SX et TMAX DX disponibles dès le mois d'avril 2017.",
+              "pubDate": "2017-01-27 17:27:27",
+              "link": "http://www.turbo.fr/photos/diaporama-les-nouveaux-scooters-yamaha-tmax-tmax-sx-et-tmax-dx-d_3859",
+              "id_feed": 9,
+              "read": false,
+              "starred": false
+            },
+            {
+              "id_item": 366,
+              "title": "Diaporama : toutes les photos de notre essai de la nouvelle Hyundai i30",
+              "description": "Hyundai a mis toutes les chances de son côté pour la troisième génération de sa compacte i30",
+              "pubDate": "2017-01-27 16:01:10",
+              "link": "http://www.turbo.fr/photos/diaporama-nouvelle-hyundai-i30-toutes-les-photos-de-notre-essai-d_3849",
+              "id_feed": 9,
+              "read": false,
+              "starred": false
+            },
+            {
+              "id_item": 367,
+              "title": "La collection Bertone, l'essai de la Nissan Micra - Emission TURBO du 29/01/2017",
+              "description": "Une découverte ce dimanche pour Dominique Chapatte, la collection Bertone en Italie près de Turin. Le bureau de style Bertone a cessé toutes activités il y a 3 ans mais, en exclusivité, nous avons poussé [...]",
+              "pubDate": "2017-01-27 14:37:40",
+              "link": "http://www.turbo.fr/actualite-automobile/824416-collection-bertone-essai-nissan-micra-emission-turbo-29-01-2017/",
+              "id_feed": 9,
+              "read": false,
+              "starred": false
+            },
+            {
+              "id_item": 368,
+              "title": "La Ford Mustang obtient deux petites étoiles aux tests de collision Euro NCAP",
+              "description": "Une différence de taille par rapport au test réalisé aux Etats-Unis.    Cinq étoiles aux USA, deux en Europe  Outre-Atlantique, la dernière Ford Mustang a obtenu sans difficulté ses cinq étoiles aux tests [...]",
+              "pubDate": "2017-01-27 13:07:40",
+              "link": "http://www.turbo.fr/actualite-automobile/824378-ford-mustang-obtient-petites-etoiles-test-collision/",
+              "id_feed": 9,
+              "read": true,
+              "starred": false
+            },
+            {
+              "id_item": 369,
+              "title": "Essai : La nouvelle Hyundai i30 à l'essai, des influences germaniques",
+              "description": "Hyundai a mis toutes les chances de son côté pour cette troisième génération de i30 : design consensuel, technologies modernes et moteurs de pointe. La compacte Coréenne n'a jamais été aussi compétitive [...]",
+              "pubDate": "2017-01-27 11:17:14",
+              "link": "http://www.turbo.fr/hyundai/hyundai-i30-2017/essai-auto/824266-essai-hyundai-i30-2017/",
+              "id_feed": 9,
+              "read": false,
+              "starred": false
+            },
+            {
+              "id_item": 370,
+              "title": "Le carburant sans plomb 95 E10 plébiscité par les Français !",
+              "description": "Du sans-plomb oui, mais avec de l'éthanol, c'est encore mieux !    Le SP95 E10 gagne du terrain  La Collective du bioéthanol vient de publier son bilan pour l'année 2016. On y apprend notamment que sur [...]",
+              "pubDate": "2017-01-27 10:00:10",
+              "link": "http://www.turbo.fr/actualite-automobile/824376-plomb-95-e10-plebiscite-francais/",
+              "id_feed": 9,
+              "read": false,
+              "starred": false
+            },
+            {
+              "id_item": 371,
+              "title": "En hiver, faut-il laisser tourner le moteur de sa voiture avant de partir ?",
+              "description": "En hiver, plus que jamais, respecter les temps de chauffe, c'est prolonger l'espérance de vie de son véhicule !",
+              "pubDate": "2017-01-27 08:41:05",
+              "link": "http://www.turbo.fr/actualite-automobile/823844-hiver-laisser-tourner-moteur-partir/",
+              "id_feed": 9,
+              "read": false,
+              "starred": false
+            },
+            {
+              "id_item": 372,
+              "title": "Renault va engager quatre R8 Gordini sur le rallye Monte-Carlo historique",
+              "description": "Un mythe de l'histoire automobile française va rejoindre le départ du rallye Monte-Carlo historique.    La Renault 8 Gordini sur le rallye Monte-Carlo historique  Pour la première fois, les équipages Renault [...]",
+              "pubDate": "2017-01-26 18:33:17",
+              "link": "http://www.turbo.fr/actualite-automobile/824346-renault-engager-gordini-rallye-carlo-historique/",
+              "id_feed": 9,
+              "read": false,
+              "starred": false
+            },
+            {
+              "id_item": 373,
+              "title": "Prix de revient du kilomètre, quels sont les meilleurs élèves ?",
+              "description": "Le PRK permet de connaître précisément le coût de la voiture lorsqu'elle est utilisée, un coût souvent sous-estimé voire inconnu des propriétaires. Le PRK prend en charge les principales dépenses, du financement [...]",
+              "pubDate": "2017-01-26 17:19:57",
+              "link": "http://www.turbo.fr/actualite-automobile/824364-combien-coute-kilometre/",
+              "id_feed": 9,
+              "read": false,
+              "starred": false
+            },
+            {
+              "id_item": 374,
+              "title": "DS : des rumeurs de SUV en perspective !",
+              "description": "L'année 2016 n'a pas été un bon cru pour la marque DS.  Le constructeur qui a subi une baisse de ses ventes de 36,6 % le mois dernier, semble vouloir développer de nouveaux modèles.    Une rumeur de SUV [...]",
+              "pubDate": "2017-01-26 16:12:22",
+              "link": "http://www.turbo.fr/actualite-automobile/824314-ds-rumeurs-suv-perspective/",
+              "id_feed": 9,
+              "read": true,
+              "starred": false
+            },
             {
               "id_item": 60,
               "title": "La nouvelle Nissan Micra est disponible en concession",
@@ -1004,7 +1899,7 @@
               "pubDate": "2017-01-24 17:11:58",
               "link": "http://www.turbo.fr/actualite-automobile/824240-prix-grise-hausses-baisses-2017/",
               "id_feed": 9,
-              "read": false,
+              "read": true,
               "starred": false
             },
             {
@@ -1353,7 +2248,38 @@
           "id_feed": 14,
           "name": "NYT > Pro Basketball",
           "favicon_uri": "favicon_not_implemented",
+          "unread": 16,
           "items": [
+            {
+              "id_item": 489,
+              "title": "Knicks 110, Hornets 107: Uncertainty Over Carmelo Anthony Upstages Knicks Victory",
+              "description": "The Knicks defeated the Hornets, 110-107, at Madison Square Garden, but rumors about a trade involving Anthony claimed center stage.",
+              "pubDate": "2017-01-28 04:53:17",
+              "link": "http://www.nytimes.com/2017/01/27/sports/basketball/ny-knicks-charlotte-hornets-score.html?partner=rss&emc=rss",
+              "id_feed": 14,
+              "read": false,
+              "starred": false
+            },
+            {
+              "id_item": 484,
+              "title": "Warriors vs. Eastern Conference? A Dream Matchup Will Approach Reality",
+              "description": "Golden State Coach Steve Kerr said that Stephen Curry, Kevin Durant, Draymond Green and Klay Thompson will share the court at the All-Star Game.",
+              "pubDate": "2017-01-28 02:01:13",
+              "link": "http://www.nytimes.com/2017/01/27/sports/basketball/golden-state-warriors-all-star-game.html?partner=rss&emc=rss",
+              "id_feed": 14,
+              "read": false,
+              "starred": false
+            },
+            {
+              "id_item": 407,
+              "title": "Keeping Score: Caps and Contracts Make Trading Carmelo Anthony a Tough Calculus",
+              "description": "As speculation shifts to a potential deal with the Clippers, a look at the hurdles the Knicks would have to clear to trade their highly paid forward.",
+              "pubDate": "2017-01-27 21:32:55",
+              "link": "http://www.nytimes.com/2017/01/27/sports/basketball/knicks-carmelo-anthony-trade.html?partner=rss&emc=rss",
+              "id_feed": 14,
+              "read": true,
+              "starred": false
+            },
             {
               "id_item": 224,
               "title": "Russell Westbrook Tops List of 14 All-Star Reserves Chosen by Coaches",
@@ -1371,7 +2297,7 @@
               "pubDate": "2017-01-27 04:37:46",
               "link": "http://www.nytimes.com/2017/01/26/sports/basketball/rajon-rondo-jimmy-butler-dwyane-wade-bulls.html?partner=rss&emc=rss",
               "id_feed": 14,
-              "read": false,
+              "read": true,
               "starred": false
             },
             {
@@ -1510,13 +2436,144 @@
           "id_feed": 15,
           "name": "NYT > Sports",
           "favicon_uri": "favicon_not_implemented",
+          "unread": 16,
           "items": [
+            {
+              "id_item": 492,
+              "title": "Sports Briefing: American Wins World Cup Downhill in Germany; 2 Skiers Badly Hurt",
+              "description": "Travis Ganong won a men’s World Cup downhill race after his American teammate Steven Nyman and the French skier Valentin Giraud Moine were airlifted to hospitals with serious injuries.",
+              "pubDate": "2017-01-28 05:51:53",
+              "link": "http://www.nytimes.com/2017/01/27/sports/american-wins-world-cup-downhill-in-germany-2-skiers-badly-hurt.html?partner=rss&emc=rss",
+              "id_feed": 15,
+              "read": false,
+              "starred": false
+            },
+            {
+              "id_item": 490,
+              "title": "New Lawsuit Amplifies Allegations of Sexual Assault at Baylor",
+              "description": "The lawsuit filed Friday by a former student says at least 52 rapes were committed by at least 31 Baylor football players from 2011 through 2014.",
+              "pubDate": "2017-01-28 04:39:16",
+              "link": "http://www.nytimes.com/2017/01/27/sports/ncaafootball/lawsuit-sexual-assault-baylor.html?partner=rss&emc=rss",
+              "id_feed": 15,
+              "read": false,
+              "starred": false
+            },
+            {
+              "id_item": 488,
+              "title": "Sporting: Coming Together at the Roller Rink",
+              "description": "Americana like roller skating still strengthen our social fabric.",
+              "pubDate": "2017-01-28 03:34:50",
+              "link": "http://www.nytimes.com/2017/01/27/opinion/coming-together-at-the-roller-rink.html?partner=rss&emc=rss",
+              "id_feed": 15,
+              "read": false,
+              "starred": false
+            },
+            {
+              "id_item": 487,
+              "title": "In His Place of Serenity, Tiger Woods Watches His Comeback Fall Short",
+              "description": "Woods shot a 72 during the second round of the Farmers Insurance Open at Torrey Pines, but his 36-hole total of four over par meant that he missed the cut.",
+              "pubDate": "2017-01-28 03:21:56",
+              "link": "http://www.nytimes.com/2017/01/27/sports/golf/tiger-woods-farmers-insurance-open.html?partner=rss&emc=rss",
+              "id_feed": 15,
+              "read": false,
+              "starred": false
+            },
+            {
+              "id_item": 486,
+              "title": "Pegasus World Cup Features California Chrome and a Horseless Pizza King",
+              "description": "Investors pay $1 million a piece to control berths in the 12-horse race, the richest in the world.",
+              "pubDate": "2017-01-28 02:44:56",
+              "link": "http://www.nytimes.com/2017/01/27/sports/horse-racing/pegasus-world-cup-california-chrome-jets-pizza.html?partner=rss&emc=rss",
+              "id_feed": 15,
+              "read": true,
+              "starred": true
+            },
+            {
+              "id_item": 485,
+              "title": "On Tennis: Roger Federer and Rafael Nadal Breath New Life Into an Old Rivalry",
+              "description": "After Andy Murray and Novak Djokovic were eliminated in the first week at the Australian Open, Federer and Nadal bested younger players to reach the men’s final.",
+              "pubDate": "2017-01-28 02:35:21",
+              "link": "http://www.nytimes.com/2017/01/27/sports/tennis/australian-open-rafael-nadal-roger-federer.html?partner=rss&emc=rss",
+              "id_feed": 15,
+              "read": false,
+              "starred": false
+            },
+            {
+              "id_item": 449,
+              "title": "Australian Open Finals: A Primer on Two Famous Rivalries",
+              "description": "Venus vs. Serena. Federer vs. Nadal. Will you stay up all night?",
+              "pubDate": "2017-01-28 00:41:08",
+              "link": "http://www.nytimes.com/2017/01/27/sports/australian-open-serena-venus-nadal-federer.html?partner=rss&emc=rss",
+              "id_feed": 15,
+              "read": true,
+              "starred": false
+            },
+            {
+              "id_item": 448,
+              "title": "Wayne Simmonds, Once an Unheralded Outsider, Is Now an All-Star",
+              "description": "The Flyers forward received plenty of help to get to the N.H.L., where he has been hard-working and hard-hitting and has become high-scoring.",
+              "pubDate": "2017-01-28 00:21:53",
+              "link": "http://www.nytimes.com/2017/01/27/sports/hockey/wayne-simmonds-flyers-allstar-game.html?partner=rss&emc=rss",
+              "id_feed": 15,
+              "read": true,
+              "starred": false
+            },
+            {
+              "id_item": 447,
+              "title": "Grand Sibling Rivalry Leaves Venus Williams a Distinct Underdog",
+              "description": "Venus Williams will meet her sister, Serena, in the Australian Open final Saturday. In eight previous Grand Slam finals between the sisters, Serena has won six.",
+              "pubDate": "2017-01-28 00:12:24",
+              "link": "http://www.nytimes.com/2017/01/27/sports/tennis/serena-venus-williams-australian-open.html?partner=rss&emc=rss",
+              "id_feed": 15,
+              "read": true,
+              "starred": false
+            },
+            {
+              "id_item": 414,
+              "title": "Californians Cheer the Home Team, in Tijuana",
+              "description": "As the Xolos draw soccer fans from across the border, their stadium’s parking lot has become the site of Mexico’s biggest tailgate party.",
+              "pubDate": "2017-01-27 23:23:54",
+              "link": "http://www.nytimes.com/2017/01/27/sports/soccer/club-tijuana-xolos-mexico-liga-mx.html?partner=rss&emc=rss",
+              "id_feed": 15,
+              "read": true,
+              "starred": false
+            },
+            {
+              "id_item": 413,
+              "title": "8 Grand Slam Finals That Pitted Rafael Nadal Against Roger Federer",
+              "description": "To the delight of tennis fans, the Australian Open final will match two of the all-time greats, Federer and Nadal. But they’ve met before on the highest stage.",
+              "pubDate": "2017-01-27 19:23:22",
+              "link": "http://www.nytimes.com/2017/01/27/sports/tennis/roger-federer-rafael-nadal-rivalry.html?partner=rss&emc=rss",
+              "id_feed": 15,
+              "read": true,
+              "starred": false
+            },
+            {
+              "id_item": 408,
+              "title": "Rafael Nadal Wins a Marathon to Set Up a Final With Roger Federer",
+              "description": "Rafael Nadal beat Grigor Dimitrov, 6-3, 5-7, 7-6 (5), 6-7 (4), 6-4, in a battle that took 4 hours 56 minutes.",
+              "pubDate": "2017-01-27 18:05:33",
+              "link": "http://www.nytimes.com/2017/01/27/sports/tennis/rafael-nadal-australian-open-grigor-dimitrov.html?partner=rss&emc=rss",
+              "id_feed": 15,
+              "read": false,
+              "starred": false
+            },
             {
               "id_item": 235,
               "title": "Rafael Nadal Wins a Marathon to Set Up a Final With Federer",
               "description": "Rafael Nadal beat Grigor Dimitrov, 6-3, 5-7, 7-6 (5), 6-7 (4), 6-4, in a battle that took 4 hours 56 minutes.",
               "pubDate": "2017-01-27 15:11:30",
               "link": "http://www.nytimes.com/2017/01/27/sports/tennis/rafael-nadal-australian-open-grigor-dimitrov.html?partner=rss&emc=rss",
+              "id_feed": 15,
+              "read": false,
+              "starred": false
+            },
+            {
+              "id_item": 409,
+              "title": "On Soccer: Soccer Fan Mutinies, All Over England",
+              "description": "Saturday’s Blackburn-Blackpool match will bring another demonstration of anger by supporters who are claiming owner neglect.",
+              "pubDate": "2017-01-27 10:38:28",
+              "link": "http://www.nytimes.com/2017/01/27/sports/soccer/blackpool-fc-blackburn-rovers-fa-cup.html?partner=rss&emc=rss",
               "id_feed": 15,
               "read": false,
               "starred": false
@@ -1568,7 +2625,7 @@
               "pubDate": "2017-01-26 23:26:34",
               "link": "http://www.nytimes.com/2017/01/26/sports/tennis/flashback-to-1998-the-williams-sisters-first-meeting-at-a-slam.html?partner=rss&emc=rss",
               "id_feed": 15,
-              "read": false,
+              "read": true,
               "starred": false
             },
             {
@@ -1612,418 +2669,31 @@
               "starred": false
             }
           ]
-        },
-        {
-          "id_feed": 16,
-          "name": "NYT > College Basketball",
-          "favicon_uri": "favicon_not_implemented",
-          "items": [
-            {
-              "id_item": 245,
-              "title": "On College Basketball: Sympathy for the Blue Devils? Maybe This Year",
-              "description": "No team inspires loathing like the Blue Devils. But in a season of what passes for disappointment at Duke, even haters could show some compassion. Maybe.",
-              "pubDate": "2017-01-26 02:02:02",
-              "link": "http://www.nytimes.com/2017/01/25/sports/ncaabasketball/duke-blue-devils-grayson-allen.html?partner=rss&emc=rss",
-              "id_feed": 16,
-              "read": false,
-              "starred": false
-            },
-            {
-              "id_item": 246,
-              "title": "Next Act for Mike Dunleavy Is to Awaken Struggling Tulane",
-              "description": "A veteran N.B.A. coach has taken over a program that was 12-22 last season and made its most recent N.C.A.A. tournament appearance in 1995.",
-              "pubDate": "2017-01-25 02:45:54",
-              "link": "http://www.nytimes.com/2017/01/24/sports/ncaabasketball/next-act-for-mike-dunleavy-is-to-awaken-struggling-tulane.html?partner=rss&emc=rss",
-              "id_feed": 16,
-              "read": false,
-              "starred": false
-            }
-          ]
-        },
-        {
-          "id_feed": 17,
-          "name": "NYT > Soccer",
-          "favicon_uri": "favicon_not_implemented",
-          "items": [
-            {
-              "id_item": 247,
-              "title": "Real Madrid Knocked Out of Copa del Rey by Celta Vigo",
-              "description": "After a 2-2 draw in the second leg of the quarterfinals on Wednesday, Real Madrid was eliminated by 4-3 on aggregate goals. Atlético Madrid also advanced.",
-              "pubDate": "2017-01-25 23:43:39",
-              "link": "http://www.nytimes.com/2017/01/25/sports/soccer/real-madrid-copa-del-rey.html?partner=rss&emc=rss",
-              "id_feed": 17,
-              "read": false,
-              "starred": false
-            },
-            {
-              "id_item": 248,
-              "title": "On Soccer: Finding Fault in Soccer: For Many, It’s Always the Referee’s",
-              "description": "Mike Dean is the latest referee at the center of a British storm, but there is always company in the hot seat.",
-              "pubDate": "2017-01-23 06:02:11",
-              "link": "http://www.nytimes.com/2017/01/23/sports/soccer/referee-english-premier-league-mike-dean-soccer-mistakes.html?partner=rss&emc=rss",
-              "id_feed": 17,
-              "read": false,
-              "starred": false
-            },
-            {
-              "id_item": 249,
-              "title": "Ryan Mason of Hull City Is in ‘Stable Condition’ After Surgery on Fractured Skull",
-              "description": "Mason, 25, collided with Chelsea’s Gary Cahill in a match on Sunday and was rushed to a hospital after being treated for 10 minutes on the field.",
-              "pubDate": "2017-01-23 00:44:08",
-              "link": "http://www.nytimes.com/2017/01/22/sports/soccer/ryan-mason-skull-fracture-hull-city.html?partner=rss&emc=rss",
-              "id_feed": 17,
-              "read": false,
-              "starred": false
-            },
-            {
-              "id_item": 250,
-              "title": "Looking for England’s Next Soccer Phenom? The Adidas Scout Knows",
-              "description": "The scouting network of Neale McDermott, who works for Adidas, is seen as more sophisticated and comprehensive than those of the Premier League’s giants.",
-              "pubDate": "2017-01-21 06:00:25",
-              "link": "http://www.nytimes.com/2017/01/21/sports/soccer/clubs-apparel-neale-mcdermott-adidas.html?partner=rss&emc=rss",
-              "id_feed": 17,
-              "read": false,
-              "starred": false
-            },
-            {
-              "id_item": 251,
-              "title": "East Timor Is Expelled From Asian Cup for Fielding Ineligible Brazilians",
-              "description": "An investigation by the Asian Football Confederation found that officials of the East Timor soccer federation had falsified birth certificates to register the players.",
-              "pubDate": "2017-01-20 17:41:44",
-              "link": "http://www.nytimes.com/2017/01/20/sports/soccer/east-timor.html?partner=rss&emc=rss",
-              "id_feed": 17,
-              "read": false,
-              "starred": false
-            }
-          ]
         }
       ]
     },
     {
       "id_cat": 22,
       "name": "Test 2",
+      "unread": 0,
       "feeds": []
     },
     {
       "id_cat": 23,
       "name": "Test 3",
+      "unread": 0,
       "feeds": []
     },
     {
       "id_cat": 24,
       "name": "News",
+      "unread": 0,
       "feeds": [
-        {
-          "id_feed": 18,
-          "name": "NYT > World",
-          "favicon_uri": "favicon_not_implemented",
-          "items": [
-            {
-              "id_item": 260,
-              "title": "The Saturday Profile: Gary Lineker, Soccer Hero, Dips a Toe Into Post-Brexit British Politics",
-              "description": "Gary Lineker, the popular host of the BBC’s “Match of the Day,” has emerged as a leading critic of the exit from the European Union and of anti-immigrant views.",
-              "pubDate": "2017-01-27 15:30:25",
-              "link": "http://www.nytimes.com/2017/01/27/world/europe/a-soccer-hero-dips-a-toe-into-britains-roiling-politics.html?partner=rss&emc=rss",
-              "id_feed": 18,
-              "read": false,
-              "starred": false
-            },
-            {
-              "id_item": 279,
-              "title": "Op-Ed Contributor: Egypt’s Rickety Dictatorship",
-              "description": "Six years after the start of the Egyptian revolution, President Abdel Fattah el-Sisi’s regime could still fall apart at any time.",
-              "pubDate": "2017-01-27 13:43:42",
-              "link": "http://www.nytimes.com/2017/01/27/opinion/egypts-rickety-dictatorship.html?partner=rss&emc=rss",
-              "id_feed": 18,
-              "read": false,
-              "starred": false
-            },
-            {
-              "id_item": 280,
-              "title": "Op-Ed Columnist: The Closing of Trump’s America",
-              "description": "A rough translation of “America First” is Muslims last.",
-              "pubDate": "2017-01-27 12:00:41",
-              "link": "http://www.nytimes.com/2017/01/27/opinion/the-closing-of-trumps-america.html?partner=rss&emc=rss",
-              "id_feed": 18,
-              "read": false,
-              "starred": false
-            },
-            {
-              "id_item": 264,
-              "title": "Sinosphere: At Hong Kong New Year Fair, Defiance Gives Way to Resignation",
-              "description": "Along with fish balls and flowers, vendors in Victoria Park sold a game with a predetermined set of outcomes, a nod to the Beijing-directed selection of the city’s leader.",
-              "pubDate": "2017-01-27 11:08:59",
-              "link": "http://www.nytimes.com/2017/01/27/world/asia/hong-kong-new-years-fair-election.html?partner=rss&emc=rss",
-              "id_feed": 18,
-              "read": false,
-              "starred": false
-            },
-            {
-              "id_item": 252,
-              "title": "As Migrants Strain Border Towns, Pressure Builds on Mexico to Act",
-              "description": "With shelters in Tijuana already teeming with Haitians, some advocates fear President Trump’s plan could spur a far bigger crisis that Mexico may not be able to handle.",
-              "pubDate": "2017-01-27 11:00:27",
-              "link": "http://www.nytimes.com/2017/01/27/world/americas/mexico-border-tijuana-migrants-haitians-trump-wall.html?partner=rss&emc=rss",
-              "id_feed": 18,
-              "read": false,
-              "starred": false
-            },
-            {
-              "id_item": 265,
-              "title": "Sinosphere: Surviving Chinese New Year With the Family: A Musical How-To",
-              "description": "A song, spreading fast online, offers a bit of relief for those dashing home to celebrate the Lunar New Year only to face relentless questions about their lives.",
-              "pubDate": "2017-01-27 10:03:28",
-              "link": "http://www.nytimes.com/2017/01/27/world/asia/china-new-year-song.html?partner=rss&emc=rss",
-              "id_feed": 18,
-              "read": false,
-              "starred": false
-            },
-            {
-              "id_item": 259,
-              "title": "Donald Trump and Theresa May: An Odd Couple",
-              "description": "Britain’s prime minister will meet with the president on Friday. With “Brexit” looming, she needs to show Britons that they have friends beyond Europe.",
-              "pubDate": "2017-01-27 09:00:22",
-              "link": "http://www.nytimes.com/2017/01/27/world/europe/theresa-may-trump.html?partner=rss&emc=rss",
-              "id_feed": 18,
-              "read": false,
-              "starred": false
-            },
-            {
-              "id_item": 266,
-              "title": "In a Corner, President Enrique Peña Nieto of Mexico Punches Back",
-              "description": "The cancellation of his trip to the United States ended months of diplomacy for a leader caught between his people and an unpredictable, and at times hostile, American president.",
-              "pubDate": "2017-01-27 03:44:18",
-              "link": "http://www.nytimes.com/2017/01/26/world/americas/mexico-pena-nieto-donald-trump.html?partner=rss&emc=rss",
-              "id_feed": 18,
-              "read": false,
-              "starred": false
-            },
-            {
-              "id_item": 269,
-              "title": "Tax Plan Sows Confusion as Tensions With Mexico Soar",
-              "description": "President Trump’s plan for a wall on the border with Mexico erupted into a diplomatic standoff, as he appeared to embrace a proposal to tax all imported goods.",
-              "pubDate": "2017-01-27 03:04:00",
-              "link": "http://www.nytimes.com/2017/01/26/us/politics/mexico-wall-tax-trump.html?partner=rss&emc=rss",
-              "id_feed": 18,
-              "read": false,
-              "starred": false
-            },
-            {
-              "id_item": 267,
-              "title": "Stephen P. Cohen, Secret Broker of Mideast Peace Talks, Dies at 71",
-              "description": "Mr. Cohen arranged the first direct and informal talks between the Israeli government and Yasir Arafat, the Palestine Liberation Organization leader.",
-              "pubDate": "2017-01-27 01:57:54",
-              "link": "http://www.nytimes.com/2017/01/26/world/middleeast/stephen-cohen-dead-mideast-negotiator.html?partner=rss&emc=rss",
-              "id_feed": 18,
-              "read": false,
-              "starred": false
-            },
-            {
-              "id_item": 261,
-              "title": "Bana al-Abed Writes Trump: ‘Please Save the Children and People of Syria’",
-              "description": "The girl, 7, and her mother, Fatemah, posted an open letter to President Trump on Bana’s Twitter account, sharing the message with the hundreds of thousands of users who follow the account.",
-              "pubDate": "2017-01-27 01:30:42",
-              "link": "http://www.nytimes.com/2017/01/26/world/middleeast/bana-al-abed-donald-trump-syria-refugee.html?partner=rss&emc=rss",
-              "id_feed": 18,
-              "read": false,
-              "starred": false
-            },
-            {
-              "id_item": 272,
-              "title": "The Interpreter: British Alignment With Trump Threatens European Order",
-              "description": "Britain has much to lose whichever way it turns, but it seems more concerned with its departure from the European Union than other global events.",
-              "pubDate": "2017-01-27 01:07:05",
-              "link": "http://www.nytimes.com/2017/01/26/world/europe/british-alignment-with-trump-threatens-european-order.html?partner=rss&emc=rss",
-              "id_feed": 18,
-              "read": false,
-              "starred": false
-            },
-            {
-              "id_item": 268,
-              "title": "Canada Beckons International Students With a Path to Citizenship",
-              "description": "Universities are welcoming students from abroad as part of a government strategy to offset the country’s aging population and slowing birthrate.",
-              "pubDate": "2017-01-27 00:11:55",
-              "link": "http://www.nytimes.com/2017/01/26/world/canada/international-students-canadian-citizenship.html?partner=rss&emc=rss",
-              "id_feed": 18,
-              "read": false,
-              "starred": false
-            },
-            {
-              "id_item": 253,
-              "title": "Mexico’s President Cancels Meeting With Trump Over Wall",
-              "description": "The move by the Mexican leader, Enrique Peña Nieto, brings to a head the simmering tensions that have been building for months between the two nations.",
-              "pubDate": "2017-01-26 22:01:22",
-              "link": "http://www.nytimes.com/2017/01/26/world/mexicos-president-cancels-meeting-with-trump-over-wall.html?partner=rss&emc=rss",
-              "id_feed": 18,
-              "read": false,
-              "starred": false
-            },
-            {
-              "id_item": 270,
-              "title": "‘This Feels Like Being Born Again:’ Gambians Hope for Change and Long for Home",
-              "description": "As the new president takes power, we asked readers from Gambia about their hopes and fears for their homeland, and, for those abroad, whether they might return.",
-              "pubDate": "2017-01-26 21:31:42",
-              "link": "http://www.nytimes.com/2017/01/26/world/africa/gambia-adama-barrow.html?partner=rss&emc=rss",
-              "id_feed": 18,
-              "read": false,
-              "starred": false
-            },
-            {
-              "id_item": 255,
-              "title": "His Predecessor Gone, Gambia’s New President Finally Comes Home",
-              "description": "The president, Adama Barrow, had fled to neighboring Senegal more than a week earlier after Yahya Jammeh, his defeated predecessor, refused to cede power.",
-              "pubDate": "2017-01-26 21:20:47",
-              "link": "http://www.nytimes.com/2017/01/26/world/africa/adama-barrow-gambia.html?partner=rss&emc=rss",
-              "id_feed": 18,
-              "read": false,
-              "starred": false
-            },
-            {
-              "id_item": 271,
-              "title": "Ordered to Seek Approval on ‘Brexit,’ Theresa May Does So. Tersely.",
-              "description": "At 132 words — one of the shorter bills in British history — the bill was seen as an effort to prevent amendments that could slow its passage.",
-              "pubDate": "2017-01-26 21:00:07",
-              "link": "http://www.nytimes.com/2017/01/26/world/europe/uk-theresa-may-brexit-bill.html?partner=rss&emc=rss",
-              "id_feed": 18,
-              "read": false,
-              "starred": false
-            },
-            {
-              "id_item": 275,
-              "title": "Eike Batista, Once Brazil’s Richest Man, Is Sought in Corruption Inquiry",
-              "description": "The police are seeking the arrest of Mr. Batista, an oil and mining magnate, in connection with bribes paid to the former governor of Rio de Janeiro.",
-              "pubDate": "2017-01-26 19:11:43",
-              "link": "http://www.nytimes.com/2017/01/26/world/americas/brazil-eike-batista.html?partner=rss&emc=rss",
-              "id_feed": 18,
-              "read": false,
-              "starred": false
-            },
-            {
-              "id_item": 273,
-              "title": "‘Give Us Our Children Back’: Hunger Strikers in Sri Lanka Demand Answers",
-              "description": "In pushing officials to investigate the disappearance of thousands after a civil war ended in 2009, hunger strikers won a meeting with the country’s defense minister.",
-              "pubDate": "2017-01-26 19:03:44",
-              "link": "http://www.nytimes.com/2017/01/26/world/asia/sri-lanka-hunger-strike-missing.html?partner=rss&emc=rss",
-              "id_feed": 18,
-              "read": false,
-              "starred": false
-            },
-            {
-              "id_item": 274,
-              "title": "Greece’s Top Court Rejects Extradition of Turkish Officers",
-              "description": "The Supreme Court ruled that they would face “the curtailment of their fundamental human rights” if they were sent back to Turkey.",
-              "pubDate": "2017-01-26 18:10:36",
-              "link": "http://www.nytimes.com/2017/01/26/world/europe/greece-turkey-soldiers-extradition.html?partner=rss&emc=rss",
-              "id_feed": 18,
-              "read": false,
-              "starred": false
-            },
-            {
-              "id_item": 256,
-              "title": "Wheels: China’s Answer to Tesla Is Hopeful Entrant to Global Car Market",
-              "description": "Electric vehicles offer a new chance to Chinese car-making efforts that have floundered in the past. But lavish state aid could be as much bane as boon.",
-              "pubDate": "2017-01-26 17:43:51",
-              "link": "http://www.nytimes.com/2017/01/26/automobiles/wheels/chinas-answer-to-tesla-is-hopeful-entrant-to-global-car-market.html?partner=rss&emc=rss",
-              "id_feed": 18,
-              "read": false,
-              "starred": false
-            },
-            {
-              "id_item": 262,
-              "title": "Beirut Journal: On Lebanon’s Once-Sparkling Shores, a Garbage Dump Grows",
-              "description": "A landfill that is attracting birds that endanger aviation is a symbol of dysfunction to many in Lebanon.",
-              "pubDate": "2017-01-26 17:09:47",
-              "link": "http://www.nytimes.com/2017/01/26/world/middleeast/on-lebanons-once-sparkling-shores-a-garbage-dump-grows.html?partner=rss&emc=rss",
-              "id_feed": 18,
-              "read": false,
-              "starred": false
-            },
-            {
-              "id_item": 257,
-              "title": "South Korea Can Keep Buddha Statue Stolen From Japan, Court Says",
-              "description": "The ruling found that the 20-inch bronze statue had been taken from Korea centuries ago by Japanese pirates. Tokyo called the decision “regrettable.”",
-              "pubDate": "2017-01-26 14:02:17",
-              "link": "http://www.nytimes.com/2017/01/26/world/asia/south-korea-japan-buddha-statue.html?partner=rss&emc=rss",
-              "id_feed": 18,
-              "read": false,
-              "starred": false
-            },
-            {
-              "id_item": 258,
-              "title": "Chinese New Year: Inside the World’s Largest Trek",
-              "description": "Tens of millions are traveling from industrial regions to their hometowns to celebrate. The holiday rush is not a tranquil experience, but it has become more orderly.",
-              "pubDate": "2017-01-26 13:30:19",
-              "link": "http://www.nytimes.com/2017/01/26/world/asia/chinese-new-year-home-lunar.html?partner=rss&emc=rss",
-              "id_feed": 18,
-              "read": false,
-              "starred": false
-            },
-            {
-              "id_item": 254,
-              "title": "Clinics for World’s Vulnerable Brace for Trump’s Anti-Abortion Cuts",
-              "description": "Health workers say President Trump’s ban on abortion counseling will hurt even those health services that do not involve abortions.",
-              "pubDate": "2017-01-26 11:01:16",
-              "link": "http://www.nytimes.com/2017/01/26/world/africa/clinics-health-care-cuts-abortion-trump.html?partner=rss&emc=rss",
-              "id_feed": 18,
-              "read": false,
-              "starred": false
-            },
-            {
-              "id_item": 276,
-              "title": "Q. and A.: How Trump’s Revival of an Abortion Ban Will Affect Women in Kenya",
-              "description": "A family planning fellow discusses what President Trump’s ban on aid to groups who offer abortion counseling could mean for women in western Kenya.",
-              "pubDate": "2017-01-26 11:00:24",
-              "link": "http://www.nytimes.com/2017/01/26/world/africa/trump-abortion-ban.html?partner=rss&emc=rss",
-              "id_feed": 18,
-              "read": false,
-              "starred": false
-            },
-            {
-              "id_item": 281,
-              "title": "Contributing Op-Ed Writer: God Is Back – in France",
-              "description": "Catholics are emerging as a political force in the French presidential campaign.",
-              "pubDate": "2017-01-26 10:29:10",
-              "link": "http://www.nytimes.com/2017/01/26/opinion/god-is-back-in-france.html?partner=rss&emc=rss",
-              "id_feed": 18,
-              "read": false,
-              "starred": false
-            },
-            {
-              "id_item": 263,
-              "title": "What in the World: Polish City to Give Tom Hanks the Car That Put It on the Auto Map",
-              "description": "The Maluch, built in Bielsko-Biala from the early 1970s to 2000, has developed a following that apparently includes at least one prominent fan.",
-              "pubDate": "2017-01-25 11:00:29",
-              "link": "http://www.nytimes.com/2017/01/25/world/what-in-the-world/polish-city-to-give-tom-hanks-the-car-that-put-it-on-the-auto-map.html?partner=rss&emc=rss",
-              "id_feed": 18,
-              "read": false,
-              "starred": false
-            },
-            {
-              "id_item": 278,
-              "title": "15 of the Best Journals by Our Reporters Around the World",
-              "description": "The conversational and visual on-the-ground reports offered a glimpse of captivating people and places, from a “sleep mafia” in Delhi to a monastery seeking salvation in beer.",
-              "pubDate": "2016-12-30 15:00:52",
-              "link": "http://www.nytimes.com/2016/12/30/world/15-of-the-best-journals-by-our-reporters-around-the-world.html?partner=rss&emc=rss",
-              "id_feed": 18,
-              "read": false,
-              "starred": false
-            },
-            {
-              "id_item": 277,
-              "title": "‘I Didn’t Want to Lose My Identity’: 16,000 Readers Reflect on Their Surnames",
-              "description": "The Times asked women around the world why they had kept or changed their surnames when they married. For many, the decision carried significant weight.",
-              "pubDate": "2016-12-24 12:00:44",
-              "link": "http://www.nytimes.com/2016/12/24/world/identity-surnames-women.html?partner=rss&emc=rss",
-              "id_feed": 18,
-              "read": false,
-              "starred": false
-            }
-          ]
-        },
         {
           "id_feed": 19,
           "name": "Europe 1: Actus",
           "favicon_uri": "favicon_not_implemented",
+          "unread": 0,
           "items": [
             {
               "id_item": 282,
@@ -2032,7 +2702,7 @@
               "pubDate": "2017-01-27 16:59:52",
               "link": "http://www.europe1.fr/societe/meurtre-de-lea-perpetuite-avec-une-periode-de-surete-de-20-ans-pour-gerald-seureau-2962508",
               "id_feed": 19,
-              "read": false,
+              "read": true,
               "starred": false
             },
             {
@@ -2042,7 +2712,7 @@
               "pubDate": "2017-01-27 16:59:13",
               "link": "http://www.europe1.fr/international/venise-un-migrant-se-noie-des-passants-filment-la-scene-et-linsulte-2962505",
               "id_feed": 19,
-              "read": false,
+              "read": true,
               "starred": false
             },
             {
@@ -2052,7 +2722,7 @@
               "pubDate": "2017-01-27 16:46:23",
               "link": "http://www.europe1.fr/politique/cote-de-confiance-hollande-rechute-hamon-fait-un-bond-en-avant-2962502",
               "id_feed": 19,
-              "read": false,
+              "read": true,
               "starred": false
             },
             {
@@ -2062,7 +2732,7 @@
               "pubDate": "2017-01-27 16:31:08",
               "link": "http://www.europe1.fr/politique/jean-marie-le-pen-vole-au-secours-de-fillon-2962496",
               "id_feed": 19,
-              "read": false,
+              "read": true,
               "starred": false
             },
             {
@@ -2072,7 +2742,7 @@
               "pubDate": "2017-01-27 16:18:06",
               "link": "http://www.europe1.fr/international/crise-entre-donald-trump-et-le-mexique-cette-histoire-de-mur-cest-de-la-mise-en-scene-2962481",
               "id_feed": 19,
-              "read": false,
+              "read": true,
               "starred": false
             },
             {
@@ -2082,7 +2752,7 @@
               "pubDate": "2017-01-27 16:04:36",
               "link": "http://www.europe1.fr/sport/f1-deja-place-en-redressement-judiciaire-manor-cesse-ses-activites-2962493",
               "id_feed": 19,
-              "read": false,
+              "read": true,
               "starred": false
             },
             {
@@ -2092,7 +2762,7 @@
               "pubDate": "2017-01-27 15:46:27",
               "link": "http://www.europe1.fr/culture/festival-dangouleme-7-bd-a-ne-pas-manquer-2962478",
               "id_feed": 19,
-              "read": false,
+              "read": true,
               "starred": false
             },
             {
@@ -2102,7 +2772,7 @@
               "pubDate": "2017-01-27 15:44:17",
               "link": "http://www.europe1.fr/politique/macron-promet-un-pass-culturel-de-500-euros-a-18-ans-2962475",
               "id_feed": 19,
-              "read": false,
+              "read": true,
               "starred": false
             },
             {
@@ -2112,7 +2782,7 @@
               "pubDate": "2017-01-27 15:34:42",
               "link": "http://www.europe1.fr/emissions/au-coeur-de-l-histoire/acdh-lintegrale-le-theatre-antoine-270117-2962448",
               "id_feed": 19,
-              "read": false,
+              "read": true,
               "starred": false
             },
             {
@@ -2122,7 +2792,7 @@
               "pubDate": "2017-01-27 15:26:58",
               "link": "http://www.europe1.fr/sport/le-skieur-francais-valentin-giraud-moine-se-fracture-une-jambe-a-garmisch-partenkirchen-2962445",
               "id_feed": 19,
-              "read": false,
+              "read": true,
               "starred": false
             },
             {
@@ -2132,7 +2802,7 @@
               "pubDate": "2017-01-27 15:14:09",
               "link": "http://www.europe1.fr/politique/des-deputes-ps-envisagent-un-droit-de-retrait-en-cas-de-victoire-de-hamon-2962442",
               "id_feed": 19,
-              "read": false,
+              "read": true,
               "starred": false
             },
             {
@@ -2142,7 +2812,7 @@
               "pubDate": "2017-01-27 14:52:39",
               "link": "http://www.europe1.fr/politique/pour-jean-luc-melenchon-les-gens-sont-indignes-par-laffaire-fillon-2962433",
               "id_feed": 19,
-              "read": false,
+              "read": true,
               "starred": false
             },
             {
@@ -2152,7 +2822,7 @@
               "pubDate": "2017-01-27 14:44:50",
               "link": "http://www.europe1.fr/sport/open-daustralie-rafael-nadal-rejoint-roger-federer-en-finale-2962430",
               "id_feed": 19,
-              "read": false,
+              "read": true,
               "starred": false
             },
             {
@@ -2162,7 +2832,7 @@
               "pubDate": "2017-01-27 14:41:26",
               "link": "http://www.europe1.fr/culture/une-bd-inspiree-des-attentats-de-charlie-hebdo-adaptee-au-cinema-2962427",
               "id_feed": 19,
-              "read": false,
+              "read": true,
               "starred": false
             },
             {
@@ -2172,7 +2842,7 @@
               "pubDate": "2017-01-27 14:39:51",
               "link": "http://www.europe1.fr/emissions/le-journal-de-la-sante/faut-il-se-mefier-de-leau-du-robinet-2962424",
               "id_feed": 19,
-              "read": false,
+              "read": true,
               "starred": false
             },
             {
@@ -2182,7 +2852,7 @@
               "pubDate": "2017-01-27 14:36:52",
               "link": "http://www.europe1.fr/emissions/au-coeur-de-l-histoire/le-recit-vous-avez-dit-jouvet-2962421",
               "id_feed": 19,
-              "read": false,
+              "read": true,
               "starred": false
             },
             {
@@ -2192,7 +2862,7 @@
               "pubDate": "2017-01-27 14:36:15",
               "link": "http://www.europe1.fr/politique/francois-fillon-dans-la-tourmente-des-auditions-toujours-en-cours-2962403",
               "id_feed": 19,
-              "read": false,
+              "read": true,
               "starred": false
             },
             {
@@ -2202,7 +2872,7 @@
               "pubDate": "2017-01-27 14:29:16",
               "link": "http://www.europe1.fr/faits-divers/un-poste-de-police-municipale-attaque-dans-les-yvelines-une-voiture-incendiee-2962418",
               "id_feed": 19,
-              "read": false,
+              "read": true,
               "starred": false
             },
             {
@@ -2212,7 +2882,7 @@
               "pubDate": "2017-01-27 14:21:33",
               "link": "http://www.europe1.fr/international/angela-merkel-va-sentretenir-avec-donald-trump-sur-la-russie-samedi-2962415",
               "id_feed": 19,
-              "read": false,
+              "read": true,
               "starred": false
             },
             {
@@ -2222,7 +2892,7 @@
               "pubDate": "2017-01-27 14:19:34",
               "link": "http://www.europe1.fr/evenements/la-cour-des-grands-avec-alessandra-sublet-le-programme-du-30-janvier-au-3-fevrier-2962412",
               "id_feed": 19,
-              "read": false,
+              "read": true,
               "starred": false
             }
           ]
@@ -2232,6 +2902,13 @@
     {
       "id_cat": 25,
       "name": "Test 4",
+      "unread": 0,
+      "feeds": []
+    },
+    {
+      "id_cat": 26,
+      "name": "Category",
+      "unread": 0,
       "feeds": []
     }
   ]
