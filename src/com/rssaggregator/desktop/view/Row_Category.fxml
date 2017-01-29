@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TitledPane?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<TitledPane fx:id="categoryTitled" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefWidth="278.0" stylesheets="@css/style.css" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1">
+   <graphic>
+      <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="35.0" prefWidth="345.0">
+         <children>
+            <Label fx:id="nameLb" alignment="CENTER" contentDisplay="CENTER" onMouseClicked="#handleCategoryClicked" styleClass="titledpane-title" text="Category" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="30.0" AnchorPane.topAnchor="0.0" />
+            <Label fx:id="unreadArticlesLb" styleClass="titledpane-title" text="23" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="16.0" AnchorPane.topAnchor="0.0" />
+         </children>
+         <padding>
+            <Insets left="-16.0" right="8.0" />
+         </padding>
+      </AnchorPane>
+   </graphic>
+</TitledPane>

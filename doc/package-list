@@ -1,0 +1,7 @@
+com.rssaggregator.desktop
+com.rssaggregator.desktop.event
+com.rssaggregator.desktop.model
+com.rssaggregator.desktop.network
+com.rssaggregator.desktop.network.event
+com.rssaggregator.desktop.utils
+com.rssaggregator.desktop.view

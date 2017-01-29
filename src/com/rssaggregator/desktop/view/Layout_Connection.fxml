@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXPasswordField?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.input.KeyCodeCombination?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" style="-fx-background-color: #673AB7;" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.rssaggregator.desktop.view.ConnectionController">
+   <top>
+      <BorderPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+         <center>
+            <ImageView fitHeight="120.0" fitWidth="160.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
+               <image>
+                  <Image url="@../../../../../resources/images/icon_rss.png" />
+               </image>
+               <BorderPane.margin>
+                  <Insets bottom="20.0" top="30.0" />
+               </BorderPane.margin>
+            </ImageView>
+         </center>
+         <top>
+            <MenuBar BorderPane.alignment="CENTER">
+              <menus>
+                <Menu mnemonicParsing="false" text="File">
+                  <items>
+                    <MenuItem mnemonicParsing="false" onAction="#handleExit" text="Exit">
+                           <accelerator>
+                              <KeyCodeCombination alt="UP" code="Q" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
+                           </accelerator></MenuItem>
+                  </items>
+                </Menu>
+              </menus>
+            </MenuBar>
+         </top>
+         <BorderPane.margin>
+            <Insets />
+         </BorderPane.margin>
+      </BorderPane>
+   </top>
+   <center>
+      <AnchorPane minWidth="-Infinity" prefHeight="200.0" BorderPane.alignment="CENTER">
+         <children>
+            <JFXTextField fx:id="userEmailTf" labelFloat="true" layoutX="225.0" layoutY="14.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="350.0" promptText="Email" styleClass="jfx-text-field" stylesheets="@css/material.css" AnchorPane.leftAnchor="225.0" AnchorPane.rightAnchor="225.0" />
+            <JFXPasswordField fx:id="userPasswordPf" labelFloat="true" layoutX="225.0" layoutY="90.0" prefHeight="40.0" prefWidth="350.0" promptText="Password" styleClass="jfx-password-field" stylesheets="@css/material.css" AnchorPane.leftAnchor="225.0" AnchorPane.rightAnchor="225.0" />
+         </children>
+         <BorderPane.margin>
+            <Insets bottom="10.0" top="10.0" />
+         </BorderPane.margin>
+      </AnchorPane>
+   </center>
+   <bottom>
+      <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+         <children>
+            <JFXButton fx:id="loginBt" layoutX="275.0" layoutY="-18.0" onAction="#handleLogIn" prefHeight="50.0" prefWidth="250.0" styleClass="button-raised" stylesheets="@css/material.css" text="Log In" AnchorPane.leftAnchor="275.0" AnchorPane.rightAnchor="275.0" />
+            <JFXButton fx:id="signupBt" layoutX="275.0" layoutY="76.0" onAction="#handleSignUp" prefHeight="50.0" prefWidth="250.0" styleClass="button-raised" stylesheets="@css/material.css" text="Sign Up" AnchorPane.leftAnchor="275.0" AnchorPane.rightAnchor="275.0" />
+         </children>
+      </AnchorPane>
+   </bottom>
+</BorderPane>

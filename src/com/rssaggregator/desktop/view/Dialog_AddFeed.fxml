@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXComboBox?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="450.0" prefWidth="400.0" style="-fx-background-color: #673AB7;" stylesheets="@css/material.css" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.rssaggregator.desktop.view.AddFeedController">
+   <children>
+      <JFXTextField fx:id="rssLinkTf" labelFloat="true" layoutX="50.0" layoutY="105.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" promptText="RSS Link" styleClass="rss-link-textfield" stylesheets="@css/material.css" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="40.0" AnchorPane.topAnchor="110.0" />
+      <JFXComboBox fx:id="categoriesCb" layoutX="206.0" layoutY="212.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="321.0" promptText="Choose a category" styleClass="category-spinner" AnchorPane.leftAnchor="55.0" AnchorPane.rightAnchor="95.0" />
+      <JFXButton ellipsisString="" layoutX="394.0" layoutY="226.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" onAction="#handleAddCategory" prefHeight="30.0" prefWidth="35.0" AnchorPane.rightAnchor="45.0">
+         <graphic>
+            <ImageView fitHeight="20.0" fitWidth="20.0" onMouseClicked="#handleAddCategory" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../../../resources/images/ic_add.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </JFXButton>
+      <JFXButton ellipsisString="" layoutX="366.0" layoutY="357.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" onAction="#handleAddFeed" prefHeight="70.0" prefWidth="70.0" styleClass="button-add" text=" " AnchorPane.bottomAnchor="24.0" AnchorPane.rightAnchor="24.0">
+         <graphic>
+            <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../../../resources/images/ic_add_primary.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </JFXButton>
+      <JFXButton ellipsisString="" layoutX="14.0" layoutY="14.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" onAction="#handleCloseDialog" prefHeight="45.0" prefWidth="50.0" text=" " AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <graphic>
+            <ImageView fitHeight="20.0" fitWidth="20.0" onMouseClicked="#handleCloseDialog" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../../../resources/images/ic_back_accent.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </JFXButton>
+   </children>
+</AnchorPane>

@@ -1,0 +1,63 @@
+@font-face {
+	src: url("../../../../../../resources/fonts/Roboto-Regular.ttf");
+}
+
+@font-face {
+	src: url("../../../../../../resources/fonts/Roboto-Black.ttf");
+}
+
+#title-Roboto {
+	-fx-font-family: "Roboto Black";
+}
+
+.titled-pane * {
+    -fx-background-color: #FF9800;
+}
+
+.titled-pane:pressed {
+    -fx-text-fill: red;
+}
+.titled-pane .title{
+    -fx-background-color: #FF9800;
+}
+.titled-pane .title:hover {
+    -fx-background-color: #FF9800;
+}
+.titled-pane .title:pressed {
+    -fx-background-color: #673AB7;
+}
+
+
+.titled-pane:focused > .title
+{
+	-fx-background-color: #673AB7;	
+}
+
+
+.split-pane *.split-pane-divider {
+    -fx-padding: 0 1 0 1;
+    -fx-background-color: #512DA8;   
+}
+
+.scroll-pane > .viewport {
+   -fx-background-color: transparent;
+}
+
+.scroll-pane {
+   -fx-background-color: transparent;
+}
+
+.titledpane-title {
+	-fx-text-fill: white;
+	-fx-font-size: 18px;
+	-fx-font-family: "Roboto Black"
+}
+
+
+.titledpane-title-channel {
+	-fx-background-color:  #757575;
+	-fx-text-fill: white;
+	-fx-font-size: 15px;
+	-fx-font-family: "Roboto"
+}
+
