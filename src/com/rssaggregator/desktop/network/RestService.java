@@ -19,6 +19,12 @@ import retrofit2.http.POST;
 import retrofit2.http.PUT;
 import retrofit2.http.Path;
 
+/**
+ * Interface of the REST API.
+ * 
+ * @author Irina
+ *
+ */
 public interface RestService {
 
 	//

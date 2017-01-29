@@ -23,6 +23,12 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 
+/**
+ * Controller for the Article Details View.
+ * 
+ * @author Irina
+ *
+ */
 public class ArticleDetailsScene {
 
 	// View.
@@ -45,6 +51,12 @@ public class ArticleDetailsScene {
 
 	private boolean isReadChanged = false;
 
+	/**
+	 * Constructor
+	 * 
+	 * @param item
+	 *            Item
+	 */
 	public ArticleDetailsScene(Item item) {
 		this.item = item;
 
@@ -62,10 +74,19 @@ public class ArticleDetailsScene {
 		this.eventBus.register(this.instance);
 	}
 
+	/**
+	 * Sets the data
+	 * 
+	 * @param mainViewController
+	 *            MainViewController.
+	 */
 	public void setData(MainViewController mainViewController) {
 		this.mainViewController = mainViewController;
 	}
 
+	/**
+	 * Launches the article details view by loading the FXML.
+	 */
 	public void launchArticleDetailsView() {
 		try {
 			FXMLLoader loader = new FXMLLoader();
@@ -104,6 +125,12 @@ public class ArticleDetailsScene {
 		}
 	}
 
+	/**
+	 * Changes the read state of the item by calling the API.
+	 * 
+	 * @param readState
+	 *            New Read state.
+	 */
 	public void changeReadState(boolean readState) {
 		if (this.item != null) {
 			ItemStateWrapper wrapper = new ItemStateWrapper(this.item.isStarred(), readState);
@@ -113,6 +140,11 @@ public class ArticleDetailsScene {
 		}
 	}
 
+	/**
+	 * Changes the star state of the item by calling the API.
+	 * 
+	 * @param starState
+	 */
 	public void changeStarState(boolean starState) {
 		if (this.item != null) {
 			ItemStateWrapper wrapper = new ItemStateWrapper(starState, this.item.isRead());

@@ -4,6 +4,12 @@ import com.google.common.eventbus.EventBus;
 import com.rssaggregator.desktop.model.ItemReadStateWrapper;
 import com.rssaggregator.desktop.model.ItemStateWrapper;
 
+/**
+ * Interface for the methods which call the API.
+ * 
+ * @author Irina
+ *
+ */
 public interface RssApi {
 
 	void setEventBus(EventBus eventBus);

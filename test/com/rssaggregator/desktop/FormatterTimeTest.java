@@ -1,4 +1,4 @@
-package unittests;
+package com.rssaggregator.desktop;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
@@ -7,7 +7,6 @@ import java.util.Date;
 
 import org.junit.Assert;
 import org.junit.Before;
-import org.junit.Rule;
 import org.junit.Test;
 
 import com.rssaggregator.desktop.utils.FormatterTime;
@@ -39,9 +38,6 @@ public class FormatterTimeTest {
 		result = FormatterTime.formattedAsTimeAgo(nonNullDate);
 		Assert.assertNotEquals(result, ("Unknown date"));
 	}
-	
-	@Rule public JavaFXThreadingRule javafxRule = new JavaFXThreadingRule();
-
 
 	@Test
 	public void formatJustNowTest() throws NoSuchMethodException, InvocationTargetException, IllegalAccessException {

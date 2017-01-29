@@ -522,6 +522,9 @@ public class RssApiImpl implements RssApi {
 		});
 	}
 
+	/**
+	 * Updates states of an item by calling the API.
+	 */
 	@Override
 	public void updateItemState(Integer itemId, ItemStateWrapper wrapper) {
 		if (this.restService == null) {
@@ -561,6 +564,9 @@ public class RssApiImpl implements RssApi {
 		});
 	}
 
+	/**
+	 * Updates all the items of a channel by calling the API
+	 */
 	@Override
 	public void updateItemStateByChannel(Integer channelId, ItemReadStateWrapper wrapper) {
 		if (this.restService == null) {
@@ -600,6 +606,9 @@ public class RssApiImpl implements RssApi {
 		});
 	}
 
+	/**
+	 * Unsubscribe the feed by calling the API.
+	 */
 	@Override
 	public void deleteFeed(Integer channelId) {
 		if (this.restService == null) {
