@@ -32,9 +32,15 @@ public class CategoriesUtils {
 	public static int getUnreadArticles(Category category) {
 		int count = 0;
 
+		if (category == null) {
+			return 0;
+		}
+
 		if (category.getChannels() != null) {
 			for (Channel channel : category.getChannels()) {
-				count += channel.getUnread();
+				if (channel.getUnread() != null) {
+					count += channel.getUnread();
+				}
 			}
 		}
 		return count;
@@ -50,7 +56,7 @@ public class CategoriesUtils {
 	 * @return boolean is already created or not.
 	 */
 	public static boolean isAlreadyCreated(ObservableList<Category> categories, String categoryName) {
-		if (categories == null) {
+		if (categories == null || categoryName == null) {
 			return false;
 		}
 		if (categories.size() == 0) {
@@ -76,7 +82,7 @@ public class CategoriesUtils {
 	 *         in the list.
 	 */
 	public static Category getCategoryByName(ObservableList<Category> categories, String categoryName) {
-		if (categories == null) {
+		if (categories == null || categoryName == null) {
 			return null;
 		}
 		if (categories.size() == 0) {
@@ -100,6 +106,10 @@ public class CategoriesUtils {
 	 * @return List of Items with the data.
 	 */
 	public static List<Item> fillDataFromChannelList(ItemsWrapper data) {
+		if (data == null || data.getChannels() == null) {
+			return new ArrayList<>();
+		}
+
 		List<Channel> channels = data.getChannels();
 		List<Item> items = new ArrayList<Item>();
 
@@ -138,6 +148,10 @@ public class CategoriesUtils {
 	 * @return List of Items with the data.
 	 */
 	public static List<Item> fillDataFromChannelList(CategoriesWrapper data) {
+		if (data == null || data.getCategories() == null) {
+			return new ArrayList<>();
+		}
+
 		List<Category> categories = data.getCategories();
 		List<Item> items = new ArrayList<Item>();
 
