@@ -1,0 +1,28 @@
+{
+	"status" : "success",
+	"data" : [ {
+		"id_feed" : 1,
+		"name" : "Eurosport",
+		"unread" : 20,
+		"items" : [{
+			"id_item" : 1,
+			"name" : "Drogba a Marseille",
+			"title" : "Drogba à Marseille",
+			"text" : "Petite nouvelle: Drogba va à l'OM pour 2€.",
+			"date" : "2017-01-12 00:00:00",
+			"url" : "http://www.eurosport.fr/",
+			"read" : false,
+			"starred" : false
+		},
+		{
+			"id_item" : 2,
+			"name" : "Payet n'en fait qu'à sa tête",
+			"title" : "Payet n'en fait qu'à sa tête",
+			"text" : "Payet fait la diva et veut jouer a l'OM",
+			"date" : "2017-01-12 00:00:00",
+			"url" : "http://www.eurosport.fr/",
+			"read" : false,
+			"starred" : false
+		}]
+		}]
+}

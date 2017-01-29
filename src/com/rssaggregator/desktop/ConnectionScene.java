@@ -2,11 +2,10 @@ package com.rssaggregator.desktop;
 
 import java.io.IOException;
 
-import com.google.gson.Gson;
-import com.rssaggregator.desktop.model.APIError;
-import com.rssaggregator.desktop.model.ComeOn_Credentials;
-import com.rssaggregator.desktop.model.ComeOn_CredentialsWrapper;
-import com.rssaggregator.desktop.network.RestService;
+import com.google.common.eventbus.EventBus;
+import com.google.common.eventbus.Subscribe;
+import com.rssaggregator.desktop.network.RssApi;
+import com.rssaggregator.desktop.network.event.LogInEvent;
 import com.rssaggregator.desktop.utils.Globals;
 import com.rssaggregator.desktop.utils.PreferencesUtils;
 import com.rssaggregator.desktop.utils.UiUtils;
@@ -17,12 +16,6 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
-import okhttp3.OkHttpClient;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
 
 /**
  * Controller for the Connection Scene.
@@ -30,22 +23,41 @@ import retrofit2.converter.gson.GsonConverterFactory;
  * @author Irina
  *
  */
-public class ConnectionScene implements Callback<ComeOn_Credentials> {
+public class ConnectionScene {
 
-	private static String userEmail;
-	private static String userPassword;
-
+	// View attributes
 	private Stage primaryStage;
 	private BorderPane rootView;
+
+	// Others
 	private ConnectionController controller;
 
+	// Network
+	private EventBus eventBus;
+	private RssApi rssApi;
+
+	// Scene
+	private ConnectionScene instance;
+
 	/**
-	 * Constructor.
+	 * Default constructor.
 	 * 
 	 * @param mainApp
 	 */
 	public ConnectionScene() {
 		this.primaryStage = MainApp.getStage();
+		this.instance = this;
+
+		this.rssApi = MainApp.getRssApi();
+		this.eventBus = MainApp.getEventBus();
+
+		// Check if the EventBus attribute is initialized.
+		if (this.eventBus == null) {
+			this.eventBus = new EventBus();
+			this.rssApi.setEventBus(this.eventBus);
+		}
+
+		this.eventBus.register(this.instance);
 	}
 
 	/**
@@ -83,46 +95,24 @@ public class ConnectionScene implements Callback<ComeOn_Credentials> {
 		this.primaryStage.setResizable(false);
 	}
 
+	/**
+	 * Logs the user to the application by requesting the API token.
+	 * 
+	 * @param userEmail
+	 *            email of the user.
+	 * @param userPassword
+	 *            password of the user.
+	 */
 	public void logIn(String userEmail, String userPassword) {
-		this.userEmail = userEmail;
-		this.userPassword = userPassword;
+		// Starts Loading view.
+		this.controller.showLoading();
 
-		// OkHttpClient.Builder builder = new OkHttpClient.Builder();
-		// OkHttpClient client = builder.build();
-		//
-		// Retrofit retrofit = new
-		// Retrofit.Builder().baseUrl("http://api.comeon.io")
-		// .addConverterFactory(GsonConverterFactory.create()).client(client).
-		// build();
-		//
-		// RestService restService = retrofit.create(RestService.class);
-		// CredentialsWrapper wrapper = new CredentialsWrapper();
-		// wrapper.setLogin(userEmail); wrapper.setPassword(userPassword);
-		//
-		// restService.logIn(wrapper).enqueue(new Callback<Credentials>() {
-		//
-		// @Override
-		// public void onFailure(Call<Credentials> arg0, Throwable arg1) {
-		// // TODO Auto-generated method stub
-		//
-		// }
-		//
-		// @Override
-		// public void onResponse(Call<Credentials> arg0, Response<Credentials>
-		// arg1) {
-		// // TODO Auto-generated method stub
-		//
-		// }
-		// });
-		controller.showLoading();
-
-		PreferencesUtils.setUserEmail(userEmail);
-		PreferencesUtils.setUserPassword(userPassword);
-		PreferencesUtils.setApiToken("Token");
-		PreferencesUtils.setIsConnected(true);
-		launchMainView();
+		this.rssApi.logIn(userEmail, userPassword);
 	}
 
+	/**
+	 * Launches the Main View.
+	 */
 	public void launchMainView() {
 		MainViewScene scene = new MainViewScene();
 		scene.launchMainView();
@@ -136,60 +126,47 @@ public class ConnectionScene implements Callback<ComeOn_Credentials> {
 		scene.launchSignUpView();
 	}
 
-	@Override
-	public void onFailure(Call<ComeOn_Credentials> call, Throwable arg1) {
-		// TODO Auto-generated method stub
+	//
+	//
+	// Event methods.
+	//
+	//
+	/**
+	 * Event after the api returns the result of the login request.
+	 * 
+	 * @param event
+	 */
+	@Subscribe
+	public void handleLogIn(LogInEvent event) {
 		Platform.runLater(new Runnable() {
 			@Override
 			public void run() {
 				controller.stopLoading();
-				UiUtils.showErrorDialog(MainApp.getStage(), "Error", "Error");
-				System.out.println("ERROR");
 			}
 		});
-	}
 
-	@Override
-	public void onResponse(Call<ComeOn_Credentials> call, Response<ComeOn_Credentials> response) {
-		// TODO Auto-generated method stub
-		if (response.isSuccessful()) {
+		if (event.isSuccess()) {
 			Platform.runLater(new Runnable() {
 				@Override
 				public void run() {
-					controller.stopLoading();
-					ComeOn_Credentials credentials = response.body();
-					System.out.println(credentials.getApi_key());
-					PreferencesUtils.setUserEmail(userEmail);
-					PreferencesUtils.setUserPassword(userPassword);
-					PreferencesUtils.setApiToken(credentials.getApi_key());
-					PreferencesUtils.setIsConnected(true);
+					eventBus.unregister(instance);
 					launchMainView();
 				}
 			});
 		} else {
-			try {
-				String json = response.errorBody().string();
-				APIError error = new Gson().fromJson(json, APIError.class);
-				Platform.runLater(new Runnable() {
-					@Override
-					public void run() {
-						controller.stopLoading();
-						UiUtils.showErrorDialog(MainApp.getStage(), "Error", error.getError());
-					}
-				});
-				System.out.println(error.getError());
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-				Platform.runLater(new Runnable() {
-					@Override
-					public void run() {
-						controller.stopLoading();
-						UiUtils.showErrorDialog(MainApp.getStage(), "Error", "Error");
-					}
-				});
+			String errorMessage;
+			if (event.getThrowable() != null && event.getThrowable().getMessage() != null) {
+				errorMessage = event.getThrowable().getMessage();
+			} else {
+				errorMessage = "Error";
 			}
+			Platform.runLater(new Runnable() {
+				@Override
+				public void run() {
+					UiUtils.showErrorDialog(MainApp.getStage(), Globals.ERROR_LOGIN_MESSAGE,
+							Globals.ERROR_LOGIN_MESSAGE, errorMessage);
+				}
+			});
 		}
 	}
-
 }

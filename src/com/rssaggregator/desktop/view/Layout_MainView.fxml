@@ -57,7 +57,7 @@
                                           <Insets bottom="3.0" />
                                        </padding>
                                   </TitledPane>
-                                  <TitledPane fx:id="allItemsTp" animated="false" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#handleAllItemPaneClicked" prefWidth="278.0" style="-fx-background-color: #673AB7;">
+                                  <TitledPane fx:id="allItemsTp" animated="false" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#handleAllItemsPaneClicked" prefWidth="278.0" style="-fx-background-color: #673AB7;">
                                        <graphic>
                                           <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="35.0" prefWidth="345.0">
                                              <children>
@@ -97,7 +97,7 @@
                               </ImageView>
                            </graphic>
                         </JFXButton>
-                        <JFXButton contentDisplay="CENTER" ellipsisString="" layoutX="861.0" layoutY="44.0" styleClass="button-rounded" text=" " AnchorPane.bottomAnchor="34.0" AnchorPane.leftAnchor="335.0" AnchorPane.topAnchor="34.0">
+                        <JFXButton fx:id="unsubscribeBt" contentDisplay="CENTER" ellipsisString="" layoutX="861.0" layoutY="44.0" onAction="#handleUnsubscribeChannel" styleClass="button-rounded" text=" " AnchorPane.bottomAnchor="34.0" AnchorPane.leftAnchor="335.0" AnchorPane.topAnchor="34.0">
                            <graphic>
                               <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
@@ -106,11 +106,11 @@
                               </ImageView>
                            </graphic>
                         </JFXButton>
-                        <JFXButton alignment="CENTER" contentDisplay="CENTER" layoutX="757.0" layoutY="27.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="60.0" prefWidth="80.0" styleClass="button-rounded" text="Mark All As Read" textAlignment="CENTER" wrapText="true" AnchorPane.bottomAnchor="25.0" AnchorPane.rightAnchor="100.0" AnchorPane.topAnchor="25.0" />
-                        <JFXToggleButton fx:id="expandableListTb" layoutX="556.0" layoutY="27.0" text="Expandable List" AnchorPane.bottomAnchor="25.0" AnchorPane.rightAnchor="220.0" AnchorPane.topAnchor="25.0" />
+                        <JFXButton fx:id="markAsReadBt" alignment="CENTER" contentDisplay="CENTER" layoutX="757.0" layoutY="27.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onAction="#handleMarkAsRead" prefHeight="60.0" prefWidth="80.0" styleClass="button-rounded" text="Mark All As Read" textAlignment="CENTER" wrapText="true" AnchorPane.bottomAnchor="25.0" AnchorPane.rightAnchor="100.0" AnchorPane.topAnchor="25.0" />
+                        <JFXToggleButton fx:id="expandableListTb" alignment="CENTER_LEFT" layoutX="556.0" layoutY="27.0" text="Simple List" AnchorPane.bottomAnchor="25.0" AnchorPane.leftAnchor="450.0" AnchorPane.topAnchor="25.0" />
                      </children>
                   </AnchorPane>
-                  <ListView fx:id="articlesLv" layoutY="327.0" minWidth="-Infinity" AnchorPane.bottomAnchor="8.0" AnchorPane.leftAnchor="8.0" AnchorPane.rightAnchor="8.0" AnchorPane.topAnchor="110.0" />
+                  <ListView fx:id="itemsLv" layoutY="327.0" minWidth="-Infinity" AnchorPane.bottomAnchor="8.0" AnchorPane.leftAnchor="8.0" AnchorPane.rightAnchor="8.0" AnchorPane.topAnchor="110.0" />
                   <Label fx:id="noSelectedMessageLb" alignment="CENTER" styleClass="empty-message" text="Please select a category or channel" textAlignment="CENTER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                </children></AnchorPane>
         </items>

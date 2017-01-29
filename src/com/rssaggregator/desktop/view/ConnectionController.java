@@ -53,15 +53,15 @@ public class ConnectionController {
 	 */
 	@FXML
 	private void handleLogIn(ActionEvent event) {
-		String userEmail = userEmailTf.getText();
-		String userPassword = userPasswordPf.getText();
+		String userEmail = userEmailTf.getText().toString();
+		String userPassword = userPasswordPf.getText().toString();
 
 		if (userEmail.length() == 0) {
-			UiUtils.showErrorDialog(MainApp.getStage(), ERROR_TITLE, "The Email field is empty!");
+			UiUtils.showErrorDialog(MainApp.getStage(), ERROR_TITLE, ERROR_TITLE, "The Email field is empty!");
 			return;
 		}
 		if (userPassword.length() == 0) {
-			UiUtils.showErrorDialog(MainApp.getStage(), ERROR_TITLE, "The Password field is empty!");
+			UiUtils.showErrorDialog(MainApp.getStage(), ERROR_TITLE, ERROR_TITLE, "The Password field is empty!");
 			return;
 		}
 		this.scene.logIn(userEmail, userPassword);
@@ -92,7 +92,7 @@ public class ConnectionController {
 	 * Stops the loading dialog.
 	 */
 	public void stopLoading() {
-		if (this.loadingStage.isShowing()) {
+		if (this.loadingStage != null && this.loadingStage.isShowing()) {
 			this.loadingStage.close();
 		}
 	}

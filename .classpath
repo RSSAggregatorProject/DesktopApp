@@ -10,5 +10,8 @@
 	<classpathentry kind="lib" path="C:/Users/Irina/Documents/JavaFx/Libs/okio-1.11.0.jar"/>
 	<classpathentry kind="lib" path="C:/Users/Irina/Documents/JavaFx/Libs/gson-2.8.0.jar"/>
 	<classpathentry kind="lib" path="C:/Users/Irina/Documents/JavaFx/Libs/jfoenix.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Irina/Documents/JavaFx/Libs/guava-21.0.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Irina/Documents/JavaFx/Libs/logging-interceptor-3.5.0.jar"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

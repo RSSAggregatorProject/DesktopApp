@@ -1,34 +1,54 @@
 package com.rssaggregator.desktop.view;
 
-import com.rssaggregator.desktop.model.TmpChannel;
+import com.rssaggregator.desktop.model.Channel;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 
 public class RowChannelController {
 
+	// Data
+	private Channel channel;
+
+	@FXML
+	private AnchorPane rootView;
 	@FXML
 	private Label nameLb;
 	@FXML
 	private Label unreadArticlesLb;
 	@FXML
-	private AnchorPane pane;
+	private ImageView iconIg;
 
-	private TmpChannel channel;
+	private MainViewController mainViewController;
 
-	public RowChannelController(TmpChannel channel) {
+	public RowChannelController(Channel channel, MainViewController mainViewController) {
 		this.channel = channel;
+		this.mainViewController = mainViewController;
 	}
 
 	@FXML
 	private void initialize() {
-		this.nameLb.setText(this.channel.getName());
-		this.unreadArticlesLb.setText(String.valueOf(this.channel.getUnreadArticles()));
+		if (this.channel != null) {
+			this.nameLb.setText(this.channel.getName());
+
+			if (this.channel.getUnread() != null) {
+				this.unreadArticlesLb.setText(String.valueOf(this.channel.getUnread()));
+			} else {
+				this.unreadArticlesLb.setText("0");
+			}
+
+			// TODO Fix that (Image not working with web url)
+			if (this.channel.getFaviconUri() != null
+					&& !this.channel.getFaviconUri().equals("favicon_not_implemented")) {
+				// TODO Implement Favicon when working.
+			}
+		}
 	}
 
 	@FXML
 	private void handleRowClicked() {
-		System.out.println("Channel: " + this.channel.getName());
+		this.mainViewController.handleChannelItemsPaneClicked(this.channel);
 	}
 }

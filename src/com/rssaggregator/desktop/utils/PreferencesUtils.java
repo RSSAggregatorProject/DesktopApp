@@ -36,7 +36,22 @@ public class PreferencesUtils {
 
 	public static void setApiToken(String apiToken) {
 		Preferences preferences = Preferences.userNodeForPackage(MainApp.class);
-		preferences.put(Globals.PREF_API_TOKEN, apiToken);
+		if (apiToken == null) {
+			preferences.put(Globals.PREF_API_TOKEN, "");
+		} else {
+			preferences.put(Globals.PREF_API_TOKEN, apiToken);
+		}
+	}
+
+	public static Integer getUserId() {
+		Preferences preferences = Preferences.userNodeForPackage(MainApp.class);
+		Integer userId = preferences.getInt(Globals.PREF_USER_ID, -1);
+		return userId;
+	}
+
+	public static void setUserId(Integer userId) {
+		Preferences preferences = Preferences.userNodeForPackage(MainApp.class);
+		preferences.putInt(Globals.PREF_USER_ID, userId);
 	}
 
 	public static boolean isConnected() {
@@ -55,9 +70,19 @@ public class PreferencesUtils {
 	 * connection view.
 	 */
 	public static void resetUserPreferences() {
-		PreferencesUtils.setUserEmail("");
-		PreferencesUtils.setUserPassword("");
-		PreferencesUtils.setApiToken("");
-		PreferencesUtils.setIsConnected(false);
+		setUserEmail("");
+		setUserPassword("");
+		setApiToken("");
+		setUserId(-1);
+		setIsConnected(false);
+	}
+
+	public static void setUserConnected(String userEmail, String userPassword, String apiToken, Integer userId,
+			boolean isConnected) {
+		setUserEmail(userEmail);
+		setUserPassword(userPassword);
+		setApiToken(apiToken);
+		setUserId(userId);
+		setIsConnected(isConnected);
 	}
 }

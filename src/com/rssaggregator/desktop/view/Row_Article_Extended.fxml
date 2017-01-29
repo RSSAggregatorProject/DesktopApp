@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
-<?import com.jfoenix.controls.JFXToggleButton?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Hyperlink?>
 <?import javafx.scene.control.Label?>
@@ -10,37 +9,31 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="rootView" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="165.0" prefWidth="900.0" stylesheets="@css/material.css" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane fx:id="rootView" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefWidth="900.0" stylesheets="@css/material.css" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Label fx:id="titleLb" layoutX="14.0" layoutY="21.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="200.0" styleClass="row-article-extended-title" text="Title of the article" AnchorPane.leftAnchor="16.0" AnchorPane.rightAnchor="400.0" AnchorPane.topAnchor="8.0">
+      <Label fx:id="titleLb" alignment="TOP_LEFT" layoutX="62.0" layoutY="21.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="60.0" prefWidth="438.0" styleClass="row-article-extended-title" text="Title of the article" wrapText="true" AnchorPane.leftAnchor="45.0" AnchorPane.rightAnchor="400.0" AnchorPane.topAnchor="8.0">
          <font>
             <Font size="18.0" />
          </font>
       </Label>
-      <Label fx:id="pubDateLb" layoutX="858.0" layoutY="16.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="150.0" text="Il y a 30 mins." AnchorPane.leftAnchor="520.0" AnchorPane.topAnchor="8.0">
+      <Label fx:id="pubDateLb" layoutX="858.0" layoutY="16.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="180.0" text="Il y a 30 mins." AnchorPane.leftAnchor="520.0" AnchorPane.topAnchor="8.0">
          <font>
             <Font name="System Italic" size="12.0" />
          </font></Label>
-      <ImageView fx:id="pictureIv" fitHeight="65.0" fitWidth="90.0" layoutX="16.0" layoutY="100.0" pickOnBounds="true" AnchorPane.bottomAnchor="8.0" AnchorPane.leftAnchor="16.0">
-         <image>
-            <Image url="@../../../../../resources/images/logo_rss.png" />
-         </image>
-      </ImageView>
-      <Label fx:id="descriptionLb" alignment="TOP_LEFT" layoutX="162.0" layoutY="120.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="65.0" style="-fx-font: 15px Roboto;" text="Description" AnchorPane.bottomAnchor="8.0" AnchorPane.leftAnchor="120.0" AnchorPane.rightAnchor="16.0">
-         <padding>
-            <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
-         </padding>
-      </Label>
-      <JFXButton fx:id="starBt" alignment="CENTER" contentDisplay="CENTER" ellipsisString="" layoutX="16.0" layoutY="54.0" onAction="#handleStarredArticle" text=" " AnchorPane.leftAnchor="16.0" AnchorPane.topAnchor="45.0">
+      <JFXButton fx:id="starBt" alignment="CENTER" contentDisplay="CENTER" ellipsisString="" layoutX="14.0" layoutY="7.0" onAction="#handleStarredArticle" text=" " AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="4.0">
          <graphic>
-            <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="starIconIv" fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../../../../../resources/images/ic_star_border.png" />
                </image>
             </ImageView>
          </graphic>
       </JFXButton>
-      <Hyperlink fx:id="linkHl" alignment="CENTER_RIGHT" layoutX="825.0" layoutY="17.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="150.0" style="-fx-text-fill: #673AB7;" text="Hyperlink" underline="true" AnchorPane.rightAnchor="16.0" AnchorPane.topAnchor="8.0" />
-      <JFXToggleButton fx:id="readTb" layoutX="77.0" layoutY="52.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" onAction="#handleReadArticle" prefHeight="30.0" prefWidth="120.0" text="Read" AnchorPane.leftAnchor="80.0" AnchorPane.topAnchor="45.0" />
+      <Hyperlink fx:id="linkHl" alignment="CENTER_RIGHT" layoutX="825.0" layoutY="17.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="150.0" style="-fx-text-fill: #673AB7;" text="Hyperlink" underline="true" AnchorPane.rightAnchor="24.0" AnchorPane.topAnchor="8.0" />
+      <Label fx:id="descriptionLb" layoutX="56.0" layoutY="46.0" style="-fx-font: 14px Roboto;" text="Label" wrapText="true" AnchorPane.bottomAnchor="8.0" AnchorPane.leftAnchor="8.0" AnchorPane.rightAnchor="24.0" AnchorPane.topAnchor="80.0">
+         <padding>
+            <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
+         </padding>
+      </Label>
    </children>
 </AnchorPane>

@@ -1,14 +1,31 @@
 package com.rssaggregator.desktop;
 
 import java.io.IOException;
-import java.util.ArrayList;
+import java.util.List;
 
-import com.rssaggregator.desktop.model.TmpArticle;
-import com.rssaggregator.desktop.model.TmpCategory;
-import com.rssaggregator.desktop.model.TmpChannel;
+import com.google.common.eventbus.EventBus;
+import com.google.common.eventbus.Subscribe;
+import com.rssaggregator.desktop.event.RefreshCategoriesEvent;
+import com.rssaggregator.desktop.model.CategoriesWrapper;
+import com.rssaggregator.desktop.model.Category;
+import com.rssaggregator.desktop.model.Item;
+import com.rssaggregator.desktop.model.ItemReadStateWrapper;
+import com.rssaggregator.desktop.model.ItemsWrapper;
+import com.rssaggregator.desktop.network.RssApi;
+import com.rssaggregator.desktop.network.event.FeedDeletedEvent;
+import com.rssaggregator.desktop.network.event.FetchAllItemsEvent;
+import com.rssaggregator.desktop.network.event.FetchCategoriesEvent;
+import com.rssaggregator.desktop.network.event.FetchItemsByCategoryEvent;
+import com.rssaggregator.desktop.network.event.FetchItemsByChannelEvent;
+import com.rssaggregator.desktop.network.event.FetchStarredItemsEvent;
+import com.rssaggregator.desktop.network.event.ItemsByChannelUpdatedEvent;
+import com.rssaggregator.desktop.network.event.LogOutEvent;
+import com.rssaggregator.desktop.utils.CategoriesUtils;
 import com.rssaggregator.desktop.utils.Globals;
+import com.rssaggregator.desktop.utils.UiUtils;
 import com.rssaggregator.desktop.view.MainViewController;
 
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
@@ -25,24 +42,50 @@ import javafx.stage.Stage;
  */
 public class MainViewScene {
 
+	// View attributes.
 	private Stage primaryStage;
 	private BorderPane rootView;
 
+	// Controllers.
 	private MainViewController mainViewController;
 
-	private ObservableList<TmpCategory> categories;
+	// Network
+	private EventBus eventBus;
+	private RssApi rssApi;
+
+	// Scene
+	private MainViewScene instance;
+
+	// Data
+	private ObservableList<Category> categories;
+	private ObservableList<Item> items;
 
 	public MainViewScene() {
 		this.primaryStage = MainApp.getStage();
+		this.categories = FXCollections.observableArrayList();
+		this.items = FXCollections.observableArrayList();
+
+		this.instance = this;
+
+		this.rssApi = MainApp.getRssApi();
+		this.eventBus = MainApp.getEventBus();
+
+		// Check if the EventBus attribute is initialized.
+		if (this.eventBus == null) {
+			this.eventBus = new EventBus();
+			this.rssApi.setEventBus(this.eventBus);
+		}
+
+		this.eventBus.register(this.instance);
 	}
 
 	/**
 	 * Launches the Main View by initializing the root layout and the main view.
 	 */
 	public void launchMainView() {
-		createCategoryArray();
 		initRootLayout();
 		initMainView();
+		loadCategories();
 	}
 
 	/**
@@ -77,9 +120,8 @@ public class MainViewScene {
 			AnchorPane pane = (AnchorPane) loader.load();
 
 			this.mainViewController = loader.getController();
-			this.mainViewController.setCategories(this.categories);
-			this.mainViewController.setMainViewScene(this);
-			this.mainViewController.initCategoriesView();
+			this.mainViewController.setData(this, this.eventBus);
+			this.mainViewController.initMainCategories();
 
 			this.rootView.setCenter(pane);
 
@@ -93,54 +135,413 @@ public class MainViewScene {
 		addFeedScene.launchAddFeedView();
 	}
 
-	public void launchArticleDetailsView(TmpArticle article) {
-		ArticleDetailsScene articleDetailsScene = new ArticleDetailsScene(article);
+	public void launchArticleDetailsView(Item item) {
+		ArticleDetailsScene articleDetailsScene = new ArticleDetailsScene(item);
+		articleDetailsScene.setData(this.mainViewController);
 		articleDetailsScene.launchArticleDetailsView();
 	}
 
-	private void createCategoryArray() {
-		this.categories = FXCollections.observableArrayList();
-		TmpCategory category1 = new TmpCategory();
-		category1.setId(0);
-		category1.setName("Automobile");
-		TmpCategory category2 = new TmpCategory();
-		category2.setId(1);
-		category2.setName("Sport");
-		TmpCategory category3 = new TmpCategory();
-		category3.setId(2);
-		category3.setName("News");
+	/**
+	 * Loads the categories of the user.
+	 */
+	private void loadCategories() {
+		// Starts Loading View
+		this.mainViewController.showLoading();
 
-		TmpChannel channel1 = new TmpChannel();
-		channel1.setName("Turbo.fr");
-		channel1.setUnreadArticles(0);
-		TmpChannel channel2 = new TmpChannel();
-		channel2.setName("Caradisiac");
-		channel2.setUnreadArticles(10);
-		TmpChannel channel3 = new TmpChannel();
-		channel3.setName("Eurosport");
-		channel3.setUnreadArticles(1);
-		TmpChannel channel4 = new TmpChannel();
-		channel4.setName("Europe 1");
-		channel4.setUnreadArticles(26);
-		TmpChannel channel5 = new TmpChannel();
-		channel5.setName("L'Est Républicain");
-		channel5.setUnreadArticles(156);
+		this.rssApi.fetchCategories();
+	}
 
-		ArrayList<TmpChannel> autoChannels = new ArrayList<>();
-		autoChannels.add(channel1);
-		autoChannels.add(channel2);
+	/**
+	 * Loads the items from the ALL category.
+	 */
+	public void loadAllItems() {
+		// Starts Loading View
+		this.mainViewController.showLoading();
 
-		ArrayList<TmpChannel> sportChannels = new ArrayList<>();
-		sportChannels.add(channel3);
+		this.rssApi.fetchAllItems();
+	}
 
-		ArrayList<TmpChannel> newsChannels = new ArrayList<>();
-		newsChannels.add(channel4);
-		newsChannels.add(channel5);
+	/**
+	 * Loads the items from the STAR category.
+	 */
+	public void loadStarredItems() {
+		// Starts loading view
+		this.mainViewController.showLoading();
 
-		category1.setChannels(autoChannels);
-		category2.setChannels(sportChannels);
-		category3.setChannels(newsChannels);
+		this.rssApi.fetchStarredItems();
+	}
 
-		this.categories.addAll(category1, category2, category3);
+	/**
+	 * Loads the items from the CATEGORY category.
+	 * 
+	 * @param channelId
+	 */
+	public void loadItemsByCategory(Integer categoryId) {
+		// Starts loading view.
+		this.mainViewController.showLoading();
+
+		this.rssApi.fetchItemsByCategory(categoryId);
+	}
+
+	/**
+	 * Loads the items from the CHANNEL category.
+	 * 
+	 * @param channelId
+	 */
+	public void loadItemsByChannel(Integer channelId) {
+		// Starts loading view.
+		this.mainViewController.showLoading();
+
+		this.rssApi.fetchItemsByChannel(channelId);
+	}
+
+	/**
+	 * Unsubscribe to the channel.
+	 * 
+	 * @param channelId
+	 */
+	public void deleteFeed(Integer channelId) {
+		// Starts loading view.
+		this.mainViewController.showLoading();
+
+		this.rssApi.deleteFeed(channelId);
+	}
+
+	public void updateStateItemByChannel(Integer channelId) {
+		this.mainViewController.showLoading();
+
+		ItemReadStateWrapper wrapper = new ItemReadStateWrapper(true);
+		this.rssApi.updateItemStateByChannel(channelId, wrapper);
+	}
+
+	//
+	//
+	// Event methods.
+	//
+	//
+	/**
+	 * Event after the api returns the result of the fetchCategories request.
+	 * 
+	 * @param event
+	 */
+	@Subscribe
+	public void handleFetchCategories(FetchCategoriesEvent event) {
+		Platform.runLater(new Runnable() {
+			@Override
+			public void run() {
+				mainViewController.stopLoading();
+			}
+		});
+
+		if (event.isSuccess()) {
+			Platform.runLater(new Runnable() {
+				@Override
+				public void run() {
+					CategoriesWrapper wrapper = event.getData();
+					if (wrapper.getCategories() != null) {
+						categories.clear();
+						categories.addAll(wrapper.getCategories());
+					} else {
+						categories = FXCollections.observableArrayList();
+					}
+					mainViewController.setCategories(categories);
+				}
+			});
+		} else {
+			String errorMessage;
+			if (event.getThrowable().getMessage() != null) {
+				errorMessage = event.getThrowable().getMessage();
+			} else {
+				errorMessage = "Error";
+			}
+			Platform.runLater(new Runnable() {
+				@Override
+				public void run() {
+					UiUtils.showErrorDialog(MainApp.getStage(), Globals.ERROR_FETCH_CATEGORIES,
+							Globals.ERROR_FETCH_CATEGORIES, errorMessage);
+				}
+			});
+		}
+	}
+
+	/**
+	 * Event after the api returns the result of the fetchAllItems request.
+	 * 
+	 * @param event
+	 */
+	@Subscribe
+	public void handleFetchAllItems(FetchAllItemsEvent event) {
+		Platform.runLater(new Runnable() {
+			@Override
+			public void run() {
+				mainViewController.stopLoading();
+			}
+		});
+
+		if (event.isSuccess()) {
+			Platform.runLater(new Runnable() {
+				@Override
+				public void run() {
+					ItemsWrapper wrapper = event.getData();
+					updateViewWithData(wrapper);
+				}
+			});
+		} else {
+			String errorMessage;
+			if (event.getThrowable().getMessage() != null) {
+				errorMessage = event.getThrowable().getMessage();
+			} else {
+				errorMessage = "Error";
+			}
+			Platform.runLater(new Runnable() {
+				@Override
+				public void run() {
+					UiUtils.showErrorDialog(MainApp.getStage(), Globals.ERROR_FETCH_ITEMS, Globals.ERROR_FETCH_ITEMS,
+							errorMessage);
+				}
+			});
+		}
+	}
+
+	/**
+	 * Event after the api returns the result of the fetchStarItems request.
+	 * 
+	 * @param event
+	 */
+	@Subscribe
+	public void handleFetchStarredItems(FetchStarredItemsEvent event) {
+		Platform.runLater(new Runnable() {
+			@Override
+			public void run() {
+				mainViewController.stopLoading();
+			}
+		});
+
+		if (event.isSuccess()) {
+			Platform.runLater(new Runnable() {
+				@Override
+				public void run() {
+					ItemsWrapper wrapper = event.getData();
+					updateViewWithData(wrapper);
+				}
+			});
+		} else {
+			String errorMessage;
+			if (event.getThrowable().getMessage() != null) {
+				errorMessage = event.getThrowable().getMessage();
+			} else {
+				errorMessage = "Error";
+			}
+			Platform.runLater(new Runnable() {
+				@Override
+				public void run() {
+					UiUtils.showErrorDialog(MainApp.getStage(), Globals.ERROR_FETCH_ITEMS, Globals.ERROR_FETCH_ITEMS,
+							errorMessage);
+				}
+			});
+		}
+	}
+
+	/**
+	 * Event after the api returns the result of the fetchItemsByCategory
+	 * request.
+	 * 
+	 * @param event
+	 */
+	@Subscribe
+	public void handleFetchItemsByCategory(FetchItemsByCategoryEvent event) {
+		Platform.runLater(new Runnable() {
+			@Override
+			public void run() {
+				mainViewController.stopLoading();
+			}
+		});
+
+		if (event.isSuccess()) {
+			Platform.runLater(new Runnable() {
+				@Override
+				public void run() {
+					CategoriesWrapper wrapper = event.getData();
+					updateViewWithData(wrapper);
+				}
+			});
+		} else {
+			String errorMessage;
+			if (event.getThrowable().getMessage() != null) {
+				errorMessage = event.getThrowable().getMessage();
+			} else {
+				errorMessage = "Error";
+			}
+			Platform.runLater(new Runnable() {
+				@Override
+				public void run() {
+					UiUtils.showErrorDialog(MainApp.getStage(), Globals.ERROR_FETCH_ITEMS, Globals.ERROR_FETCH_ITEMS,
+							errorMessage);
+				}
+			});
+		}
+	}
+
+	/**
+	 * Event after the api returns the result of the fetchItemsByChannel
+	 * request.
+	 * 
+	 * @param event
+	 */
+	@Subscribe
+	public void handleFetchItemsByChannel(FetchItemsByChannelEvent event) {
+		Platform.runLater(new Runnable() {
+			@Override
+			public void run() {
+				mainViewController.stopLoading();
+			}
+		});
+
+		if (event.isSuccess()) {
+			Platform.runLater(new Runnable() {
+				@Override
+				public void run() {
+					ItemsWrapper wrapper = event.getData();
+					updateViewWithData(wrapper);
+				}
+			});
+		} else {
+			String errorMessage;
+			if (event.getThrowable().getMessage() != null) {
+				errorMessage = event.getThrowable().getMessage();
+			} else {
+				errorMessage = "Error";
+			}
+			Platform.runLater(new Runnable() {
+				@Override
+				public void run() {
+					UiUtils.showErrorDialog(MainApp.getStage(), Globals.ERROR_FETCH_ITEMS, Globals.ERROR_FETCH_ITEMS,
+							errorMessage);
+				}
+			});
+		}
+	}
+
+	/**
+	 * Event after the api returns the result of the UpdateReadStateByChannel
+	 * request.
+	 * 
+	 * @param event
+	 */
+	@Subscribe
+	public void handleUpdateReadStateByChannel(ItemsByChannelUpdatedEvent event) {
+		Platform.runLater(new Runnable() {
+			@Override
+			public void run() {
+				mainViewController.stopLoading();
+			}
+		});
+
+		if (event.isSuccess()) {
+			Platform.runLater(new Runnable() {
+				@Override
+				public void run() {
+					mainViewController.updateStateChannelItem();
+				}
+			});
+		} else {
+			String errorMessage;
+			if (event.getThrowable().getMessage() != null) {
+				errorMessage = event.getThrowable().getMessage();
+			} else {
+				errorMessage = "Error";
+			}
+			Platform.runLater(new Runnable() {
+				@Override
+				public void run() {
+					UiUtils.showErrorDialog(MainApp.getStage(), Globals.ERROR_UPDATE_ITEM, Globals.ERROR_UPDATE_ITEM,
+							errorMessage);
+				}
+			});
+		}
+	}
+
+	/**
+	 * Updates the view with the data.
+	 * 
+	 * @param data
+	 */
+	private void updateViewWithData(ItemsWrapper data) {
+		List<Item> fetchedItems = CategoriesUtils.fillDataFromChannelList(data);
+		items = FXCollections.observableArrayList();
+		items.addAll(fetchedItems);
+		mainViewController.updateDataView(fetchedItems);
+	}
+
+	/**
+	 * Updates the view with the data.
+	 * 
+	 * @param data
+	 */
+	private void updateViewWithData(CategoriesWrapper data) {
+		List<Item> fetchedItems = CategoriesUtils.fillDataFromChannelList(data);
+		items = FXCollections.observableArrayList();
+		items.addAll(fetchedItems);
+		mainViewController.updateDataView(fetchedItems);
+	}
+
+	/**
+	 * Event after the api returns the result of the deleteFeed request.
+	 * 
+	 * @param event
+	 */
+	@Subscribe
+	public void handleDeleteFeed(FeedDeletedEvent event) {
+		Platform.runLater(new Runnable() {
+			@Override
+			public void run() {
+				mainViewController.stopLoading();
+			}
+		});
+
+		if (event.isSuccess()) {
+			Platform.runLater(new Runnable() {
+				@Override
+				public void run() {
+					launchMainView();
+				}
+			});
+		} else {
+			String errorMessage;
+			if (event.getThrowable().getMessage() != null) {
+				errorMessage = event.getThrowable().getMessage();
+			} else {
+				errorMessage = "Error";
+			}
+			Platform.runLater(new Runnable() {
+				@Override
+				public void run() {
+					UiUtils.showErrorDialog(MainApp.getStage(), Globals.ERROR_DELETE_FEED, Globals.ERROR_DELETE_FEED,
+							errorMessage);
+				}
+			});
+		}
+	}
+
+	/**
+	 * Event after log out.
+	 * 
+	 * @param event
+	 */
+	@Subscribe
+	public void handleLogOut(LogOutEvent event) {
+		if (this.eventBus != null) {
+			this.eventBus.unregister(this.instance);
+		}
+	}
+
+	/**
+	 * Event after refreshing categories.
+	 * 
+	 * @param event
+	 */
+	@Subscribe
+	public void handleRefreshCategories(RefreshCategoriesEvent event) {
+		launchMainView();
 	}
 }
