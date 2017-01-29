@@ -24,6 +24,14 @@ public class RowCategoryController {
 	// Controller
 	private MainViewController mainViewController;
 
+	/**
+	 * Constructor
+	 * 
+	 * @param category
+	 *            Category
+	 * @param mainViewController
+	 *            MainViewController
+	 */
 	public RowCategoryController(Category category, MainViewController mainViewController) {
 		this.category = category;
 		this.mainViewController = mainViewController;
@@ -33,7 +41,6 @@ public class RowCategoryController {
 	private void initialize() {
 		if (this.category != null) {
 			this.nameLb.setText(this.category.getName());
-			// TODO Fix this when read state works.
 			if (this.category.getUnread() != null) {
 				this.unreadArticlesLb.setText(String.valueOf(this.category.getUnread()));
 			} else {

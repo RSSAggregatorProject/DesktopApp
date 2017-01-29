@@ -149,7 +149,7 @@ public class ArticleDetailsController {
 			this.readTg.setSelected(true);
 			this.readTg.setText("Read");
 		}
-		this.mainViewController.updateStateSingleItem(this.item);
+		this.mainViewController.updateStateSingleItem(this.item, "UNREAD");
 	}
 
 	public void updateStar() {
@@ -165,7 +165,7 @@ public class ArticleDetailsController {
 			this.item.setStarred(true);
 			this.starIconIv.setImage(image);
 		}
-		this.mainViewController.updateStateSingleItem(this.item);
+		this.mainViewController.updateStateSingleItem(this.item, "STAR");
 	}
 
 	/**

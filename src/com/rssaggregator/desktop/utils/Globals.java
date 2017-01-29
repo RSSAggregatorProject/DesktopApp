@@ -1,5 +1,8 @@
 package com.rssaggregator.desktop.utils;
 
+/**
+ * Class which regroups some global attributes.
+ */
 public class Globals {
 
 	/**

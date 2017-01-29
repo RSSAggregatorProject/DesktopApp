@@ -24,6 +24,12 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 
+/**
+ * Controller for Add Feed View.
+ * 
+ * @author Irina
+ *
+ */
 public class AddFeedScene {
 
 	// Data
@@ -41,6 +47,14 @@ public class AddFeedScene {
 
 	private AddFeedController addFeedController;
 
+	/**
+	 * Constructor
+	 * 
+	 * @param categories
+	 *            List of Categories.
+	 * @param mainViewController
+	 *            MainViewController.
+	 */
 	public AddFeedScene(ObservableList<Category> categories, MainViewController mainViewController) {
 		this.categories = categories;
 		this.mainViewController = mainViewController;
@@ -59,6 +73,9 @@ public class AddFeedScene {
 		this.eventBus.register(this.instance);
 	}
 
+	/**
+	 * Launches the Add Feed View.
+	 */
 	public void launchAddFeedView() {
 		try {
 			FXMLLoader loader = new FXMLLoader();

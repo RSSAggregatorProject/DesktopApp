@@ -21,7 +21,7 @@ import retrofit2.Retrofit.Builder;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 /**
- * Main Class of the application. Launch the first window.
+ * Main Class of the application. Launches the first window.
  * 
  * @author Irina
  *
@@ -30,6 +30,9 @@ public class MainApp extends Application {
 
 	private Stage primaryStage;
 
+	/**
+	 * Network attributes.
+	 */
 	private static MainApp instance;
 	private static OkHttpClient okHttpClient;
 	private static TokenRequestInterceptor tokenRequestInterceptor;
@@ -83,7 +86,7 @@ public class MainApp extends Application {
 	/**
 	 * Gets the primary stage.
 	 * 
-	 * @return
+	 * @return Stage Primary stage.
 	 */
 	public Stage getPrimaryStage() {
 		return this.primaryStage;
@@ -92,7 +95,7 @@ public class MainApp extends Application {
 	/**
 	 * Gets the stage from everywhere in the app.
 	 * 
-	 * @return
+	 * @return Stage Primary Stage.
 	 */
 	public static Stage getStage() {
 		return MainApp.instance.getPrimaryStage();
@@ -101,7 +104,7 @@ public class MainApp extends Application {
 	/**
 	 * Gets the instance of the Main Class.
 	 * 
-	 * @return
+	 * @return MainApp instance.
 	 */
 	public static MainApp getMainApp() {
 		return instance;
@@ -110,7 +113,7 @@ public class MainApp extends Application {
 	/**
 	 * Gets the instance of the OkHttpClient.
 	 * 
-	 * @return
+	 * @return OkHttpClient instance.
 	 */
 	public static OkHttpClient getOkHttpClient() {
 		return okHttpClient;
@@ -119,26 +122,41 @@ public class MainApp extends Application {
 	/**
 	 * Gets the instance of the Retrofit.
 	 * 
-	 * @return
+	 * @return Retrofit instance.
 	 */
 	public static Retrofit getRetrofit() {
 		return retrofit;
 	}
 
+	/**
+	 * Gets the instance of the EventBus.
+	 * 
+	 * @return EventBus instance.
+	 */
 	public static EventBus getEventBus() {
 		return eventBus;
 	}
 
+	/**
+	 * Gets the instance of the RSS API.
+	 * 
+	 * @return RssApi instance.
+	 */
 	public static RssApi getRssApi() {
 		return rssApi;
 	}
 
+	/**
+	 * Gets the instance of the TokenRequestInterceptor.
+	 * 
+	 * @return TokenRequestInterceptor instance.
+	 */
 	public static TokenRequestInterceptor getTokenRequestInterceptor() {
 		return tokenRequestInterceptor;
 	}
 
 	/**
-	 * Main method.
+	 * Main method. Launches the first stage.
 	 * 
 	 * @param args
 	 */

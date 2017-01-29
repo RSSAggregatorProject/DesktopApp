@@ -5,6 +5,12 @@ import java.util.List;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+/**
+ * Category of the items.
+ *
+ * @author Irina
+ *
+ */
 public class Category {
 
 	@SerializedName("id_cat")

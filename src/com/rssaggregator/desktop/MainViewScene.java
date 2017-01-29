@@ -60,6 +60,9 @@ public class MainViewScene {
 	private ObservableList<Category> categories;
 	private ObservableList<Item> items;
 
+	/**
+	 * Constructor.
+	 */
 	public MainViewScene() {
 		this.primaryStage = MainApp.getStage();
 		this.categories = FXCollections.observableArrayList();
@@ -130,11 +133,20 @@ public class MainViewScene {
 		}
 	}
 
+	/**
+	 * Launches the Add Feed View.
+	 */
 	public void launchAddFeedView() {
 		AddFeedScene addFeedScene = new AddFeedScene(this.categories, this.mainViewController);
 		addFeedScene.launchAddFeedView();
 	}
 
+	/**
+	 * Launches the Article Details of the corresponding item.
+	 * 
+	 * @param item
+	 *            Item to display.
+	 */
 	public void launchArticleDetailsView(Item item) {
 		ArticleDetailsScene articleDetailsScene = new ArticleDetailsScene(item);
 		articleDetailsScene.setData(this.mainViewController);
@@ -207,6 +219,12 @@ public class MainViewScene {
 		this.rssApi.deleteFeed(channelId);
 	}
 
+	/**
+	 * Update the read state of an entire channel.
+	 * 
+	 * @param channelId
+	 *            Id of the channel to update.
+	 */
 	public void updateStateItemByChannel(Integer channelId) {
 		this.mainViewController.showLoading();
 
@@ -283,7 +301,7 @@ public class MainViewScene {
 				@Override
 				public void run() {
 					ItemsWrapper wrapper = event.getData();
-					updateViewWithData(wrapper);
+					updateViewWithData(wrapper, "");
 				}
 			});
 		} else {
@@ -322,7 +340,7 @@ public class MainViewScene {
 				@Override
 				public void run() {
 					ItemsWrapper wrapper = event.getData();
-					updateViewWithData(wrapper);
+					updateViewWithData(wrapper, "STAR");
 				}
 			});
 		} else {
@@ -362,7 +380,7 @@ public class MainViewScene {
 				@Override
 				public void run() {
 					CategoriesWrapper wrapper = event.getData();
-					updateViewWithData(wrapper);
+					updateViewWithData(wrapper, "");
 				}
 			});
 		} else {
@@ -402,7 +420,7 @@ public class MainViewScene {
 				@Override
 				public void run() {
 					ItemsWrapper wrapper = event.getData();
-					updateViewWithData(wrapper);
+					updateViewWithData(wrapper, "");
 				}
 			});
 		} else {
@@ -466,11 +484,11 @@ public class MainViewScene {
 	 * 
 	 * @param data
 	 */
-	private void updateViewWithData(ItemsWrapper data) {
+	private void updateViewWithData(ItemsWrapper data, String type) {
 		List<Item> fetchedItems = CategoriesUtils.fillDataFromChannelList(data);
 		items = FXCollections.observableArrayList();
 		items.addAll(fetchedItems);
-		mainViewController.updateDataView(fetchedItems);
+		mainViewController.updateDataView(fetchedItems, type);
 	}
 
 	/**
@@ -478,11 +496,11 @@ public class MainViewScene {
 	 * 
 	 * @param data
 	 */
-	private void updateViewWithData(CategoriesWrapper data) {
+	private void updateViewWithData(CategoriesWrapper data, String type) {
 		List<Item> fetchedItems = CategoriesUtils.fillDataFromChannelList(data);
 		items = FXCollections.observableArrayList();
 		items.addAll(fetchedItems);
-		mainViewController.updateDataView(fetchedItems);
+		mainViewController.updateDataView(fetchedItems, type);
 	}
 
 	/**

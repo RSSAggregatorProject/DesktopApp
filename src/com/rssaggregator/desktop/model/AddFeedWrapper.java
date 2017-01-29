@@ -3,6 +3,12 @@ package com.rssaggregator.desktop.model;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+/**
+ * Body of the API request Add Feed.
+ * 
+ * @author Irina
+ *
+ */
 public class AddFeedWrapper {
 
 	@SerializedName("id_cat")
