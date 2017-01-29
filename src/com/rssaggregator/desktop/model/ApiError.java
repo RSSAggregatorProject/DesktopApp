@@ -1,5 +1,11 @@
 package com.rssaggregator.desktop.model;
 
+/**
+ * Error class from the API.
+ * 
+ * @author Irina
+ *
+ */
 public class ApiError {
 
 	private String error;

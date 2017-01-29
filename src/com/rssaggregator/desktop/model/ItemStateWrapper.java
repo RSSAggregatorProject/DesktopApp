@@ -2,6 +2,12 @@ package com.rssaggregator.desktop.model;
 
 import com.google.gson.annotations.Expose;
 
+/**
+ * Body for the API request updateItem.
+ * 
+ * @author Irina
+ *
+ */
 public class ItemStateWrapper {
 
 	@Expose

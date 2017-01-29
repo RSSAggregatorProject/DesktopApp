@@ -13,6 +13,8 @@ import com.rssaggregator.desktop.event.RefreshCategoriesEvent;
 import com.rssaggregator.desktop.model.Category;
 import com.rssaggregator.desktop.model.Channel;
 import com.rssaggregator.desktop.model.Item;
+import com.rssaggregator.desktop.model.StateCountWrapper;
+import com.rssaggregator.desktop.utils.CategoriesUtils;
 import com.rssaggregator.desktop.utils.Globals;
 import com.rssaggregator.desktop.utils.UiUtils;
 
@@ -89,6 +91,8 @@ public class MainViewController {
 
 	// Others
 	private int LIST_ITEM_TYPE = 0;
+	private int numberUnreadAll = 0;
+	private int numberStarredItems = 0;
 
 	/**
 	 * Constructor.
@@ -119,6 +123,9 @@ public class MainViewController {
 		initCategoriesView();
 	}
 
+	/**
+	 * Initializes the controller.
+	 */
 	@FXML
 	private void initialize() {
 		this.noSelectedMessageLb.setVisible(true);
@@ -164,16 +171,22 @@ public class MainViewController {
 	public void initMainCategories() {
 		this.starredItemsTp.setExpanded(false);
 		this.starredItemsTp.setCollapsible(false);
-		this.unreadStarredItemsLb.setText("0");
 		this.allItemsTp.setExpanded(false);
 		this.allItemsTp.setCollapsible(false);
-		this.unreadAllItemsLb.setText("23");
 	}
 
 	/**
 	 * Initializes the categories view (TitledPanes).
 	 */
 	private void initCategoriesView() {
+		StateCountWrapper wrapper = CategoriesUtils.getCountStateItems(this.categories);
+		this.numberUnreadAll = wrapper.getReadCount();
+
+		if (wrapper != null) {
+			this.unreadAllItemsLb.setText(String.valueOf(wrapper.getReadCount()));
+			this.unreadStarredItemsLb.setText(String.valueOf(wrapper.getStarCount()));
+		}
+
 		if (this.categories != null) {
 			for (Category category : this.categories) {
 				initCategoryView(category);
@@ -241,10 +254,21 @@ public class MainViewController {
 	 * 
 	 * @param data
 	 */
-	public void updateDataView(List<Item> data) {
+	public void updateDataView(List<Item> data, String type) {
 		this.itemsList.clear();
 		this.itemsList = FXCollections.observableArrayList();
 		this.itemsList.addAll(data);
+
+		if (type != null && type.length() != 0) {
+			if ("STAR".equals(type)) {
+				if (this.itemsList != null) {
+					this.numberStarredItems = this.itemsList.size();
+					System.out.println("ICIC: " + this.itemsList.size());
+					this.unreadStarredItemsLb.setText(String.valueOf(this.numberStarredItems));
+				}
+			}
+		}
+
 		this.itemsLv.setItems(this.itemsList);
 	}
 
@@ -262,7 +286,13 @@ public class MainViewController {
 		this.eventBus.post(new RefreshCategoriesEvent());
 	}
 
-	public void updateStateSingleItem(Item newItem) {
+	/**
+	 * Updates the state of an item.
+	 * 
+	 * @param newItem
+	 *            Item to update.
+	 */
+	public void updateStateSingleItem(Item newItem, String type) {
 		if (this.itemsList != null) {
 			for (int i = 0; i < this.itemsList.size(); i++) {
 				if (this.itemsList.get(i).getItemId().equals(newItem.getItemId())) {
@@ -270,8 +300,38 @@ public class MainViewController {
 				}
 			}
 		}
+
+		if (this.selectedCategory != null) {
+			System.out.println("NAME CATEGORY: " + this.selectedCategory.getName());
+		}
+		if (this.selectedChannel != null) {
+			System.out.println("NAME CHANNEL: " + this.selectedChannel.getName());
+		}
+
+		if ("UNREAD".equals(type)) {
+			/**
+			 * Updates number of unread.
+			 */
+			if (this.numberUnreadAll > 0) {
+				this.numberUnreadAll--;
+				this.unreadAllItemsLb.setText(String.valueOf(this.numberUnreadAll));
+			}
+		} else if ("STAR".equals(type)) {
+			if (!newItem.isStarred()) {
+				if (this.numberStarredItems > 0) {
+					this.numberStarredItems--;
+					this.unreadStarredItemsLb.setText(String.valueOf(this.numberStarredItems));
+				}
+			} else {
+				this.numberStarredItems++;
+				this.unreadStarredItemsLb.setText(String.valueOf(this.numberStarredItems));
+			}
+		}
 	}
 
+	/**
+	 * Updates the view after changing read state of an entire channel.
+	 */
 	public void updateStateChannelItem() {
 		this.mainViewScene.loadItemsByChannel(this.selectedChannel.getChannelId());
 	}
@@ -321,6 +381,11 @@ public class MainViewController {
 		this.mainViewScene.loadAllItems();
 	}
 
+	/**
+	 * Handles when user clicks on a category pane.
+	 * 
+	 * @param selectedCategory
+	 */
 	public void handleCategoryItemsPaneClicked(Category selectedCategory) {
 		LIST_ITEM_TYPE = Globals.LIST_CATEGORY_ITEMS_TYPE;
 
@@ -375,6 +440,10 @@ public class MainViewController {
 		this.mainViewScene.loadItemsByChannel(this.selectedChannel.getChannelId());
 	}
 
+	/**
+	 * Handles action when the user clicks on add feed button. Starts the add
+	 * feed scene.
+	 */
 	@FXML
 	private void handleAddFeed() {
 		this.mainViewScene.launchAddFeedView();
@@ -422,6 +491,9 @@ public class MainViewController {
 		}
 	}
 
+	/**
+	 * Handles action when user wants to mark as read an entire channel.
+	 */
 	@FXML
 	private void handleMarkAsRead() {
 		if (this.selectedChannel == null) {

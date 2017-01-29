@@ -2,6 +2,12 @@ package com.rssaggregator.desktop.model;
 
 import com.google.gson.annotations.Expose;
 
+/**
+ * Body for the API request updateAll and updateItemsByChannel.
+ * 
+ * @author Irina
+ *
+ */
 public class ItemReadStateWrapper {
 
 	@Expose

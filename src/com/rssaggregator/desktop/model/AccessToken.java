@@ -5,6 +5,9 @@ import java.util.Date;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+/**
+ * User Information.
+ */
 public class AccessToken {
 
 	@Expose

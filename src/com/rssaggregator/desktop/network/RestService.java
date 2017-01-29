@@ -19,6 +19,12 @@ import retrofit2.http.POST;
 import retrofit2.http.PUT;
 import retrofit2.http.Path;
 
+/**
+ * Interface of the REST API.
+ * 
+ * @author Irina
+ *
+ */
 public interface RestService {
 
 	//
@@ -26,10 +32,10 @@ public interface RestService {
 	// AUTH AND USER METHODS
 	//
 	//
-	@POST("auth/")
+	@POST("auth")
 	Call<AccessToken> logIn(@Body Credentials credentials);
 
-	@POST("users/")
+	@POST("users")
 	Call<Void> signUp(@Body Credentials credentials);
 
 	//
@@ -37,10 +43,10 @@ public interface RestService {
 	// CATEGORIES METHODS
 	//
 	//
-	@GET("categories/")
+	@GET("categories")
 	Call<CategoriesWrapper> fetchCategories();
 
-	@POST("categories/")
+	@POST("categories")
 	Call<CategoryAddedWrapper> addCategory(@Body AddCategoryWrapper wrapper);
 
 	//
@@ -48,10 +54,10 @@ public interface RestService {
 	// CHANNELS METHODS
 	//
 	//
-	@POST("feeds/")
+	@POST("feeds")
 	Call<FeedAddedWrapper> addFeed(@Body AddFeedWrapper wrapper);
 
-	@GET("feeds/")
+	@GET("feeds")
 	Call<ItemsWrapper> fetchAllItems();
 
 	@GET("feeds/starred/")

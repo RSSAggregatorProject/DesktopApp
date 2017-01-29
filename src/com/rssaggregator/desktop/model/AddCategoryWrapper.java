@@ -2,6 +2,12 @@ package com.rssaggregator.desktop.model;
 
 import com.google.gson.annotations.Expose;
 
+/**
+ * Body of the API request Add Category.
+ * 
+ * @author Irina
+ *
+ */
 public class AddCategoryWrapper {
 
 	@Expose

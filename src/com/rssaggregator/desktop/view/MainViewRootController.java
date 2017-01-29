@@ -8,12 +8,21 @@ import com.rssaggregator.desktop.network.event.LogOutEvent;
 
 import javafx.fxml.FXML;
 
+/**
+ * View Controller of the MainView Root.
+ * 
+ * @author Irina
+ *
+ */
 public class MainViewRootController {
 
 	@FXML
 	private void initialize() {
 	}
 
+	/**
+	 * Handles action when user logs out.
+	 */
 	@FXML
 	private void handleLogOut() {
 		EventBus eventBus = MainApp.getEventBus();
@@ -22,13 +31,19 @@ public class MainViewRootController {
 		ConnectionScene scene = new ConnectionScene();
 		scene.launchConnectionView();
 	}
-	
+
+	/**
+	 * Handles action when user refreshs categories
+	 */
 	@FXML
 	private void handleRefreshCategories() {
 		EventBus eventBus = MainApp.getEventBus();
 		eventBus.post(new RefreshCategoriesEvent());
 	}
 
+	/**
+	 * Handles action when user closes the application.
+	 */
 	@FXML
 	private void handleExit() {
 		System.exit(0);

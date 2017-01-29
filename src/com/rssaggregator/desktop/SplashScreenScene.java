@@ -29,6 +29,7 @@ public class SplashScreenScene {
 	 * Constructor.
 	 * 
 	 * @param mainApp
+	 *            Main App instance.
 	 */
 	public SplashScreenScene(MainApp mainApp) {
 		this.mainApp = mainApp;

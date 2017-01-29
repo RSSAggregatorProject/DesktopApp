@@ -5,6 +5,12 @@ import java.util.List;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+/**
+ * Return of some API requests fetching items.
+ * 
+ * @author Irina
+ *
+ */
 public class ItemsWrapper {
 
 	@Expose

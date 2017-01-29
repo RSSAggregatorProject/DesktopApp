@@ -5,6 +5,12 @@ import java.util.List;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+/**
+ * Channel of the Item.
+ *
+ * @author Irina
+ *
+ */
 public class Channel {
 
 	@SerializedName("id_feed")

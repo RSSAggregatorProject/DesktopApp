@@ -10,8 +10,26 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
+/**
+ * Utility class for UI methods.
+ * 
+ * @author Irina
+ *
+ */
 public class UiUtils {
 
+	/**
+	 * Shows an error dialog.
+	 * 
+	 * @param owner
+	 *            Owner stage
+	 * @param title
+	 *            title of the error
+	 * @param header
+	 *            header of the error
+	 * @param errorMessage
+	 *            message of the error
+	 */
 	public static void showErrorDialog(Stage owner, String title, String header, String errorMessage) {
 		Alert alert = new Alert(AlertType.ERROR);
 		alert.initOwner(owner);
@@ -21,6 +39,14 @@ public class UiUtils {
 		alert.showAndWait();
 	}
 
+	/**
+	 * Creates a loading view.
+	 * 
+	 * @param owner
+	 *            Owner stage
+	 * 
+	 * @return Stage, the loading view created.
+	 */
 	public static Stage createLoadingDialog(Stage owner) {
 		Stage stage = null;
 

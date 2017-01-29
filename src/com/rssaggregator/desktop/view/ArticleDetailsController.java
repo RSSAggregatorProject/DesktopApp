@@ -19,6 +19,12 @@ import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
 import javafx.stage.Stage;
 
+/**
+ * View Controller of the Article Details View.
+ * 
+ * @author Irina
+ *
+ */
 public class ArticleDetailsController {
 
 	// Views.
@@ -44,10 +50,24 @@ public class ArticleDetailsController {
 	private MainViewController mainViewController;
 	private ArticleDetailsScene articleDetailsScene;
 
+	/**
+	 * Constructor
+	 * 
+	 * @param item
+	 *            Item
+	 */
 	public ArticleDetailsController(Item item) {
 		this.item = item;
 	}
 
+	/**
+	 * Sets the data
+	 * 
+	 * @param articleDetailsScene
+	 *            ArticleDetailsScene
+	 * @param mainViewController
+	 *            MainViewController
+	 */
 	public void setData(ArticleDetailsScene articleDetailsScene, MainViewController mainViewController) {
 		this.articleDetailsScene = articleDetailsScene;
 		this.mainViewController = mainViewController;
@@ -149,9 +169,12 @@ public class ArticleDetailsController {
 			this.readTg.setSelected(true);
 			this.readTg.setText("Read");
 		}
-		this.mainViewController.updateStateSingleItem(this.item);
+		this.mainViewController.updateStateSingleItem(this.item, "UNREAD");
 	}
 
+	/**
+	 * Updates view when the user stars or unstars the item.
+	 */
 	public void updateStar() {
 		Image image;
 		if (this.item.isStarred()) {
@@ -165,7 +188,7 @@ public class ArticleDetailsController {
 			this.item.setStarred(true);
 			this.starIconIv.setImage(image);
 		}
-		this.mainViewController.updateStateSingleItem(this.item);
+		this.mainViewController.updateStateSingleItem(this.item, "STAR");
 	}
 
 	/**

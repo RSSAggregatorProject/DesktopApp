@@ -5,6 +5,12 @@ import java.util.Date;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+/**
+ * Object representing an article in the RSS feed.
+ * 
+ * @author Irina
+ *
+ */
 public class Item {
 
 	@SerializedName("id_item")

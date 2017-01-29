@@ -3,6 +3,12 @@ package com.rssaggregator.desktop.model;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+/**
+ * Category created when user adds new category.
+ * 
+ * @author Irina
+ *
+ */
 public class CategoryAddedWrapper {
 
 	@Expose

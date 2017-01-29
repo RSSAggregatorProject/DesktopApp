@@ -49,7 +49,7 @@
                                                    </image>
                                                 </ImageView>
                                                 <Label layoutY="6.0" styleClass="titledpane-title" text="Starred Items" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="30.0" AnchorPane.topAnchor="0.0" />
-                                                <Label fx:id="unreadStarredItemsLb" layoutX="224.0" layoutY="6.0" styleClass="titledpane-title" text="23" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="16.0" AnchorPane.topAnchor="0.0" />
+                                                <Label fx:id="unreadStarredItemsLb" layoutX="224.0" layoutY="6.0" styleClass="titledpane-title" text="0" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="16.0" AnchorPane.topAnchor="0.0" />
                                              </children>
                                           </AnchorPane>
                                        </graphic>
@@ -67,7 +67,7 @@
                                                    </image>
                                                 </ImageView>
                                                 <Label layoutY="6.0" maxWidth="1.7976931348623157E308" styleClass="titledpane-title" text="All Items" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="30.0" AnchorPane.topAnchor="0.0" />
-                                                <Label fx:id="unreadAllItemsLb" layoutX="224.0" layoutY="6.0" styleClass="titledpane-title" text="9" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="16.0" AnchorPane.topAnchor="0.0" />
+                                                <Label fx:id="unreadAllItemsLb" layoutX="224.0" layoutY="6.0" styleClass="titledpane-title" text="0" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="16.0" AnchorPane.topAnchor="0.0" />
                                              </children>
                                           </AnchorPane>
                                        </graphic>

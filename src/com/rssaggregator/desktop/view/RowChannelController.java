@@ -7,6 +7,12 @@ import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 
+/**
+ * Controller view of a row of channel pane.
+ * 
+ * @author Irina
+ *
+ */
 public class RowChannelController {
 
 	// Data
@@ -23,6 +29,14 @@ public class RowChannelController {
 
 	private MainViewController mainViewController;
 
+	/**
+	 * Constructor
+	 * 
+	 * @param channel
+	 *            Channel
+	 * @param mainViewController
+	 *            MainViewController.
+	 */
 	public RowChannelController(Channel channel, MainViewController mainViewController) {
 		this.channel = channel;
 		this.mainViewController = mainViewController;
@@ -37,12 +51,6 @@ public class RowChannelController {
 				this.unreadArticlesLb.setText(String.valueOf(this.channel.getUnread()));
 			} else {
 				this.unreadArticlesLb.setText("0");
-			}
-
-			// TODO Fix that (Image not working with web url)
-			if (this.channel.getFaviconUri() != null
-					&& !this.channel.getFaviconUri().equals("favicon_not_implemented")) {
-				// TODO Implement Favicon when working.
 			}
 		}
 	}

@@ -5,6 +5,12 @@ import java.util.List;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+/**
+ * Class which represents the data fetched from the API request fetchData.
+ *
+ * @author Irina
+ *
+ */
 public class CategoriesWrapper {
 
 	@Expose

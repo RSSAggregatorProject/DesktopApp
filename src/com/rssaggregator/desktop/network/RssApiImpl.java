@@ -75,7 +75,6 @@ public class RssApiImpl implements RssApi {
 	 * Initializes the Network attributes.
 	 */
 	private void initializeNetworkAttributes() {
-		System.out.println("Initiliaze Attributes.");
 
 		// Set OkHttpClient.
 		OkHttpClient client = MainApp.getOkHttpClient();
@@ -146,7 +145,6 @@ public class RssApiImpl implements RssApi {
 			@Override
 			public void onResponse(Call<AccessToken> call, Response<AccessToken> response) {
 				if (response.isSuccessful()) {
-					System.out.println("[LOGIN] Success from the Api");
 					AccessToken accessToken = response.body();
 					PreferencesUtils.setUserConnected(userEmail, userPassword, accessToken.getApiToken(),
 							accessToken.getUserId(), true);
@@ -159,7 +157,6 @@ public class RssApiImpl implements RssApi {
 					try {
 						String json = response.errorBody().string();
 						ApiError error = new Gson().fromJson(json, ApiError.class);
-						System.out.println("[LOGIN] Error from the Api: " + error.getError());
 						eventBus.post(new LogInEvent(new Throwable(error.getError())));
 					} catch (Exception exception) {
 						exception.printStackTrace();
@@ -200,13 +197,11 @@ public class RssApiImpl implements RssApi {
 			@Override
 			public void onResponse(Call<Void> call, Response<Void> response) {
 				if (response.isSuccessful()) {
-					System.out.println("[SIGNUP] Success from the API");
 					eventBus.post(new SignUpEvent());
 				} else {
 					try {
 						String json = response.errorBody().string();
 						ApiError error = new Gson().fromJson(json, ApiError.class);
-						System.out.println("[SIGNUP] Error from the API : " + error.getError());
 						eventBus.post(new SignUpEvent(new Throwable(error.getError())));
 					} catch (Exception exception) {
 						exception.printStackTrace();
@@ -244,14 +239,12 @@ public class RssApiImpl implements RssApi {
 			@Override
 			public void onResponse(Call<CategoriesWrapper> call, Response<CategoriesWrapper> response) {
 				if (response.isSuccessful()) {
-					System.out.println("[FETCH CATEGORIES] Success from the API");
 					CategoriesWrapper wrapper = response.body();
 					eventBus.post(new FetchCategoriesEvent(wrapper));
 				} else {
 					try {
 						String json = response.errorBody().string();
 						ApiError error = new Gson().fromJson(json, ApiError.class);
-						System.out.println("[FETCH CATEGORIES] Error from the API : " + error.getError());
 						eventBus.post(new FetchCategoriesEvent(new Throwable(error.getError())));
 					} catch (Exception exception) {
 						exception.printStackTrace();
@@ -291,14 +284,12 @@ public class RssApiImpl implements RssApi {
 			@Override
 			public void onResponse(Call<CategoryAddedWrapper> call, Response<CategoryAddedWrapper> response) {
 				if (response.isSuccessful()) {
-					System.out.println("[ADD CATEGORY] Success from the API");
 					CategoryAddedWrapper wrapper = response.body();
 					eventBus.post(new CategoryAddedEvent(wrapper));
 				} else {
 					try {
 						String json = response.errorBody().string();
 						ApiError error = new Gson().fromJson(json, ApiError.class);
-						System.out.println("[ADD CATEGORY] Error from the API : " + error.getError());
 						eventBus.post(new CategoryAddedEvent(new Throwable(error.getError())));
 					} catch (Exception exception) {
 						exception.printStackTrace();
@@ -338,14 +329,12 @@ public class RssApiImpl implements RssApi {
 			@Override
 			public void onResponse(Call<FeedAddedWrapper> call, Response<FeedAddedWrapper> response) {
 				if (response.isSuccessful()) {
-					System.out.println("[ADD FEED] Success from the API");
 					FeedAddedWrapper wrapper = response.body();
 					eventBus.post(new FeedAddedEvent(wrapper));
 				} else {
 					try {
 						String json = response.errorBody().string();
 						ApiError error = new Gson().fromJson(json, ApiError.class);
-						System.out.println("[ADD FEED] Error from the API : " + error.getError());
 						eventBus.post(new FeedAddedEvent(new Throwable(error.getError())));
 					} catch (Exception exception) {
 						exception.printStackTrace();
@@ -383,14 +372,12 @@ public class RssApiImpl implements RssApi {
 			@Override
 			public void onResponse(Call<ItemsWrapper> call, Response<ItemsWrapper> response) {
 				if (response.isSuccessful()) {
-					System.out.println("[FETCH ALL ITEMS] Success from the API");
 					ItemsWrapper wrapper = response.body();
 					eventBus.post(new FetchAllItemsEvent(wrapper));
 				} else {
 					try {
 						String json = response.errorBody().string();
 						ApiError error = new Gson().fromJson(json, ApiError.class);
-						System.out.println("[FETCH ALL ITEMS] Error from the API : " + error.getError());
 						eventBus.post(new FetchAllItemsEvent(new Throwable(error.getError())));
 					} catch (Exception exception) {
 						exception.printStackTrace();
@@ -428,14 +415,12 @@ public class RssApiImpl implements RssApi {
 			@Override
 			public void onResponse(Call<ItemsWrapper> call, Response<ItemsWrapper> response) {
 				if (response.isSuccessful()) {
-					System.out.println("[FETCH STARRED ITEMS] Success from the API");
 					ItemsWrapper wrapper = response.body();
 					eventBus.post(new FetchStarredItemsEvent(wrapper));
 				} else {
 					try {
 						String json = response.errorBody().string();
 						ApiError error = new Gson().fromJson(json, ApiError.class);
-						System.out.println("[FETCH STARRED ITEMS] Error from the API : " + error.getError());
 						eventBus.post(new FetchStarredItemsEvent(new Throwable(error.getError())));
 					} catch (Exception exception) {
 						exception.printStackTrace();
@@ -473,14 +458,12 @@ public class RssApiImpl implements RssApi {
 			@Override
 			public void onResponse(Call<CategoriesWrapper> call, Response<CategoriesWrapper> response) {
 				if (response.isSuccessful()) {
-					System.out.println("[FETCH ITEMS BY CATEGORY] Success from the API");
 					CategoriesWrapper wrapper = response.body();
 					eventBus.post(new FetchItemsByCategoryEvent(wrapper));
 				} else {
 					try {
 						String json = response.errorBody().string();
 						ApiError error = new Gson().fromJson(json, ApiError.class);
-						System.out.println("[FETCH ITEMS BY CATEGORY] Error from the API : " + error.getError());
 						eventBus.post(new FetchItemsByCategoryEvent(new Throwable(error.getError())));
 					} catch (Exception exception) {
 						exception.printStackTrace();
@@ -518,14 +501,12 @@ public class RssApiImpl implements RssApi {
 			@Override
 			public void onResponse(Call<ItemsWrapper> call, Response<ItemsWrapper> response) {
 				if (response.isSuccessful()) {
-					System.out.println("[FETCH ITEMS BY CHANNEL] Success from the API");
 					ItemsWrapper wrapper = response.body();
 					eventBus.post(new FetchItemsByChannelEvent(wrapper));
 				} else {
 					try {
 						String json = response.errorBody().string();
 						ApiError error = new Gson().fromJson(json, ApiError.class);
-						System.out.println("[FETCH ITEMS BY CHANNEL] Error from the API : " + error.getError());
 						eventBus.post(new FetchItemsByChannelEvent(new Throwable(error.getError())));
 					} catch (Exception exception) {
 						exception.printStackTrace();
@@ -541,6 +522,9 @@ public class RssApiImpl implements RssApi {
 		});
 	}
 
+	/**
+	 * Updates states of an item by calling the API.
+	 */
 	@Override
 	public void updateItemState(Integer itemId, ItemStateWrapper wrapper) {
 		if (this.restService == null) {
@@ -560,13 +544,11 @@ public class RssApiImpl implements RssApi {
 			@Override
 			public void onResponse(Call<Void> call, Response<Void> response) {
 				if (response.isSuccessful()) {
-					System.out.println("[UPDATE ITEM] Success from the API");
 					eventBus.post(new ItemUpdatedEvent());
 				} else {
 					try {
 						String json = response.errorBody().string();
 						ApiError error = new Gson().fromJson(json, ApiError.class);
-						System.out.println("[UPDATE ITEM] Error from the API : " + error.getError());
 						eventBus.post(new ItemUpdatedEvent(new Throwable(error.getError())));
 					} catch (Exception exception) {
 						exception.printStackTrace();
@@ -582,6 +564,9 @@ public class RssApiImpl implements RssApi {
 		});
 	}
 
+	/**
+	 * Updates all the items of a channel by calling the API
+	 */
 	@Override
 	public void updateItemStateByChannel(Integer channelId, ItemReadStateWrapper wrapper) {
 		if (this.restService == null) {
@@ -601,13 +586,11 @@ public class RssApiImpl implements RssApi {
 			@Override
 			public void onResponse(Call<Void> call, Response<Void> response) {
 				if (response.isSuccessful()) {
-					System.out.println("[UPDATE ITEM BY CHANNEL] Success from the API");
 					eventBus.post(new ItemsByChannelUpdatedEvent());
 				} else {
 					try {
 						String json = response.errorBody().string();
 						ApiError error = new Gson().fromJson(json, ApiError.class);
-						System.out.println("[UPDATE ITEM BY CHANNEL] Error from the API : " + error.getError());
 						eventBus.post(new ItemsByChannelUpdatedEvent(new Throwable(error.getError())));
 					} catch (Exception exception) {
 						exception.printStackTrace();
@@ -623,6 +606,9 @@ public class RssApiImpl implements RssApi {
 		});
 	}
 
+	/**
+	 * Unsubscribe the feed by calling the API.
+	 */
 	@Override
 	public void deleteFeed(Integer channelId) {
 		if (this.restService == null) {
@@ -642,13 +628,11 @@ public class RssApiImpl implements RssApi {
 			@Override
 			public void onResponse(Call<Void> call, Response<Void> response) {
 				if (response.isSuccessful()) {
-					System.out.println("[DELETE FEED] Success from the API");
 					eventBus.post(new FeedDeletedEvent());
 				} else {
 					try {
 						String json = response.errorBody().string();
 						ApiError error = new Gson().fromJson(json, ApiError.class);
-						System.out.println("[DELETE FEED] Error from the API : " + error.getError());
 						eventBus.post(new FeedDeletedEvent(new Throwable(error.getError())));
 					} catch (Exception exception) {
 						exception.printStackTrace();

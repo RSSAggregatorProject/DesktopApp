@@ -19,6 +19,12 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
 
+/**
+ * List Cell of the Item version Extended.
+ * 
+ * @author Irina
+ *
+ */
 public class ArticleExtendedListViewCell extends ListCell<Item> {
 
 	@FXML

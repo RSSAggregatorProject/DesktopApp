@@ -53,6 +53,7 @@ public class SignUpScene {
 	 * Constructor.
 	 * 
 	 * @param connectionController
+	 *            Connection controller.
 	 */
 	public SignUpScene(ConnectionController connectionController) {
 		this.primaryStage = MainApp.getStage();

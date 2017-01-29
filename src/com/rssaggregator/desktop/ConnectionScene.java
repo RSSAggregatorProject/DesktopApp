@@ -43,6 +43,7 @@ public class ConnectionScene {
 	 * Default constructor.
 	 * 
 	 * @param mainApp
+	 *            Main App instance.
 	 */
 	public ConnectionScene() {
 		this.primaryStage = MainApp.getStage();
